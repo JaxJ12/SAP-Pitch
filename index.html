@@ -452,6 +452,22 @@
 </div>
 
 <script>
+// Auto-show tooltip after 3 seconds, hide after 6
+setTimeout(() => {
+  const tooltip = document.getElementById('chatTooltip');
+  if (tooltip) tooltip.style.display = 'flex';
+}, 3000);
+setTimeout(() => {
+  const tooltip = document.getElementById('chatTooltip');
+  if (tooltip && !chatOpen) tooltip.style.display = 'none';
+}, 9000);
+
+// Hide tooltip when chat opens
+const origToggle = window.toggleChat;
+window.toggleChat = function() {
+  origToggle();
+  document.getElementById('chatTooltip').style.display = 'none';
+}
 const API_URL = 'https://sap-pitch-4el8.vercel.app/api/chat';
 let chatHistory = [];
 let chatOpen = false;
