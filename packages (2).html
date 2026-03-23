@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Packages & Pricing — Baylor Athletics x SAP</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --green: #154734; --green-dark: #0d2e22; --green-light: #2a7a58;
+      --gold: #FFB81C; --cream: #f8f6f0; --off-white: #f2f4f0;
+      --text: #1a1a1a; --muted: #666;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1rem 2.5rem; display: flex; align-items: center; justify-content: space-between; background: rgba(21,71,52,0.97); backdrop-filter: blur(8px); }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-mark { width: 32px; height: 32px; background: var(--gold); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: var(--green); }
+    .nav-links { display: flex; list-style: none; }
+    .nav-links a { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.65); text-decoration: none; padding: 0.5rem 1rem; border-radius: 6px; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+    .nav-cta { background: var(--gold) !important; color: var(--green) !important; border-radius: 100px !important; padding: 8px 18px !important; font-weight: 600 !important; }
+    .nav-cta:hover { background: #fff !important; }
+
+    /* HERO */
+    .page-hero { background: var(--green); padding: 9rem 2.5rem 5rem; position: relative; overflow: hidden; }
+    .hero-pattern { position: absolute; inset: 0; opacity: 0.04; background-image: repeating-linear-gradient(45deg,#fff 0,#fff 1px,transparent 0,transparent 50%); background-size: 20px 20px; }
+    .hero-bar { position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--gold); }
+    .hero-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+    .breadcrumb { font-size: 12px; color: rgba(255,255,255,0.45); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 8px; }
+    .breadcrumb a { color: rgba(255,255,255,0.45); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--gold); }
+    .page-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+    .page-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem,5vw,4rem); font-weight: 900; color: #fff; line-height: 1.1; margin-bottom: 1.25rem; }
+    .page-title em { color: var(--gold); font-style: normal; }
+    .page-sub { font-size: 1.1rem; color: rgba(255,255,255,0.55); max-width: 600px; line-height: 1.8; font-weight: 300; }
+
+    /* SHARED */
+    .sec { padding: 6rem 2.5rem; }
+    .sec-inner { max-width: 1200px; margin: 0 auto; }
+    .sec-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green); opacity: 0.55; margin-bottom: 0.75rem; }
+    .sec-eyebrow-gold { font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+    .sec-title { font-family: 'Playfair Display', serif; font-size: clamp(1.75rem,3vw,2.5rem); font-weight: 700; color: var(--green-dark); line-height: 1.2; margin-bottom: 0.75rem; }
+    .sec-title em { color: var(--green-light); font-style: normal; }
+    .sec-title-white { font-family: 'Playfair Display', serif; font-size: clamp(1.75rem,3vw,2.5rem); font-weight: 700; color: #fff; line-height: 1.2; margin-bottom: 0.75rem; }
+    .sec-lead { font-size: 1rem; color: var(--muted); max-width: 600px; line-height: 1.8; margin-bottom: 3rem; font-weight: 300; }
+    .sec-lead-white { font-size: 1rem; color: rgba(255,255,255,0.6); max-width: 600px; line-height: 1.8; margin-bottom: 3rem; font-weight: 300; }
+
+    /* PACKAGE CARDS */
+    .pkg-sec { background: var(--cream); padding: 6rem 2.5rem; }
+    .pkg-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; align-items: start; }
+    .pkg-card { background: #fff; border-radius: 20px; border: 1px solid rgba(21,71,52,0.1); overflow: hidden; display: flex; flex-direction: column; transition: all 0.25s; }
+    .pkg-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(21,71,52,0.12); }
+    .pkg-card.featured { border: 2px solid var(--green); }
+    .pkg-top-bar { height: 5px; }
+    .pkg-body { padding: 2rem; flex: 1; display: flex; flex-direction: column; }
+    .pkg-badge { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px; border-radius: 100px; margin-bottom: 1.25rem; align-self: flex-start; }
+    .pkg-badge.regional { background: rgba(21,71,52,0.08); color: var(--green); }
+    .pkg-badge.recommended { background: var(--green); color: var(--gold); }
+    .pkg-badge.platinum { background: var(--gold); color: var(--green); }
+    .pkg-name { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--green); margin-bottom: 0.25rem; }
+    .pkg-price { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; color: var(--text); margin-bottom: 0.25rem; line-height: 1.1; }
+    .pkg-price span { font-size: 0.9rem; font-weight: 400; color: var(--muted); font-family: 'DM Sans', sans-serif; }
+    .pkg-source { font-size: 11px; color: var(--muted); font-style: italic; margin-bottom: 1.5rem; line-height: 1.5; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(21,71,52,0.07); }
+    .pkg-features { display: flex; flex-direction: column; gap: 10px; flex: 1; margin-bottom: 1.75rem; }
+    .pkg-feature { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .pkg-check { width: 18px; height: 18px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; font-size: 10px; color: var(--green); font-weight: 700; }
+    .pkg-cta { display: block; width: 100%; padding: 13px; border-radius: 12px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; text-align: center; cursor: pointer; text-decoration: none; transition: all 0.15s; }
+    .pkg-cta.outline { border: 1.5px solid var(--green); background: transparent; color: var(--green); }
+    .pkg-cta.outline:hover { background: var(--green); color: var(--gold); }
+    .pkg-cta.solid { border: none; background: var(--green); color: var(--gold); }
+    .pkg-cta.solid:hover { background: var(--green-dark); }
+    .pkg-cta.gold { border: none; background: var(--gold); color: var(--green); }
+    .pkg-cta.gold:hover { background: #e6a518; }
+    .pkg-footer-note { font-size: 11px; color: var(--muted); text-align: center; margin-top: 2rem; line-height: 1.6; }
+
+    /* ASSET COMPARISON TABLE */
+    .compare-sec { background: var(--off-white); padding: 6rem 2.5rem; }
+    .compare-inner { max-width: 1200px; margin: 0 auto; }
+    .compare-table { width: 100%; border-radius: 16px; overflow: hidden; border: 1px solid rgba(21,71,52,0.1); background: #fff; margin-top: 2.5rem; }
+    .compare-head { display: grid; grid-template-columns: 2.5fr 1fr 1fr 1fr; background: var(--green); }
+    .compare-th { padding: 1rem 1.25rem; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.08em; }
+    .compare-th.gold { color: var(--gold); }
+    .compare-row { display: grid; grid-template-columns: 2.5fr 1fr 1fr 1fr; border-top: 1px solid rgba(21,71,52,0.06); }
+    .compare-row:hover { background: rgba(21,71,52,0.015); }
+    .compare-row.section-head { background: rgba(21,71,52,0.03); }
+    .compare-cell { padding: 0.9rem 1.25rem; font-size: 13px; color: var(--muted); display: flex; align-items: center; }
+    .compare-cell.label { font-weight: 500; color: var(--text); }
+    .compare-cell.section-label { font-weight: 700; color: var(--green); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .compare-cell.featured { background: rgba(21,71,52,0.02); }
+    .check { color: var(--green); font-size: 16px; }
+    .cross { color: #ddd; font-size: 16px; }
+    .partial { font-size: 11px; font-weight: 600; color: var(--gold); }
+
+    /* MARKET CONTEXT */
+    .market-sec { background: var(--green); padding: 6rem 2.5rem; }
+    .market-inner { max-width: 1200px; margin: 0 auto; }
+    .market-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 2.5rem; }
+    .market-card { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 1.75rem; transition: background 0.2s; }
+    .market-card:hover { background: rgba(255,255,255,0.11); }
+    .market-school { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 3px; }
+    .market-partner { font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 1rem; }
+    .market-value { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--gold); margin-bottom: 4px; }
+    .market-note { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.5; }
+    .market-card.baylor { border-color: var(--gold); background: rgba(255,184,28,0.08); }
+    .market-card.baylor .market-school { color: var(--gold); }
+
+    /* FAQ */
+    .faq-sec { background: #fff; padding: 6rem 2.5rem; }
+    .faq-inner { max-width: 800px; margin: 0 auto; }
+    .faq-list { display: flex; flex-direction: column; gap: 1rem; margin-top: 2.5rem; }
+    .faq-item { border: 1px solid rgba(21,71,52,0.1); border-radius: 12px; overflow: hidden; }
+    .faq-q { padding: 1.25rem 1.5rem; font-size: 15px; font-weight: 600; color: var(--green); cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.15s; }
+    .faq-q:hover { background: rgba(21,71,52,0.03); }
+    .faq-arrow { font-size: 18px; color: var(--gold); transition: transform 0.2s; }
+    .faq-a { padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; }
+    .faq-a.open { max-height: 300px; padding: 0 1.5rem 1.25rem; }
+    .faq-a p { font-size: 14px; color: var(--muted); line-height: 1.75; }
+    .faq-item.active .faq-arrow { transform: rotate(180deg); }
+
+    /* CTA */
+    .cta-sec { background: var(--green); padding: 5rem 2.5rem; text-align: center; }
+    .cta-title { font-family: 'Playfair Display', serif; font-size: clamp(1.75rem,3vw,2.5rem); font-weight: 700; color: #fff; margin-bottom: 0.75rem; }
+    .cta-sub { font-size: 1rem; color: rgba(255,255,255,0.5); margin-bottom: 2.5rem; max-width: 460px; margin-left: auto; margin-right: auto; line-height: 1.7; font-weight: 300; }
+    .btn-gold { display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: var(--green); padding: 15px 30px; border-radius: 100px; font-size: 14px; font-weight: 600; text-decoration: none; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+    .btn-gold:hover { background: #fff; transform: translateY(-2px); }
+    .btn-outline { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: rgba(255,255,255,0.75); padding: 15px 30px; border-radius: 100px; font-size: 14px; font-weight: 500; text-decoration: none; border: 1px solid rgba(255,255,255,0.2); transition: all 0.2s; font-family: 'DM Sans', sans-serif; margin-left: 1rem; }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    footer { background: var(--green-dark); padding: 2.5rem; }
+    .foot-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .foot-logo { font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.45); }
+    .foot-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .foot-links a { font-size: 12px; color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
+    .foot-links a:hover { color: var(--gold); }
+    .foot-copy { font-size: 10px; color: rgba(255,255,255,0.2); }
+
+    .chat-float { position: fixed; bottom: 2rem; right: 2rem; z-index: 200; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+    .chat-btn { width: 64px; height: 64px; border-radius: 50%; background: var(--green); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 24px rgba(21,71,52,0.4); transition: all 0.2s; position: relative; }
+    .chat-btn:hover { background: var(--green-dark); transform: scale(1.05); }
+    .chat-btn svg { width: 26px; height: 26px; fill: var(--gold); }
+    .chat-pulse { position: absolute; inset: -4px; border-radius: 50%; border: 2px solid var(--gold); animation: pulse 2s ease-out infinite; pointer-events: none; }
+    @keyframes pulse { 0% { transform: scale(0.95); opacity: 0.8; } 100% { transform: scale(1.3); opacity: 0; } }
+    .chat-tip { background: var(--green); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; padding: 10px 16px; border-radius: 100px; white-space: nowrap; box-shadow: 0 4px 20px rgba(21,71,52,0.25); display: none; align-items: center; gap: 8px; cursor: pointer; }
+    .chat-box { position: absolute; bottom: 78px; right: 0; width: 380px; background: #fff; border-radius: 20px; box-shadow: 0 16px 60px rgba(21,71,52,0.18); overflow: hidden; display: none; flex-direction: column; }
+    .chat-box.open { display: flex; }
+    .chat-head { background: var(--green); padding: 1rem 1.25rem; display: flex; align-items: center; gap: 10px; }
+    .chat-logo { width: 36px; height: 36px; background: var(--gold); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 11px; font-weight: 700; color: var(--green); flex-shrink: 0; }
+    .chat-head-title { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 700; color: #fff; }
+    .chat-head-sub { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 1px; display: flex; align-items: center; gap: 5px; }
+    .chat-green-dot { width: 5px; height: 5px; border-radius: 50%; background: #4ade80; }
+    .chat-msgs { height: 280px; overflow-y: auto; padding: 1rem; display: flex; flex-direction: column; gap: 10px; background: #fafcfa; }
+    .chat-msgs::-webkit-scrollbar { width: 3px; }
+    .chat-msgs::-webkit-scrollbar-thumb { background: #c5d5c5; border-radius: 2px; }
+    .msg { max-width: 85%; padding: 9px 13px; border-radius: 14px; font-size: 13px; line-height: 1.65; font-family: 'DM Sans', sans-serif; }
+    .msg.bot { background: #fff; color: #1a1a1a; align-self: flex-start; border-bottom-left-radius: 3px; border: 1px solid #e0eae0; }
+    .msg.me { background: var(--green); color: var(--gold); align-self: flex-end; border-bottom-right-radius: 3px; font-weight: 500; }
+    .msg.thinking { background: #eef3ee; color: #999; align-self: flex-start; font-style: italic; font-size: 12px; }
+    .msg.bot strong { font-weight: 700; color: var(--green); }
+    .fu-wrap { align-self: flex-start; display: flex; flex-direction: column; gap: 5px; max-width: 90%; }
+    .fu-label { font-family: 'DM Sans', sans-serif; font-size: 9px; font-weight: 600; color: var(--green); text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.6; }
+    .fu-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+    .fu-chip { font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500; padding: 5px 11px; border-radius: 100px; border: 1.5px solid var(--green); background: #fff; color: var(--green); cursor: pointer; transition: all 0.15s; }
+    .fu-chip:hover { background: var(--green); color: var(--gold); }
+    .chat-quick { padding: 8px 10px; background: #fafcfa; display: flex; flex-wrap: wrap; gap: 5px; border-top: 1px solid #e8ede8; }
+    .q-chip { font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 100px; border: 1px solid #b8cfb8; background: #fff; color: var(--green); cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+    .q-chip:hover { background: var(--green); color: var(--gold); border-color: var(--green); }
+    .chat-input { padding: 10px; border-top: 1px solid #e8ede8; display: flex; gap: 8px; background: #fff; }
+    .chat-input input { flex: 1; font-family: 'DM Sans', sans-serif; font-size: 13px; padding: 8px 12px; border-radius: 10px; border: 1.5px solid #d4ddd4; background: #fafcfa; color: #1a1a1a; outline: none; }
+    .chat-input input:focus { border-color: var(--green); }
+    .chat-input input:disabled { opacity: 0.5; }
+    .chat-send { background: var(--green); color: var(--gold); border: none; border-radius: 10px; padding: 8px 14px; font-size: 13px; font-weight: 600; font-family: 'DM Sans', sans-serif; cursor: pointer; }
+    .chat-send:hover { background: var(--green-dark); }
+    .chat-send:disabled { background: #c5d5c5; color: #fff; cursor: not-allowed; }
+
+
+    .foot-class { font-size: 10px; color: rgba(255,255,255,0.2); margin-top: 4px; }
+    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-up.in { opacity: 1; transform: translateY(0); }
+    .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}.d6{transition-delay:.6s}
+
+    @media(max-width:960px){ .pkg-grid,.market-grid{grid-template-columns:1fr 1fr;} .compare-head,.compare-row{grid-template-columns:2fr 1fr 1fr 1fr;} }
+    @media(max-width:640px){ .pkg-grid,.market-grid{grid-template-columns:1fr;} .compare-head,.compare-row{grid-template-columns:1fr;} .nav-links{display:none;} .chat-box{width:320px;} }
+  </style>
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="shortcut icon" href="favicon.ico"/>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><div class="nav-mark">BU</div>Baylor Athletics x SAP</a>
+  <ul class="nav-links">
+    <li><a href="opportunity.html">Opportunity</a></li>
+    <li><a href="reach.html">Reach</a></li>
+    <li><a href="roadmap.html">Roadmap</a></li>
+    <li><a href="packages.html" class="active">Packages</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-bar"></div>
+  <div class="hero-inner">
+    <div class="breadcrumb"><a href="index.html">Home</a> / Packages and Pricing</div>
+    <div class="page-eyebrow">Sponsorship packages</div>
+    <h1 class="page-title">Choose your level<br><em>of partnership.</em></h1>
+    <p class="page-sub">Every package is fully customizable and managed through Baylor Sports Properties powered by Playfly — the exclusive multimedia rights holder for Baylor Athletics. Pricing reflects current Big 12 school-level market rates.</p>
+  </div>
+</div>
+
+<!-- PACKAGES -->
+<div class="pkg-sec">
+  <div class="sec-inner">
+    <div class="pkg-grid">
+      <div class="pkg-card fade-up d1">
+        <div class="pkg-top-bar" style="background:rgba(21,71,52,0.3)"></div>
+        <div class="pkg-body">
+          <div class="pkg-badge regional">Regional Partner</div>
+          <div class="pkg-name">Brand Presence</div>
+          <div class="pkg-price">$25K–$100K <span>/ year</span></div>
+          <div class="pkg-source">Entry-level Big 12 school rate — reflects regional brand deals across conference programs managed by Playfly Sports</div>
+          <div class="pkg-features">
+            <div class="pkg-feature"><div class="pkg-check">✓</div>In-venue LED and scoreboard signage</div>
+            <div class="pkg-feature"><div class="pkg-check">✓</div>Digital and social media integration</div>
+            <div class="pkg-feature"><div class="pkg-check">✓</div>Official partner designation and IP rights</div>
+            <div class="pkg-feature"><div class="pkg-check">✓</div>Game tickets and gameday hospitality</div>
+            <div class="pkg-feature"><div class="pkg-check">✓</div>Radio broadcast mentions across 5 TX markets</div>
+            <div class="pkg-feature"><div class="pkg-check">✓</div>Baylor.com partner listing and logo</div>
+          </div>
+          <a href="contact.html" class="pkg-cta outline">Get in touch</a>
+        </div>
+      </div>
+
+      <div class="pkg-card featured fade-up d2">
+        <div class="pkg-top-bar" style="background:var(--green)"></div>
+        <div class="pkg-body">
+          <div class="pkg-badge recommended">Recommended for SAP</div>
+          <div class="pkg-name">Full Partnership</div>
+          <div class="pkg-price">$100K–$500K <span>/ year</span></div>
+          <div class="pkg-source">Mid-tier Big 12 corporate rate — comparable to multi-asset, multi-sport deals at Baylor's program level per Playfly Sports market data</div>
+          <div class="pkg-features">
+            <div class="pkg-feature"><div class="pkg-check">✓</div>TV-visible field and scoreboard signage</div>
+            <div class="pkg-feature"><div class="pkg-check">✓</div>Premier suite access and corporate hospitality</div>
+            <div class="pkg-feature"><div class="pkg-check">✓</div>B2B executive networking events</div>
+            <div class="pkg-feature"><div class="pkg-check">✓</div>Multi-sport year-round coverage</div>
+            <div class="pkg-feature"><div class="pkg-check">✓</div>NIL endorsement opportunities</div>
+            <div class="pkg-feature"><div class="pkg-check">✓</div>SAP technology showcase integration</div>
+            <div class="pkg-feature"><div class="pkg-check">✓</div>All Brand Presence assets included</div>
+          </div>
+          <a href="contact.html" class="pkg-cta solid">Get in touch</a>
+        </div>
+      </div>
+
+      <div class="pkg-card fade-up d3">
+        <div class="pkg-top-bar" style="background:var(--gold)"></div>
+        <div class="pkg-body">
+          <div class="pkg-badge platinum">Platinum — 2027 Launch</div>
+          <div class="pkg-name">Jersey Patch Partner</div>
+          <div class="pkg-price">Custom <span>pricing</span></div>
+          <div class="pkg-source">Power 4 patches valued $500K–$2M+/yr — UNLV $11M/5yr, LSU and Arkansas set new benchmarks in early 2026</div>
+          <div class="pkg-features">
+            <div class="pkg-feature"><div class="pkg-check">✓</div>NCAA jersey patch on all uniforms — Aug 2026+</div>
+            <div class="pkg-feature"><div class="pkg-check">✓</div>First enterprise tech company on a Power 4 jersey</div>
+            <div class="pkg-feature"><div class="pkg-check">✓</div>All Full Partnership assets included</div>
+            <div class="pkg-feature"><div class="pkg-check">✓</div>SAP Sapphire and TechEd speaking slots</div>
+            <div class="pkg-feature"><div class="pkg-check">✓</div>Dedicated SAP tech showcase reference story</div>
+            <div class="pkg-feature"><div class="pkg-check">✓</div>Multi-year preferred partnership terms</div>
+            <div class="pkg-feature"><div class="pkg-check">✓</div>Co-branded PR campaign across Texas markets</div>
+          </div>
+          <a href="contact.html" class="pkg-cta gold">Request a proposal</a>
+        </div>
+      </div>
+    </div>
+    <p class="pkg-footer-note">All packages managed exclusively by Baylor Sports Properties powered by Playfly. Pricing reflects current Big 12 school-level sponsorship market rates.<br>Sources: Playfly Sports, Big 12 Conference, industry analyst estimates 2025–26. Contact <a href="/cdn-cgi/l/email-protection#b1fdc4dad4eef9deddd2dedcd3f1d3d0c8dddec39fd4d5c4" style="color:var(--green);"><span class="__cf_email__" data-cfemail="d39fa6b8b68c9bbcbfb0bcbeb193b1b2aabfbca1fdb6b7a6">[email&#160;protected]</span></a> for a custom proposal.</p>
+  </div>
+</div>
+
+<!-- ASSET COMPARISON -->
+<div class="compare-sec">
+  <div class="compare-inner">
+    <div class="fade-up">
+      <div class="sec-eyebrow">Full asset breakdown</div>
+      <h2 class="sec-title">What's included <em>in each tier.</em></h2>
+      <p class="sec-lead">A complete side-by-side comparison of every asset available across all three partnership tiers.</p>
+    </div>
+    <div class="compare-table fade-up">
+      <div class="compare-head">
+        <div class="compare-th">Asset</div>
+        <div class="compare-th">Brand Presence</div>
+        <div class="compare-th gold">Full Partnership</div>
+        <div class="compare-th">Jersey Patch</div>
+      </div>
+      <div class="compare-row section-head">
+        <div class="compare-cell section-label">Signage and visibility</div>
+        <div class="compare-cell"></div><div class="compare-cell featured"></div><div class="compare-cell"></div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell label">In-venue LED signage</div>
+        <div class="compare-cell"><span class="check">✓</span></div>
+        <div class="compare-cell featured"><span class="check">✓</span></div>
+        <div class="compare-cell"><span class="check">✓</span></div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell label">TV-visible scoreboard and field logos</div>
+        <div class="compare-cell"><span class="cross">—</span></div>
+        <div class="compare-cell featured"><span class="check">✓</span></div>
+        <div class="compare-cell"><span class="check">✓</span></div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell label">Jersey patch — all 4 colorways</div>
+        <div class="compare-cell"><span class="cross">—</span></div>
+        <div class="compare-cell featured"><span class="cross">—</span></div>
+        <div class="compare-cell"><span class="check">✓</span></div>
+      </div>
+      <div class="compare-row section-head">
+        <div class="compare-cell section-label">Digital and media</div>
+        <div class="compare-cell"></div><div class="compare-cell featured"></div><div class="compare-cell"></div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell label">Social media features and content</div>
+        <div class="compare-cell"><span class="check">✓</span></div>
+        <div class="compare-cell featured"><span class="check">✓</span></div>
+        <div class="compare-cell"><span class="check">✓</span></div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell label">Radio broadcast — 5 Texas markets</div>
+        <div class="compare-cell"><span class="check">✓</span></div>
+        <div class="compare-cell featured"><span class="check">✓</span></div>
+        <div class="compare-cell"><span class="check">✓</span></div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell label">Co-branded PR campaign</div>
+        <div class="compare-cell"><span class="cross">—</span></div>
+        <div class="compare-cell featured"><span class="cross">—</span></div>
+        <div class="compare-cell"><span class="check">✓</span></div>
+      </div>
+      <div class="compare-row section-head">
+        <div class="compare-cell section-label">B2B and hospitality</div>
+        <div class="compare-cell"></div><div class="compare-cell featured"></div><div class="compare-cell"></div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell label">Game tickets and gameday access</div>
+        <div class="compare-cell"><span class="check">✓</span></div>
+        <div class="compare-cell featured"><span class="check">✓</span></div>
+        <div class="compare-cell"><span class="check">✓</span></div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell label">Premier suite and corporate hospitality</div>
+        <div class="compare-cell"><span class="cross">—</span></div>
+        <div class="compare-cell featured"><span class="check">✓</span></div>
+        <div class="compare-cell"><span class="check">✓</span></div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell label">B2B executive networking events</div>
+        <div class="compare-cell"><span class="cross">—</span></div>
+        <div class="compare-cell featured"><span class="check">✓</span></div>
+        <div class="compare-cell"><span class="check">✓</span></div>
+      </div>
+      <div class="compare-row section-head">
+        <div class="compare-cell section-label">SAP-specific assets</div>
+        <div class="compare-cell"></div><div class="compare-cell featured"></div><div class="compare-cell"></div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell label">Technology showcase integration</div>
+        <div class="compare-cell"><span class="cross">—</span></div>
+        <div class="compare-cell featured"><span class="check">✓</span></div>
+        <div class="compare-cell"><span class="check">✓</span></div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell label">SAP Sapphire and TechEd speaking slots</div>
+        <div class="compare-cell"><span class="cross">—</span></div>
+        <div class="compare-cell featured"><span class="cross">—</span></div>
+        <div class="compare-cell"><span class="check">✓</span></div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell label">NIL endorsement opportunities</div>
+        <div class="compare-cell"><span class="cross">—</span></div>
+        <div class="compare-cell featured"><span class="check">✓</span></div>
+        <div class="compare-cell"><span class="check">✓</span></div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell label">Multi-sport year-round coverage</div>
+        <div class="compare-cell"><span class="partial">Football only</span></div>
+        <div class="compare-cell featured"><span class="check">✓ All sports</span></div>
+        <div class="compare-cell"><span class="check">✓ All sports</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MARKET CONTEXT -->
+<div class="market-sec">
+  <div class="market-inner">
+    <div class="fade-up">
+      <div class="sec-eyebrow-gold">Market context</div>
+      <h2 class="sec-title-white">How Baylor compares<br>to recent patch deals.</h2>
+      <p class="sec-lead-white">Jersey patch pricing is still being established by the market. Here is what comparable programs have signed — and where Baylor fits.</p>
+    </div>
+    <div class="market-grid">
+      <div class="market-card fade-up d1">
+        <div class="market-school">UNLV</div>
+        <div class="market-partner">Access Biologics — Mountain West</div>
+        <div class="market-value">$11M / 5 years</div>
+        <div class="market-note">$2.2M per year — first major Power 5-adjacent deal. Set the baseline for the market.</div>
+      </div>
+      <div class="market-card fade-up d2">
+        <div class="market-school">LSU</div>
+        <div class="market-partner">Woodside Energy — SEC</div>
+        <div class="market-value">Multi-year deal</div>
+        <div class="market-note">SEC program with 100K+ stadium capacity. Estimated above UNLV baseline given market size and TV exposure.</div>
+      </div>
+      <div class="market-card fade-up d3">
+        <div class="market-school">Arkansas</div>
+        <div class="market-partner">Tyson Foods — SEC</div>
+        <div class="market-value">Record-setting</div>
+        <div class="market-note">Home state Fortune 500 company. Local brand alignment drove premium pricing above market average.</div>
+      </div>
+      <div class="market-card baylor fade-up d4">
+        <div class="market-school">Baylor — SAP opportunity</div>
+        <div class="market-partner">Big 12 — I-35 corridor — Enterprise tech</div>
+        <div class="market-value">$500K–$2M+ / yr</div>
+        <div class="market-note">Industry analyst estimate for Power 4 Big 12 program. First enterprise tech category — potential for premium pricing.</div>
+      </div>
+      <div class="market-card fade-up d5">
+        <div class="market-school">Big 12 average</div>
+        <div class="market-partner">Conference-wide estimate</div>
+        <div class="market-value">$3.5M–$6M / yr</div>
+        <div class="market-note">Top-tier Big 12 programs expected to command $3.5M to $6M annually based on conference TV deal value per school.</div>
+      </div>
+      <div class="market-card fade-up d6">
+        <div class="market-school">Enterprise tech category</div>
+        <div class="market-partner">First mover advantage</div>
+        <div class="market-value">Wide open</div>
+        <div class="market-note">No major enterprise software company has yet signed a Power 4 jersey patch deal. SAP can own this category.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="faq-sec">
+  <div class="faq-inner">
+    <div class="fade-up">
+      <div class="sec-eyebrow">Common questions</div>
+      <h2 class="sec-title">Frequently asked <em>questions.</em></h2>
+    </div>
+    <div class="faq-list fade-up">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Who manages the Baylor Athletics sponsorship process? <span class="faq-arrow">&#8964;</span></div>
+        <div class="faq-a"><p>All Baylor Athletics sponsorships are managed exclusively by Baylor Sports Properties, powered by Playfly Sports. Playfly holds the exclusive multimedia rights for Baylor Athletics. The primary contact is Luke Holcomb at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fcb0899799a3b493909f93919ebc9e9d8590938ed2999889">[email&#160;protected]</a>.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Are packages customizable? <span class="faq-arrow">&#8964;</span></div>
+        <div class="faq-a"><p>Yes — all three tiers are starting points, not fixed packages. Baylor Sports Properties works with each partner to build a custom asset mix that fits their specific goals, budget, and timeline. The packages above reflect typical combinations but any asset can be added, removed, or adjusted.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">When would a 2027 jersey patch deal need to be signed? <span class="faq-arrow">&#8964;</span></div>
+        <div class="faq-a"><p>To have the SAP logo on Baylor jerseys for the 2027 season opener, the agreement would ideally be finalized by Q3 2026 at the latest. This allows time for NCAA patch approval, jersey production, and technology integration planning ahead of the season.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Does SAP need to use Baylor's technology for the Full Partnership or Jersey Patch tier? <span class="faq-arrow">&#8964;</span></div>
+        <div class="faq-a"><p>The technology integration component is a key part of what makes the Full Partnership and Jersey Patch tiers uniquely valuable — both for Baylor and for SAP. Dan Fleetwood was explicit that SAP's best partnerships are built around partners who actually use SAP software. The tech integration creates a reference story SAP can use at Sapphire and TechEd, making it a marketing asset as much as an operational one.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What sports are included in multi-sport coverage? <span class="faq-arrow">&#8964;</span></div>
+        <div class="faq-a"><p>Full Partnership and Jersey Patch tiers include coverage across all Baylor Athletics sports programs — football, men's and women's basketball, baseball, soccer, tennis, and more. This gives SAP year-round brand visibility across multiple seasons and audiences, not just football.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Is there a minimum contract length? <span class="faq-arrow">&#8964;</span></div>
+        <div class="faq-a"><p>Baylor Sports Properties typically works with partners on multi-year agreements to allow time for brand building and relationship development. The exact term is negotiable — comparable deals like UNLV's have been structured at 5 years. Shorter initial terms may be available for Brand Presence packages.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-sec fade-up">
+  <div class="cta-title">Ready to move forward?</div>
+  <div class="cta-sub">Submit an inquiry and a member of the Baylor Athletics partnership team will be in touch within 48 hours.</div>
+  <a href="contact.html" class="btn-gold">Submit a partnership inquiry</a>
+  <a href="roadmap.html" class="btn-outline">View the roadmap</a>
+</div>
+
+<footer>
+  <div class="foot-inner">
+    <div>
+      <div class="foot-logo">Baylor Athletics x SAP Partnership Proposal 2027</div>
+      <div class="foot-class">Student Pitch &bull; Baylor University Sales Program &bull; Spring 2026</div>
+    </div>
+    <div class="foot-links">
+      <a href="opportunity.html">Opportunity</a>
+      <a href="reach.html">Reach</a>
+      <a href="roadmap.html">Roadmap</a>
+      <a href="packages.html">Packages</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="foot-copy">Baylor Sports Properties powered by Playfly</div>
+  </div>
+</footer>
+
+<div class="chat-float">
+  <div class="chat-box" id="chatBox">
+    <div class="chat-head">
+      <div class="chat-logo">BU</div>
+      <div>
+        <div class="chat-head-title">Partnership Advisor</div>
+        <div class="chat-head-sub"><span class="chat-green-dot"></span>Live — web search enabled</div>
+      </div>
+    </div>
+    <div class="chat-msgs" id="chatMsgs">
+      <div class="msg bot">Welcome. Ask me anything about the Baylor x SAP sponsorship opportunity.</div>
+    </div>
+    <div class="chat-quick">
+      <span class="q-chip" onclick="chatChip(this)">What does each package include?</span>
+      <span class="q-chip" onclick="chatChip(this)">Jersey patch pricing?</span>
+      <span class="q-chip" onclick="chatChip(this)">What is recommended for SAP?</span>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="chatIn" placeholder="Ask a question..." onkeydown="if(event.key==='Enter')chatSend()"/>
+      <button class="chat-send" id="chatBtn" onclick="chatSend()">Send</button>
+    </div>
+  </div>
+  <div id="chatTip" class="chat-tip" onclick="openChat();this.style.display='none'">Ask me anything about this partnership</div>
+  <button class="chat-btn" onclick="toggleChat()">
+    <div class="chat-pulse"></div>
+    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+  </button>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const API='https://sap-pitch-4el8.vercel.app/api/chat';
+let hist=[],open=false;
+function toggleFaq(el){
+  const item=el.parentElement;
+  const ans=item.querySelector('.faq-a');
+  const isOpen=ans.classList.contains('open');
+  document.querySelectorAll('.faq-a.open').forEach(a=>{a.classList.remove('open');a.parentElement.classList.remove('active');});
+  if(!isOpen){ans.classList.add('open');item.classList.add('active');}
+}
+function toggleChat(){open=!open;document.getElementById('chatBox').classList.toggle('open',open);document.getElementById('chatTip').style.display='none';}
+function openChat(){open=true;document.getElementById('chatBox').classList.add('open');document.getElementById('chatTip').style.display='none';setTimeout(()=>document.getElementById('chatIn').focus(),100);}
+function chatChip(el){document.getElementById('chatIn').value=el.textContent.trim();chatSend();}
+function chatFU(q){document.getElementById('chatIn').value=q;chatSend();}
+function addMsg(text,type,html){const c=document.getElementById('chatMsgs');const d=document.createElement('div');d.className='msg '+type;if(html)d.innerHTML=text;else d.textContent=text;c.appendChild(d);c.scrollTop=c.scrollHeight;return d;}
+function addFU(chips){const c=document.getElementById('chatMsgs');const w=document.createElement('div');w.className='fu-wrap';const l=document.createElement('div');l.className='fu-label';l.textContent='Dig deeper';w.appendChild(l);const cw=document.createElement('div');cw.className='fu-chips';chips.forEach(q=>{const b=document.createElement('button');b.className='fu-chip';b.textContent=q;b.onclick=()=>chatFU(q);cw.appendChild(b);});w.appendChild(cw);c.appendChild(w);c.scrollTop=c.scrollHeight;}
+function md(t){return t.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');}
+function chips(t){const m=t.match(/\[CHIPS:\s*(.+?)\]/s);return m?m[1].split('|').map(s=>s.trim()).filter(Boolean):null;}
+function clean(t){return t.replace(/\[CHIPS:\s*.+?\]/s,'').trim();}
+function setLoad(on){document.getElementById('chatBtn').disabled=on;document.getElementById('chatIn').disabled=on;}
+async function chatSend(){
+  const inp=document.getElementById('chatIn');const txt=inp.value.trim();if(!txt)return;
+  inp.value='';if(!open)openChat();addMsg(txt,'me',false);hist.push({role:'user',content:txt});setLoad(true);
+  const th=addMsg('Thinking...','thinking',false);
+  try{
+    let msgs=[...hist],full='',it=0;
+    while(it<6){it++;
+      const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:msgs})});
+      const d=await r.json();
+      if(d.stop_reason==='end_turn'){full=d.content.filter(b=>b.type==='text').map(b=>b.text).join('');break;}
+      if(d.stop_reason==='tool_use'){const ac=d.content;msgs.push({role:'assistant',content:ac});th.textContent='Searching...';const res=ac.filter(b=>b.type==='tool_use').map(b=>({type:'tool_result',tool_use_id:b.id,content:'Search completed.'}));if(res.length)msgs.push({role:'user',content:res});else{full=ac.filter(b=>b.type==='text').map(b=>b.text).join('');break;}}
+      else{full=(d.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('');break;}
+    }
+    th.remove();if(full){const c=chips(full),cl=clean(full);addMsg(md(cl),'bot',true);hist.push({role:'assistant',content:cl});if(c&&c.length)addFU(c);}
+  }catch(e){th.textContent='Something went wrong. Please try again.';}
+  setLoad(false);
+}
+setTimeout(()=>{const t=document.getEleme
