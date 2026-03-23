@@ -92,21 +92,61 @@
     .heard-cell-text { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
     .heard-quote { font-style: italic; font-size: 12px; color: var(--green); opacity: 0.7; margin-top: 8px; border-left: 2px solid var(--gold); padding-left: 8px; }
 
-    /* PACKAGES */
-    #packages { background: var(--off-white); }
-    .pkg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-    .pkg-card { background: #fff; border-radius: 20px; padding: 2rem; border: 1px solid rgba(21,71,52,0.1); position: relative; transition: all 0.2s; }
-    .pkg-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(21,71,52,0.1); }
-    .pkg-card.featured { border: 2px solid var(--green); }
-    .pkg-badge { display: inline-block; background: var(--green); color: var(--gold); font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px; border-radius: 100px; margin-bottom: 1.25rem; }
-    .pkg-name { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--green); margin-bottom: 0.5rem; }
-    .pkg-price { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 900; color: var(--text); margin-bottom: 1.5rem; }
-    .pkg-price span { font-size: 1rem; font-weight: 400; color: var(--text-muted); }
-    .pkg-divider { height: 1px; background: rgba(21,71,52,0.08); margin-bottom: 1.25rem; }
-    .pkg-feature { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 10px; font-size: 13px; color: var(--text-muted); line-height: 1.5; }
-    .pkg-check { width: 16px; height: 16px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; font-size: 9px; color: var(--green); font-weight: 700; }
-    .pkg-cta { display: block; width: 100%; margin-top: 1.5rem; padding: 12px; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; text-align: center; cursor: pointer; border: 1.5px solid var(--green); background: transparent; color: var(--green); transition: all 0.15s; }
-    .pkg-cta:hover, .pkg-card.featured .pkg-cta { background: var(--green); color: var(--gold); }
+    <!-- PACKAGES -->
+<section id="packages">
+  <div class="section-inner">
+    <div class="fade-up">
+      <div class="section-eyebrow">Sponsorship Packages</div>
+      <h2 class="section-title">Choose your level<br><span>of partnership.</span></h2>
+      <p class="section-lead">All packages are managed through Baylor Sports Properties powered by Playfly — the exclusive multimedia rights holder for Baylor Athletics. Every tier is fully customizable to your goals.</p>
+    </div>
+    <div class="pkg-grid">
+      <div class="pkg-card fade-up fade-up-delay-1">
+        <div class="pkg-badge">Regional Partner</div>
+        <div class="pkg-name">Brand Presence</div>
+        <div class="pkg-price">$25K–$100K <span>/ year</span></div>
+        <div style="font-size:11px; color:var(--text-muted); margin-bottom:1rem; font-style:italic;">Entry-level Big 12 school sponsorship — comparable to regional brand deals across the conference</div>
+        <div class="pkg-divider"></div>
+        <div class="pkg-feature"><div class="pkg-check">✓</div>In-venue LED & scoreboard signage</div>
+        <div class="pkg-feature"><div class="pkg-check">✓</div>Digital & social media integration</div>
+        <div class="pkg-feature"><div class="pkg-check">✓</div>Official partner designation & IP rights</div>
+        <div class="pkg-feature"><div class="pkg-check">✓</div>Game tickets & gameday hospitality</div>
+        <div class="pkg-feature"><div class="pkg-check">✓</div>Radio broadcast mentions — 5 TX markets</div>
+        <button class="pkg-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get in touch</button>
+      </div>
+      <div class="pkg-card featured fade-up fade-up-delay-2">
+        <div class="pkg-badge">Comprehensive — Recommended for SAP</div>
+        <div class="pkg-name">Full Partnership</div>
+        <div class="pkg-price">$100K–$500K <span>/ year</span></div>
+        <div style="font-size:11px; color:var(--text-muted); margin-bottom:1rem; font-style:italic;">Mid-tier Big 12 corporate sponsorship — reflects market rates for multi-asset, multi-sport deals at Baylor's level</div>
+        <div class="pkg-divider"></div>
+        <div class="pkg-feature"><div class="pkg-check">✓</div>TV-visible field & scoreboard signage</div>
+        <div class="pkg-feature"><div class="pkg-check">✓</div>Premier suite access & corporate hospitality</div>
+        <div class="pkg-feature"><div class="pkg-check">✓</div>B2B executive networking events</div>
+        <div class="pkg-feature"><div class="pkg-check">✓</div>Multi-sport year-round coverage</div>
+        <div class="pkg-feature"><div class="pkg-check">✓</div>NIL endorsement opportunities</div>
+        <div class="pkg-feature"><div class="pkg-check">✓</div>Technology showcase integration</div>
+        <div class="pkg-feature"><div class="pkg-check">✓</div>All Brand Presence assets included</div>
+        <button class="pkg-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get in touch</button>
+      </div>
+      <div class="pkg-card fade-up fade-up-delay-3">
+        <div class="pkg-badge">Platinum — 2027 Launch</div>
+        <div class="pkg-name">Jersey Patch Partner</div>
+        <div class="pkg-price">Custom <span>pricing</span></div>
+        <div style="font-size:11px; color:var(--text-muted); margin-bottom:1rem; font-style:italic;">Power 4 jersey patches valued at $500K–$2M+/yr per industry analysts — UNLV signed $11M/5yr; LSU & Arkansas set new benchmarks in 2026</div>
+        <div class="pkg-divider"></div>
+        <div class="pkg-feature"><div class="pkg-check">✓</div>NCAA jersey patch — August 2026+</div>
+        <div class="pkg-feature"><div class="pkg-check">✓</div>First enterprise tech on a Power 4 jersey</div>
+        <div class="pkg-feature"><div class="pkg-check">✓</div>All Full Partnership assets included</div>
+        <div class="pkg-feature"><div class="pkg-check">✓</div>SAP Sapphire & TechEd speaking slots</div>
+        <div class="pkg-feature"><div class="pkg-check">✓</div>Dedicated SAP tech showcase story</div>
+        <div class="pkg-feature"><div class="pkg-check">✓</div>Multi-year preferred partnership terms</div>
+        <button class="pkg-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Request a proposal</button>
+      </div>
+    </div>
+    <p style="font-size:12px; color:var(--text-muted); margin-top:1.5rem; text-align:center;">Pricing reflects current Big 12 school-level sponsorship market rates. All packages managed by Baylor Sports Properties powered by Playfly. Sources: Playfly Sports, Big 12 Conference, industry analyst estimates.</p>
+  </div>
+</section>
 
     /* CTA */
     #cta { background: var(--green); text-align: center; }
