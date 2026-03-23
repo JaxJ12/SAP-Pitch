@@ -28,7 +28,10 @@
     .page-hero { background: var(--green); padding: 9rem 2.5rem 5rem; position: relative; overflow: hidden; }
     .hero-pattern { position: absolute; inset: 0; opacity: 0.04; background-image: repeating-linear-gradient(45deg,#fff 0,#fff 1px,transparent 0,transparent 50%); background-size: 20px 20px; }
     .hero-bar { position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--gold); }
-    .hero-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+    .hero-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .hero-stadium-img { width: 100%; border-radius: 16px; box-shadow: 0 32px 80px rgba(0,0,0,0.5); display: block; }
+    .hero-stadium-caption { font-size: 11px; color: rgba(255,255,255,0.4); text-align: center; margin-top: 0.75rem; letter-spacing: 0.03em; }
+    @media(max-width:900px){ .hero-inner { grid-template-columns: 1fr; } }
     .breadcrumb { font-size: 12px; color: rgba(255,255,255,0.45); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 8px; }
     .breadcrumb a { color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
     .breadcrumb a:hover { color: var(--gold); }
@@ -188,6 +191,10 @@
     <div class="page-eyebrow">Fan Base Analysis</div>
     <h1 class="page-title">The right audience.<br><em>In the right market.</em></h1>
     <p class="page-sub">Baylor's fan base isn't just large — it's the exact B2B audience SAP needs to reach. Business decision-makers, senior executives, and mid-market company leaders, all concentrated along the fastest-growing business corridor in the US.</p>
+  </div>
+  <div>
+    <img src="mclane_stadium.png" alt="McLane Stadium aerial view — Waco, Texas" class="hero-stadium-img"/>
+    <div class="hero-stadium-caption">McLane Stadium — Waco, Texas — heart of the I-35 corridor</div>
   </div>
 </div>
 
