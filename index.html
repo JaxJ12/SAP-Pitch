@@ -20,14 +20,6 @@
     html { scroll-behavior: smooth; }
     body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
 
-    /* TICKER */
-    .ticker-bar { background: var(--gold); padding: 7px 0; overflow: hidden; position: relative; z-index: 101; }
-    .ticker-track { display: flex; gap: 3rem; animation: ticker 50s linear infinite; white-space: nowrap; }
-    .ticker-track:hover { animation-play-state: paused; }
-    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-    .ticker-item { font-size: 11px; font-weight: 600; color: var(--green); letter-spacing: 0.03em; display: flex; align-items: center; gap: 8px; }
-    .ticker-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--green); opacity: 0.4; }
-
     /* NAV */
     nav { position: fixed; top: 0px; left: 0; right: 0; z-index: 100; padding: 1rem 2.5rem; display: flex; align-items: center; justify-content: space-between; background: rgba(21,71,52,0.97); backdrop-filter: blur(8px); }
     .nav-logo { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 10px; text-decoration: none; }
@@ -67,6 +59,16 @@
     .exec-stat-num { font-family: 'Playfair Display', serif; font-size: 1.75rem; font-weight: 700; color: var(--green); }
     .exec-stat-label { font-size: 11px; color: var(--text-muted); margin-top: 5px; line-height: 1.5; }
 
+    <!-- TICKER STRIP -->
+<div class="ticker-strip">
+  <div class="ticker-strip-label">Latest</div>
+  <div class="ticker-overflow">
+    <div class="ticker-track" id="tickerTrack">
+      <span class="ticker-item"><span class="ticker-dot"></span>Loading Baylor Athletics news...</span>
+    </div>
+  </div>
+</div>
+    
     /* VIDEO */
     .video-section { background: var(--green-dark); padding: 6rem 2.5rem; }
     .video-inner { max-width: 1000px; margin: 0 auto; }
