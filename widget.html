@@ -6,249 +6,133 @@
   <title>Baylor × SAP Partnership Advisor</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #f4f4f0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-    }
-
-    .widget {
-      width: 100%;
-      max-width: 680px;
-      background: #ffffff;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-    }
-
-    /* Header */
-    .widget-header {
-      background: #003865;
-      padding: 1.25rem 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .header-logo {
-      width: 44px;
-      height: 44px;
-      background: #FFB81C;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      font-weight: 600;
-      color: #003865;
-      flex-shrink: 0;
-    }
-    .header-text { flex: 1; }
+    body { font-family: 'Inter', sans-serif; background: #f4f4f0; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+    .widget { width: 100%; max-width: 680px; background: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+    .widget-header { background: #003865; padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 14px; }
+    .header-logo { width: 44px; height: 44px; background: #FFB81C; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: #003865; flex-shrink: 0; }
     .header-title { font-size: 15px; font-weight: 600; color: #ffffff; }
     .header-sub { font-size: 12px; color: rgba(255,255,255,0.65); margin-top: 2px; display: flex; align-items: center; gap: 5px; }
     .status-dot { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; display: inline-block; }
-
-    /* Stats bar */
-    .stats-bar {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      border-bottom: 1px solid #f0f0ec;
-    }
-    .stat {
-      padding: 10px 14px;
-      border-right: 1px solid #f0f0ec;
-    }
+    .stats-bar { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid #f0f0ec; }
+    .stat { padding: 10px 14px; border-right: 1px solid #f0f0ec; }
     .stat:last-child { border-right: none; }
     .stat-label { font-size: 10px; color: #999; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 2px; }
     .stat-val { font-size: 12px; font-weight: 500; color: #1a1a1a; }
-
-    /* Messages */
-    .messages {
-      height: 380px;
-      overflow-y: auto;
-      padding: 1.25rem;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      background: #fafaf8;
-    }
-    .messages::-webkit-scrollbar { width: 4px; }
-    .messages::-webkit-scrollbar-track { background: transparent; }
-    .messages::-webkit-scrollbar-thumb { background: #ddd; border-radius: 2px; }
-
-    .msg {
-      max-width: 80%;
-      padding: 10px 14px;
-      border-radius: 14px;
-      font-size: 14px;
-      line-height: 1.65;
-    }
-    .msg.agent {
-      background: #ffffff;
-      color: #1a1a1a;
-      align-self: flex-start;
-      border-bottom-left-radius: 4px;
-      border: 1px solid #ebebeb;
-    }
-    .msg.user {
-      background: #003865;
-      color: #FFB81C;
-      align-self: flex-end;
-      border-bottom-right-radius: 4px;
-    }
-    .msg.thinking {
-      background: #f0f0ec;
-      color: #999;
-      align-self: flex-start;
-      font-style: italic;
-      font-size: 13px;
-    }
-
-    /* Chips */
     .chips-section { padding: 10px 14px 0; background: #fafaf8; }
     .chips-label { font-size: 10px; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
     .chips { display: flex; flex-wrap: wrap; gap: 6px; padding-bottom: 10px; }
-    .chip {
-      font-size: 12px;
-      padding: 5px 11px;
-      border-radius: 20px;
-      border: 1px solid #e0e0d8;
-      background: #fff;
-      color: #555;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.15s;
-    }
-    .chip:hover { border-color: #003865; color: #003865; background: #f0f4f8; }
-
-    /* Input */
-    .input-area {
-      padding: 12px 14px;
-      border-top: 1px solid #f0f0ec;
-      display: flex;
-      gap: 8px;
-      background: #fff;
-    }
-    .input-area input {
-      flex: 1;
-      font-family: 'Inter', sans-serif;
-      font-size: 14px;
-      padding: 9px 14px;
-      border-radius: 10px;
-      border: 1px solid #e0e0d8;
-      background: #fafaf8;
-      color: #1a1a1a;
-      outline: none;
-      transition: border-color 0.15s;
-    }
+    .chip { font-size: 12px; padding: 5px 11px; border-radius: 20px; border: 1px solid #e0e0d8; background: #fff; color: #555; cursor: pointer; transition: all 0.15s; }
+    .chip:hover { border-color: #003865; color: #003865; }
+    .messages { height: 420px; overflow-y: auto; padding: 1.25rem; display: flex; flex-direction: column; gap: 12px; background: #fafaf8; }
+    .messages::-webkit-scrollbar { width: 4px; }
+    .messages::-webkit-scrollbar-thumb { background: #ddd; border-radius: 2px; }
+    .msg { max-width: 82%; padding: 10px 14px; border-radius: 14px; font-size: 14px; line-height: 1.7; }
+    .msg.agent { background: #ffffff; color: #1a1a1a; align-self: flex-start; border-bottom-left-radius: 4px; border: 1px solid #ebebeb; }
+    .msg.user { background: #003865; color: #FFB81C; align-self: flex-end; border-bottom-right-radius: 4px; }
+    .msg.thinking { background: #f0f0ec; color: #999; align-self: flex-start; font-style: italic; font-size: 13px; }
+    .msg.agent strong { font-weight: 600; color: #003865; }
+    .followup-wrap { align-self: flex-start; display: flex; flex-direction: column; gap: 5px; max-width: 85%; }
+    .followup-label { font-size: 10px; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em; }
+    .followup-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .followup-chip { font-size: 12px; padding: 5px 12px; border-radius: 20px; border: 1px solid #003865; background: #fff; color: #003865; cursor: pointer; transition: all 0.15s; }
+    .followup-chip:hover { background: #003865; color: #FFB81C; }
+    .input-area { padding: 12px 14px; border-top: 1px solid #f0f0ec; display: flex; gap: 8px; background: #fff; }
+    .input-area input { flex: 1; font-family: 'Inter', sans-serif; font-size: 14px; padding: 9px 14px; border-radius: 10px; border: 1px solid #e0e0d8; background: #fafaf8; color: #1a1a1a; outline: none; }
     .input-area input:focus { border-color: #003865; background: #fff; }
     .input-area input::placeholder { color: #bbb; }
-    .input-area input:disabled { opacity: 0.6; cursor: not-allowed; }
-    .send-btn {
-      background: #003865;
-      color: #FFB81C;
-      border: none;
-      border-radius: 10px;
-      padding: 9px 18px;
-      font-size: 14px;
-      font-weight: 500;
-      font-family: 'Inter', sans-serif;
-      cursor: pointer;
-      transition: background 0.15s;
-      flex-shrink: 0;
-    }
+    .input-area input:disabled { opacity: 0.6; }
+    .send-btn { background: #003865; color: #FFB81C; border: none; border-radius: 10px; padding: 9px 18px; font-size: 14px; font-weight: 500; font-family: 'Inter', sans-serif; cursor: pointer; }
     .send-btn:hover { background: #002244; }
     .send-btn:disabled { background: #e0e0d8; color: #aaa; cursor: not-allowed; }
-
-    /* Powered by */
-    .footer {
-      text-align: center;
-      padding: 8px;
-      font-size: 11px;
-      color: #ccc;
-      background: #fff;
-      border-top: 1px solid #f0f0ec;
-    }
+    .footer { text-align: center; padding: 8px; font-size: 11px; color: #ccc; background: #fff; border-top: 1px solid #f0f0ec; }
   </style>
 </head>
 <body>
-
 <div class="widget">
   <div class="widget-header">
     <div class="header-logo">BU</div>
-    <div class="header-text">
+    <div>
       <div class="header-title">Baylor Athletics × SAP Partnership Advisor</div>
       <div class="header-sub"><span class="status-dot"></span> Live — web search enabled</div>
     </div>
   </div>
-
   <div class="stats-bar">
-    <div class="stat">
-      <div class="stat-label">SAP priority</div>
-      <div class="stat-val">Tech showcase + collaboration</div>
-    </div>
-    <div class="stat">
-      <div class="stat-label">Timeline</div>
-      <div class="stat-val">2027+ — per Dan Fleetwood</div>
-    </div>
-    <div class="stat">
-      <div class="stat-label">Baylor fans</div>
-      <div class="stat-val">37% biz decision-makers</div>
-    </div>
+    <div class="stat"><div class="stat-label">SAP priority</div><div class="stat-val">Tech showcase + collaboration</div></div>
+    <div class="stat"><div class="stat-label">Timeline</div><div class="stat-val">2027+ — per Dan Fleetwood</div></div>
+    <div class="stat"><div class="stat-label">Baylor fans</div><div class="stat-val">37% biz decision-makers</div></div>
   </div>
-
   <div class="chips-section">
-    <div class="chips-label">Suggested questions</div>
+    <div class="chips-label">Start here</div>
     <div class="chips">
-      <span class="chip" onclick="sendChip(this)">How does Baylor fit SAP's 4 pillars?</span>
-      <span class="chip" onclick="sendChip(this)">What's the technology showcase opportunity?</span>
-      <span class="chip" onclick="sendChip(this)">Why Baylor over an SEC school?</span>
-      <span class="chip" onclick="sendChip(this)">Tell me about jersey patch deals</span>
+      <span class="chip" onclick="sendChip(this)">Why should SAP sponsor Baylor?</span>
+      <span class="chip" onclick="sendChip(this)">What's the jersey patch opportunity?</span>
       <span class="chip" onclick="sendChip(this)">What's the ROI for SAP?</span>
-      <span class="chip" onclick="sendChip(this)">What's the Southern market opportunity?</span>
-      <span class="chip" onclick="sendChip(this)">What does a 2027 partnership look like?</span>
-      <span class="chip" onclick="sendChip(this)">How can SAP use Baylor for talent recruitment?</span>
+      <span class="chip" onclick="sendChip(this)">How does this fit SAP's 4 pillars?</span>
     </div>
   </div>
-
   <div class="messages" id="messages">
-    <div class="msg agent">Welcome! I'm your Baylor Athletics partnership advisor. Ask me anything about sponsoring Baylor — packages, audience data, ROI, or the new NCAA jersey patch opportunity.</div>
+    <div class="msg agent">Welcome! I'm your Baylor Athletics partnership advisor. What would you like to know about the SAP sponsorship opportunity?</div>
   </div>
-
   <div class="input-area">
     <input type="text" id="userInput" placeholder="Ask about the Baylor × SAP opportunity..." onkeydown="if(event.key==='Enter') sendMessage()" />
     <button class="send-btn" id="sendBtn" onclick="sendMessage()">Send</button>
   </div>
-
   <div class="footer">Powered by Baylor Athletics · Built with Claude AI</div>
 </div>
-
 <script>
-  // ⚠️ IMPORTANT: Replace this URL with your deployed Vercel function URL
-  // Example: const API_URL = 'https://sap-pitch-4el8.vercel.app/api/chat';';
   const API_URL = 'https://sap-pitch-4el8.vercel.app/api/chat';
-
   let history = [];
 
-  function sendChip(el) {
-    document.getElementById('userInput').value = el.textContent.trim();
-    sendMessage();
+  function renderMarkdown(text) {
+    return text
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\n/g, '<br>');
   }
 
-  function appendMsg(text, type) {
+  function extractChips(text) {
+    const match = text.match(/\[CHIPS:\s*(.+?)\]/s);
+    if (!match) return null;
+    return match[1].split('|').map(s => s.trim()).filter(Boolean);
+  }
+
+  function cleanText(text) {
+    return text.replace(/\[CHIPS:\s*.+?\]/s, '').trim();
+  }
+
+  function sendChip(el) { document.getElementById('userInput').value = el.textContent.trim(); sendMessage(); }
+  function sendFollowUp(q) { document.getElementById('userInput').value = q; sendMessage(); }
+
+  function appendMsg(text, type, isHTML) {
     const msgs = document.getElementById('messages');
     const div = document.createElement('div');
     div.className = 'msg ' + type;
-    div.textContent = text;
+    if (isHTML) div.innerHTML = text; else div.textContent = text;
     msgs.appendChild(div);
     msgs.scrollTop = msgs.scrollHeight;
     return div;
+  }
+
+  function appendFollowUps(chips) {
+    const msgs = document.getElementById('messages');
+    const wrap = document.createElement('div');
+    wrap.className = 'followup-wrap';
+    const label = document.createElement('div');
+    label.className = 'followup-label';
+    label.textContent = 'Dig deeper';
+    wrap.appendChild(label);
+    const chipWrap = document.createElement('div');
+    chipWrap.className = 'followup-chips';
+    chips.forEach(q => {
+      const btn = document.createElement('button');
+      btn.className = 'followup-chip';
+      btn.textContent = q;
+      btn.onclick = () => sendFollowUp(q);
+      chipWrap.appendChild(btn);
+    });
+    wrap.appendChild(chipWrap);
+    msgs.appendChild(wrap);
+    msgs.scrollTop = msgs.scrollHeight;
   }
 
   function setLoading(on) {
@@ -261,67 +145,46 @@
     const text = input.value.trim();
     if (!text) return;
     input.value = '';
-
-    appendMsg(text, 'user');
+    appendMsg(text, 'user', false);
     history.push({ role: 'user', content: text });
     setLoading(true);
-
-    const thinking = appendMsg('Thinking...', 'thinking');
+    const thinking = appendMsg('Thinking...', 'thinking', false);
 
     try {
       let messages = [...history];
       let fullText = '';
-      let iterations = 0;
-
-      while (iterations < 6) {
-        iterations++;
-
+      let iters = 0;
+      while (iters < 6) {
+        iters++;
         const res = await fetch(API_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ messages })
         });
-
         const data = await res.json();
-
-        if (data.stop_reason === 'end_turn') {
-          fullText = data.content.filter(b => b.type === 'text').map(b => b.text).join('');
-          break;
-        }
-
+        if (data.stop_reason === 'end_turn') { fullText = data.content.filter(b => b.type === 'text').map(b => b.text).join(''); break; }
         if (data.stop_reason === 'tool_use') {
           const ac = data.content;
           messages.push({ role: 'assistant', content: ac });
           thinking.textContent = 'Searching the web...';
-          const results = ac
-            .filter(b => b.type === 'tool_use')
-            .map(b => ({ type: 'tool_result', tool_use_id: b.id, content: 'Search completed.' }));
-          if (results.length) {
-            messages.push({ role: 'user', content: results });
-          } else {
-            fullText = ac.filter(b => b.type === 'text').map(b => b.text).join('');
-            break;
-          }
-        } else {
-          fullText = (data.content || []).filter(b => b.type === 'text').map(b => b.text).join('');
-          break;
-        }
+          const results = ac.filter(b => b.type === 'tool_use').map(b => ({ type: 'tool_result', tool_use_id: b.id, content: 'Search completed.' }));
+          if (results.length) messages.push({ role: 'user', content: results });
+          else { fullText = ac.filter(b => b.type === 'text').map(b => b.text).join(''); break; }
+        } else { fullText = (data.content || []).filter(b => b.type === 'text').map(b => b.text).join(''); break; }
       }
-
       thinking.remove();
       if (fullText) {
-        appendMsg(fullText, 'agent');
-        history.push({ role: 'assistant', content: fullText });
+        const chips = extractChips(fullText);
+        const clean = cleanText(fullText);
+        appendMsg(renderMarkdown(clean), 'agent', true);
+        history.push({ role: 'assistant', content: clean });
+        if (chips && chips.length) appendFollowUps(chips);
       }
-
-    } catch (err) {
+    } catch(e) {
       thinking.textContent = 'Something went wrong. Please try again.';
-      console.error(err);
     }
-
     setLoading(false);
   }
 </script>
-
 </body>
 </html>
