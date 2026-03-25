@@ -182,13 +182,30 @@
     .chat-send:hover{background:var(--green-dark);}
     .chat-send:disabled{background:#c5d5c5;color:#fff;cursor:not-allowed;}
 
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: all 0.3s; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .nav-mobile { display: none; position: fixed; top: 64px; left: 0; right: 0; background: rgba(21,71,52,0.98); backdrop-filter: blur(8px); z-index: 99; padding: 1rem 2.5rem 1.5rem; flex-direction: column; gap: 0.25rem; border-top: 1px solid rgba(255,255,255,0.1); }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a { font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.75); text-decoration: none; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.07); transition: color 0.2s; }
+    .nav-mobile a:last-child { border-bottom: none; }
+    .nav-mobile a:hover, .nav-mobile a.active { color: var(--gold); }
+    .nav-mobile .mob-cta { color: var(--gold) !important; font-weight: 600 !important; }
+
     .fade-up{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease;}
     .fade-up.in{opacity:1;transform:translateY(0);}
     .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}.d6{transition-delay:.6s}
 
     @media(max-width:960px){.pkg-grid,.market-grid{grid-template-columns:1fr 1fr;}}
     @media(max-width:768px){.hero-inner{grid-template-columns:1fr!important;}}
-    @media(max-width:640px){.pkg-grid,.market-grid{grid-template-columns:1fr;}.nav-links{display:none;}.chat-box{width:320px;}}
+    @media(max-width:640px){
+      .pkg-grid,.market-grid{grid-template-columns:1fr;}
+      .nav-links{display:none !important;}
+      .nav-hamburger{display:flex;}
+      .chat-box{width:320px;}
+    }
   </style>
 </head>
 <body>
