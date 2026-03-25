@@ -7,14 +7,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --green: #154734;
-      --green-dark: #0d2e22;
-      --green-light: #2a7a58;
-      --gold: #FFB81C;
-      --cream: #f8f6f0;
-      --off-white: #f2f4f0;
-      --text: #1a1a1a;
-      --muted: #666;
+      --green: #154734; --green-dark: #0d2e22; --green-light: #2a7a58;
+      --gold: #FFB81C; --cream: #f8f6f0; --off-white: #f2f4f0;
+      --text: #1a1a1a; --muted: #666;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -140,6 +135,7 @@
     footer { background: var(--green-dark); padding: 2.5rem; }
     .foot-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
     .foot-logo { font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.45); }
+    .foot-class { font-size: 10px; color: rgba(255,255,255,0.2); margin-top: 4px; }
     .foot-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
     .foot-links a { font-size: 12px; color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
     .foot-links a:hover { color: var(--gold); }
@@ -185,10 +181,7 @@
     .chat-send:hover { background: var(--green-dark); }
     .chat-send:disabled { background: #c5d5c5; color: #fff; cursor: not-allowed; }
 
-    /* ANIMATIONS */
-
-    .foot-class { font-size: 10px; color: rgba(255,255,255,0.2); margin-top: 4px; }
-
+    /* MOBILE NAV */
     .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
     .nav-hamburger span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: all 0.3s; }
     .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
@@ -200,7 +193,8 @@
     .nav-mobile a:last-child { border-bottom: none; }
     .nav-mobile a:hover, .nav-mobile a.active { color: var(--gold); }
     .nav-mobile .mob-cta { color: var(--gold) !important; font-weight: 600 !important; }
-    @media(max-width:640px) { .nav-links { display: none !important; } .nav-hamburger { display: flex; } }
+
+    /* ANIMATIONS & RESPONSIVE */
     .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .fade-up.in { opacity: 1; transform: translateY(0); }
     .d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.2s; } .d3 { transition-delay: 0.3s; }
@@ -211,12 +205,11 @@
       .cards-grid, .heard-grid, .test-grid { grid-template-columns: 1fr; }
       .exec-inner { grid-template-columns: 1fr 1fr; }
       .hero-stats { gap: 2rem; }
-      .nav-links { display: none; }
+      .nav-links { display: none !important; }
+      .nav-hamburger { display: flex; }
       .chat-box { width: 320px; }
     }
   </style>
-  <link rel="icon" type="image/png" href="favicon.png"/>
-  <link rel="shortcut icon" href="favicon.ico"/>
 </head>
 <body>
 
@@ -284,7 +277,7 @@
     <div class="sec-eyebrow">Baylor Athletics</div>
     <div class="sec-title">Experience the brand SAP would be part of.</div>
     <div class="video-wrap">
-      <iframe src="https://www.youtube.com/embed/videoseries?list=PLhinTFBmTQ7aqwJtfqCHRURmXCMdxJBIG&rel=0&modestbranding=1" title="Baylor Athletics" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/CqUrdaPQ6So?rel=0&modestbranding=1" title="This... is Baylor Football" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
   </div>
 </div>
@@ -429,9 +422,10 @@
 </div>
 
 <div class="cta-sec fade-up">
-  <div class="cta-title">Ready to start the conversation?</div>
-  <div class="cta-sub">SAP's first US collegiate athletics partnership. Timed perfectly for 2027.</div>
-  <a href="contact.html" class="btn-gold">Submit a partnership inquiry</a>
+  <div class="cta-title">Ready to see the packages?</div>
+  <div class="cta-sub">Review the three tiers of partnership — from regional brand presence to full jersey patch partner.</div>
+  <a href="packages.html" class="btn-gold">View packages and pricing</a>
+  <a href="contact.html" class="btn-outline">Contact us directly</a>
 </div>
 
 <footer>
