@@ -202,7 +202,17 @@
     <li><a href="packages.html" class="active">Packages</a></li>
     <li><a href="contact.html" class="nav-cta">Contact</a></li>
   </ul>
+  <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="nav-mobile" id="mobileMenu">
+  <a href="opportunity.html">Opportunity</a>
+  <a href="reach.html">Reach</a>
+  <a href="roadmap.html">Roadmap</a>
+  <a href="packages.html" class="active">Packages</a>
+  <a href="contact.html" class="mob-cta">Contact</a>
+</div>
 
 <div class="page-hero">
   <div class="hero-pattern"></div>
@@ -292,7 +302,7 @@
         </div>
       </div>
     </div>
-    <p class="pkg-footer-note">All packages managed exclusively by Baylor Sports Properties powered by Playfly. Pricing reflects current Big 12 school-level sponsorship market rates.<br>Sources: Playfly Sports, Big 12 Conference, industry analyst estimates 2025–26. Contact <a href="mailto:Luke_Holcomb@baylor.edu" style="color:var(--green);">Luke_Holcomb@baylor.edu</a> for a custom proposal.</p>
+    <p class="pkg-footer-note">All packages managed exclusively by Baylor Sports Properties powered by Playfly. Pricing reflects current Big 12 school-level sponsorship market rates.<br>Sources: Playfly Sports, Big 12 Conference, industry analyst estimates 2025–26. Contact <a href="/cdn-cgi/l/email-protection#eca0998789b3a483808f83818eac8e8d9580839ec2898899" style="color:var(--green);"><span class="__cf_email__" data-cfemail="337f4658566c7b5c5f505c5e517351524a5f5c411d565746">[email&#160;protected]</span></a> for a custom proposal.</p>
   </div>
 </div>
 
@@ -356,7 +366,7 @@
       <h2 class="sec-title">Frequently asked <em>questions.</em></h2>
     </div>
     <div class="faq-list fade-up">
-      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Who manages the Baylor Athletics sponsorship process? <span class="faq-arrow">&#8964;</span></div><div class="faq-a"><p>All Baylor Athletics sponsorships are managed exclusively by Baylor Sports Properties, powered by Playfly Sports. The primary contact is Luke Holcomb at Luke_Holcomb@baylor.edu.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Who manages the Baylor Athletics sponsorship process? <span class="faq-arrow">&#8964;</span></div><div class="faq-a"><p>All Baylor Athletics sponsorships are managed exclusively by Baylor Sports Properties, powered by Playfly Sports. The primary contact is Luke Holcomb at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fcb0899799a3b493909f93919ebc9e9d8590938ed2999889">[email&#160;protected]</a>.</p></div></div>
       <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Are packages customizable? <span class="faq-arrow">&#8964;</span></div><div class="faq-a"><p>Yes — all three tiers are starting points. Baylor Sports Properties works with each partner to build a custom asset mix that fits their specific goals, budget, and timeline.</p></div></div>
       <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">When would a 2027 jersey patch deal need to be signed? <span class="faq-arrow">&#8964;</span></div><div class="faq-a"><p>To have the SAP logo on Baylor jerseys for the 2027 season opener, the agreement would ideally be finalized by Q3 2026 — allowing time for NCAA patch approval, jersey production, and tech integration planning.</p></div></div>
       <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Does SAP need to use Baylor's technology for the Full Partnership or Jersey Patch tier? <span class="faq-arrow">&#8964;</span></div><div class="faq-a"><p>The technology integration is a key part of what makes these tiers uniquely valuable. Dan Fleetwood was explicit that SAP's best partnerships are built around partners who actually use SAP software — it creates the reference story SAP can use at Sapphire and TechEd.</p></div></div>
@@ -411,10 +421,41 @@
   </button>
 </div>
 
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+
 <script>
+function toggleMenu(){
+  const h=document.getElementById('hamburger');
+  const m=document.getElementById('mobileMenu');
+  h.classList.toggle('open');
+  m.classList.toggle('open');
+}
+
+// Close menu when a link is clicked
+document.querySelectorAll('.nav-mobile a').forEach(a=>{
+  a.addEventListener('click',()=>{
+    document.getElementById('hamburger').classList.remove('open');
+    document.getElementById('mobileMenu').classList.remove('open');
+  });
+});
+
 const API='https://sap-pitch-4el8.vercel.app/api/chat';
 let hist=[],open=false;
-function toggleFaq(el){const item=el.parentElement;const ans=item.querySelector('.faq-a');const isOpen=ans.classList.contains('open');document.querySelectorAll('.faq-a.open').forEach(a=>{a.classList.remove('open');a.parentElement.classList.remove('active');});if(!isOpen){ans.classList.add('open');item.classList.add('active');}}
+
+function toggleFaq(el){
+  const item=el.parentElement;
+  const ans=item.querySelector('.faq-a');
+  const isOpen=ans.classList.contains('open');
+  document.querySelectorAll('.faq-a.open').forEach(a=>{
+    a.classList.remove('open');
+    a.parentElement.classList.remove('active');
+  });
+  if(!isOpen){
+    ans.classList.add('open');
+    item.classList.add('active');
+  }
+}
+
 function toggleChat(){open=!open;document.getElementById('chatBox').classList.toggle('open',open);document.getElementById('chatTip').style.display='none';}
 function openChat(){open=true;document.getElementById('chatBox').classList.add('open');document.getElementById('chatTip').style.display='none';setTimeout(()=>document.getElementById('chatIn').focus(),100);}
 function chatChip(el){document.getElementById('chatIn').value=el.textContent.trim();chatSend();}
@@ -425,6 +466,7 @@ function md(t){return t.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(
 function chips(t){const m=t.match(/\[CHIPS:\s*(.+?)\]/s);return m?m[1].split('|').map(s=>s.trim()).filter(Boolean):null;}
 function clean(t){return t.replace(/\[CHIPS:\s*.+?\]/s,'').trim();}
 function setLoad(on){document.getElementById('chatBtn').disabled=on;document.getElementById('chatIn').disabled=on;}
+
 async function chatSend(){
   const inp=document.getElementById('chatIn');const txt=inp.value.trim();if(!txt)return;
   inp.value='';if(!open)openChat();addMsg(txt,'me',false);hist.push({role:'user',content:txt});setLoad(true);
@@ -435,13 +477,29 @@ async function chatSend(){
       const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:msgs})});
       const d=await r.json();
       if(d.stop_reason==='end_turn'){full=d.content.filter(b=>b.type==='text').map(b=>b.text).join('');break;}
-      if(d.stop_reason==='tool_use'){const ac=d.content;msgs.push({role:'assistant',content:ac});th.textContent='Searching...';const res=ac.filter(b=>b.type==='tool_use').map(b=>({type:'tool_result',tool_use_id:b.id,content:'Search completed.'}));if(res.length)msgs.push({role:'user',content:res});else{full=ac.filter(b=>b.type==='text').map(b=>b.text).join('');break;}}
-      else{full=(d.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('');break;}
+      if(d.stop_reason==='tool_use'){
+        const ac=d.content;
+        msgs.push({role:'assistant',content:ac});th.textContent='Searching...';
+        const res=ac.filter(b=>b.type==='tool_use').map(b=>({type:'tool_result',tool_use_id:b.id,content:'Search completed.'}));
+        if(res.length)msgs.push({role:'user',content:res});
+        else{full=ac.filter(b=>b.type==='text').map(b=>b.text).join('');break;}
+      } else {
+        full=(d.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('');break;
+      }
     }
-    th.remove();if(full){const c=chips(full),cl=clean(full);addMsg(md(cl),'bot',true);hist.push({role:'assistant',content:cl});if(c&&c.length)addFU(c);}
-  }catch(e){th.textContent='Something went wrong. Please try again.';}
+    th.remove();
+    if(full){
+      const c=chips(full),cl=clean(full);
+      addMsg(md(cl),'bot',true);
+      hist.push({role:'assistant',content:cl});
+      if(c&&c.length)addFU(c);
+    }
+  }catch(e){
+    th.textContent='Something went wrong. Please try again.';
+  }
   setLoad(false);
 }
+
 setTimeout(()=>{const t=document.getElementById('chatTip');if(t)t.style.display='flex';},3000);
 setTimeout(()=>{const t=document.getElementById('chatTip');if(t&&!open)t.style.display='none';},9000);
 const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in');});},{threshold:0.1});
