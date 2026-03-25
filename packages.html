@@ -87,21 +87,22 @@
     .pkg-cta.gold:hover{background:#e6a518;}
     .pkg-footer-note{font-size:11px;color:var(--muted);text-align:center;margin-top:2rem;line-height:1.6;}
 
-    /* COMPARE */
-    .compare-table{width:100%;border-radius:16px;overflow:hidden;border:1px solid rgba(21,71,52,0.1);background:#fff;margin-top:2.5rem;}
-    .compare-head{display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr;background:var(--green);}
-    .compare-th{padding:1rem 1.25rem;font-size:12px;font-weight:600;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:0.08em;}
-    .compare-th.gold{color:var(--gold);}
-    .compare-row{display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr;border-top:1px solid rgba(21,71,52,0.06);}
-    .compare-row:hover{background:rgba(21,71,52,0.015);}
-    .compare-row.section-head{background:rgba(21,71,52,0.03);}
-    .compare-cell{padding:0.9rem 1.25rem;font-size:13px;color:var(--muted);display:flex;align-items:center;}
-    .compare-cell.label{font-weight:500;color:var(--text);}
-    .compare-cell.section-label{font-weight:700;color:var(--green);font-size:11px;text-transform:uppercase;letter-spacing:0.08em;}
-    .compare-cell.featured{background:rgba(21,71,52,0.02);}
-    .check{color:var(--green);font-size:16px;}
-    .cross{color:#ddd;font-size:16px;}
-    .partial{font-size:11px;font-weight:600;color:var(--gold);}
+    /* COMPARE (MOBILE OPTIMIZED) */
+    .compare-table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 16px; border: 1px solid rgba(21,71,52,0.1); background: #fff; margin-top: 2.5rem; }
+    .compare-table { width: 100%; min-width: 760px; }
+    .compare-head { display: grid; grid-template-columns: 2.5fr 1fr 1fr 1fr; background: var(--green); }
+    .compare-th { padding: 1rem 1.25rem; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.08em; }
+    .compare-th.gold { color: var(--gold); }
+    .compare-row { display: grid; grid-template-columns: 2.5fr 1fr 1fr 1fr; border-top: 1px solid rgba(21,71,52,0.06); }
+    .compare-row:hover { background: rgba(21,71,52,0.015); }
+    .compare-row.section-head { background: rgba(21,71,52,0.03); }
+    .compare-cell { padding: 0.9rem 1.25rem; font-size: 13px; color: var(--muted); display: flex; align-items: center; }
+    .compare-cell.label { font-weight: 500; color: var(--text); }
+    .compare-cell.section-label { font-weight: 700; color: var(--green); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .compare-cell.featured { background: rgba(21,71,52,0.02); }
+    .check { color: var(--green); font-size: 16px; font-weight: 700; }
+    .cross { color: #ccc; font-size: 16px; }
+    .partial { font-size: 11px; font-weight: 600; color: var(--gold); }
 
     /* MARKET */
     .market-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem;}
@@ -182,6 +183,7 @@
     .chat-send:hover{background:var(--green-dark);}
     .chat-send:disabled{background:#c5d5c5;color:#fff;cursor:not-allowed;}
 
+    /* MOBILE NAV */
     .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
     .nav-hamburger span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: all 0.3s; }
     .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
@@ -319,7 +321,7 @@
         </div>
       </div>
     </div>
-    <p class="pkg-footer-note">All packages managed exclusively by Baylor Sports Properties powered by Playfly. Pricing reflects current Big 12 school-level sponsorship market rates.<br>Sources: Playfly Sports, Big 12 Conference, industry analyst estimates 2025–26. Contact <a href="/cdn-cgi/l/email-protection#eca0998789b3a483808f83818eac8e8d9580839ec2898899" style="color:var(--green);"><span class="__cf_email__" data-cfemail="337f4658566c7b5c5f505c5e517351524a5f5c411d565746">[email&#160;protected]</span></a> for a custom proposal.</p>
+    <p class="pkg-footer-note">All packages managed exclusively by Baylor Sports Properties powered by Playfly. Pricing reflects current Big 12 school-level sponsorship market rates.<br>Sources: Playfly Sports, Big 12 Conference, industry analyst estimates 2025–26. Contact <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4408312f211b0c2b28272b29260426253d282b366a212031">[email&#160;protected]</a> for a custom proposal.</p>
   </div>
 </div>
 
@@ -330,30 +332,33 @@
       <h2 class="sec-title">What's included <em>in each tier.</em></h2>
       <p class="sec-lead">A complete side-by-side comparison of every asset available across all three partnership tiers.</p>
     </div>
-    <div class="compare-table fade-up">
-      <div class="compare-head">
-        <div class="compare-th">Asset</div>
-        <div class="compare-th">Brand Presence</div>
-        <div class="compare-th gold">Full Partnership</div>
-        <div class="compare-th">Jersey Patch</div>
+    
+    <div class="compare-table-wrap fade-up">
+      <div class="compare-table">
+        <div class="compare-head">
+          <div class="compare-th">Asset</div>
+          <div class="compare-th">Brand Presence</div>
+          <div class="compare-th gold">Full Partnership</div>
+          <div class="compare-th">Jersey Patch</div>
+        </div>
+        <div class="compare-row section-head"><div class="compare-cell section-label">Signage and visibility</div><div class="compare-cell"></div><div class="compare-cell featured"></div><div class="compare-cell"></div></div>
+        <div class="compare-row"><div class="compare-cell label">In-venue LED signage</div><div class="compare-cell"><span class="check">✓</span></div><div class="compare-cell featured"><span class="check">✓</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
+        <div class="compare-row"><div class="compare-cell label">TV-visible scoreboard and field logos</div><div class="compare-cell"><span class="cross">—</span></div><div class="compare-cell featured"><span class="check">✓</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
+        <div class="compare-row"><div class="compare-cell label">Jersey patch — all 4 colorways</div><div class="compare-cell"><span class="cross">—</span></div><div class="compare-cell featured"><span class="cross">—</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
+        <div class="compare-row section-head"><div class="compare-cell section-label">Digital and media</div><div class="compare-cell"></div><div class="compare-cell featured"></div><div class="compare-cell"></div></div>
+        <div class="compare-row"><div class="compare-cell label">Social media features and content</div><div class="compare-cell"><span class="check">✓</span></div><div class="compare-cell featured"><span class="check">✓</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
+        <div class="compare-row"><div class="compare-cell label">Radio broadcast — 5 Texas markets</div><div class="compare-cell"><span class="check">✓</span></div><div class="compare-cell featured"><span class="check">✓</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
+        <div class="compare-row"><div class="compare-cell label">Co-branded PR campaign</div><div class="compare-cell"><span class="cross">—</span></div><div class="compare-cell featured"><span class="cross">—</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
+        <div class="compare-row section-head"><div class="compare-cell section-label">B2B and hospitality</div><div class="compare-cell"></div><div class="compare-cell featured"></div><div class="compare-cell"></div></div>
+        <div class="compare-row"><div class="compare-cell label">Game tickets and gameday access</div><div class="compare-cell"><span class="check">✓</span></div><div class="compare-cell featured"><span class="check">✓</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
+        <div class="compare-row"><div class="compare-cell label">Premier suite and corporate hospitality</div><div class="compare-cell"><span class="cross">—</span></div><div class="compare-cell featured"><span class="check">✓</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
+        <div class="compare-row"><div class="compare-cell label">B2B executive networking events</div><div class="compare-cell"><span class="cross">—</span></div><div class="compare-cell featured"><span class="check">✓</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
+        <div class="compare-row section-head"><div class="compare-cell section-label">SAP-specific assets</div><div class="compare-cell"></div><div class="compare-cell featured"></div><div class="compare-cell"></div></div>
+        <div class="compare-row"><div class="compare-cell label">Technology showcase integration</div><div class="compare-cell"><span class="cross">—</span></div><div class="compare-cell featured"><span class="check">✓</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
+        <div class="compare-row"><div class="compare-cell label">SAP Sapphire and TechEd speaking slots</div><div class="compare-cell"><span class="cross">—</span></div><div class="compare-cell featured"><span class="cross">—</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
+        <div class="compare-row"><div class="compare-cell label">NIL endorsement opportunities</div><div class="compare-cell"><span class="cross">—</span></div><div class="compare-cell featured"><span class="check">✓</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
+        <div class="compare-row"><div class="compare-cell label">Multi-sport year-round coverage</div><div class="compare-cell"><span class="partial">Football only</span></div><div class="compare-cell featured"><span class="check">✓ All sports</span></div><div class="compare-cell"><span class="check">✓ All sports</span></div></div>
       </div>
-      <div class="compare-row section-head"><div class="compare-cell section-label">Signage and visibility</div><div class="compare-cell"></div><div class="compare-cell featured"></div><div class="compare-cell"></div></div>
-      <div class="compare-row"><div class="compare-cell label">In-venue LED signage</div><div class="compare-cell"><span class="check">✓</span></div><div class="compare-cell featured"><span class="check">✓</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
-      <div class="compare-row"><div class="compare-cell label">TV-visible scoreboard and field logos</div><div class="compare-cell"><span class="cross">—</span></div><div class="compare-cell featured"><span class="check">✓</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
-      <div class="compare-row"><div class="compare-cell label">Jersey patch — all 4 colorways</div><div class="compare-cell"><span class="cross">—</span></div><div class="compare-cell featured"><span class="cross">—</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
-      <div class="compare-row section-head"><div class="compare-cell section-label">Digital and media</div><div class="compare-cell"></div><div class="compare-cell featured"></div><div class="compare-cell"></div></div>
-      <div class="compare-row"><div class="compare-cell label">Social media features and content</div><div class="compare-cell"><span class="check">✓</span></div><div class="compare-cell featured"><span class="check">✓</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
-      <div class="compare-row"><div class="compare-cell label">Radio broadcast — 5 Texas markets</div><div class="compare-cell"><span class="check">✓</span></div><div class="compare-cell featured"><span class="check">✓</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
-      <div class="compare-row"><div class="compare-cell label">Co-branded PR campaign</div><div class="compare-cell"><span class="cross">—</span></div><div class="compare-cell featured"><span class="cross">—</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
-      <div class="compare-row section-head"><div class="compare-cell section-label">B2B and hospitality</div><div class="compare-cell"></div><div class="compare-cell featured"></div><div class="compare-cell"></div></div>
-      <div class="compare-row"><div class="compare-cell label">Game tickets and gameday access</div><div class="compare-cell"><span class="check">✓</span></div><div class="compare-cell featured"><span class="check">✓</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
-      <div class="compare-row"><div class="compare-cell label">Premier suite and corporate hospitality</div><div class="compare-cell"><span class="cross">—</span></div><div class="compare-cell featured"><span class="check">✓</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
-      <div class="compare-row"><div class="compare-cell label">B2B executive networking events</div><div class="compare-cell"><span class="cross">—</span></div><div class="compare-cell featured"><span class="check">✓</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
-      <div class="compare-row section-head"><div class="compare-cell section-label">SAP-specific assets</div><div class="compare-cell"></div><div class="compare-cell featured"></div><div class="compare-cell"></div></div>
-      <div class="compare-row"><div class="compare-cell label">Technology showcase integration</div><div class="compare-cell"><span class="cross">—</span></div><div class="compare-cell featured"><span class="check">✓</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
-      <div class="compare-row"><div class="compare-cell label">SAP Sapphire and TechEd speaking slots</div><div class="compare-cell"><span class="cross">—</span></div><div class="compare-cell featured"><span class="cross">—</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
-      <div class="compare-row"><div class="compare-cell label">NIL endorsement opportunities</div><div class="compare-cell"><span class="cross">—</span></div><div class="compare-cell featured"><span class="check">✓</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
-      <div class="compare-row"><div class="compare-cell label">Multi-sport year-round coverage</div><div class="compare-cell"><span class="partial">Football only</span></div><div class="compare-cell featured"><span class="check">✓ All sports</span></div><div class="compare-cell"><span class="check">✓ All sports</span></div></div>
     </div>
   </div>
 </div>
