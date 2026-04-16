@@ -42,7 +42,7 @@
       background: var(--bg);
     }
     .prompt-bar__label {
-      margin: 0 0 8px;
+      margin: 0 0 7px;
       font-size: 10px;
       font-weight: 600;
       letter-spacing: 0.1em;
@@ -51,18 +51,18 @@
     }
     .prompt-bar__chips {
       display: grid;
-      gap: 8px;
+      gap: 6px;
       grid-template-columns: 1fr 1fr;
     }
     .chip {
       width: 100%;
-      padding: 9px 10px;
+      padding: 8px 10px;
       border: 1px solid var(--line);
       background: transparent;
       color: var(--text);
       text-align: left;
       font-family: inherit;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 500;
       line-height: 1.3;
       cursor: pointer;
@@ -161,6 +161,7 @@
         <button class="chip" onclick="sendChip(this)">What are the 5 core communication assets?</button>
         <button class="chip" onclick="sendChip(this)">Isn't $750K too low for a Power 4 jersey patch?</button>
         <button class="chip" onclick="sendChip(this)">Why pitch for 2027 instead of 2026?</button>
+        <button class="chip" onclick="sendChip(this)">How will Playfly measure success?</button>
       </div>
     </div>
 
@@ -175,7 +176,7 @@
   </div>
 
   <script>
-    // THE AI BRAIN: 20 Hardcoded responses tailored perfectly to the rubric, Dan's transcript, and Capstone traps.
+    // THE AI BRAIN: 21 Hardcoded responses tailored perfectly to the rubric, Dan's transcript, and Capstone traps.
     const knowledgeBase = [
       {
         // 1. BUSINESS BACK / VIK
@@ -216,6 +217,11 @@
         // 8. TALENT ACQUISITION (SAP's 4th Pillar)
         keywords: ["talent", "student", "recruiting", "pipeline", "hire", "employee", "university"],
         response: "Dan Fleetwood explicitly stated that SAP utilizes collegiate partnerships for **young talent recruitment programs**. \n\nThis proposal establishes SAP as the premier innovation partner on campus, granting your HR team priority pipeline access to elite business and tech graduates for summer internships and early-career hiring."
+      },
+      {
+        // 21. MEASUREMENT & VENDORS (Playfly, Zoomph, Wakefield)
+        keywords: ["measure", "measurement", "zoomph", "wakefield", "playfly", "survey", "report", "recap", "roi", "roo"],
+        response: "Baylor Sports Properties, powered by **Playfly**, executes a rigorous, multi-tiered measurement strategy.\n\nInstead of vague impressions, we deliver a comprehensive **Annual Recap**. We utilize **Zoomph** and Nielsen for quantitative broadcast/social exposure valuation, and **Wakefield Services** for qualitative mindset surveys to track actual brand lift and trust. Our focus is on Return on Objective (ROO) and true B2B pipeline value."
       },
       {
         // 9. ROI AND MEASUREMENT
