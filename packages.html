@@ -1,529 +1,1388 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Packages & Pricing — Baylor Athletics x SAP</title>
-  <link rel="icon" type="image/png" href="favicon.png"/>
-  <link rel="shortcut icon" href="favicon.ico"/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAP App | Baylor x SAP</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assistant.css" />
   <style>
-    :root { --green:#154734;--green-dark:#0d2e22;--green-light:#2a7a58;--gold:#FFB81C;--cream:#f8f6f0;--off-white:#f2f4f0;--text:#1a1a1a;--muted:#666; }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    html{scroll-behavior:smooth;}
-    body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;width:100%;}
-
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2.5rem;display:flex;align-items:center;justify-content:space-between;background:rgba(21,71,52,0.97);backdrop-filter:blur(8px);}
-    .nav-logo{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#fff;display:flex;align-items:center;gap:10px;text-decoration:none;}
-    .nav-mark{width:32px;height:32px;background:var(--gold);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--green);}
-    .nav-links{display:flex;list-style:none;}
-    .nav-links a{font-size:13px;font-weight:500;color:rgba(255,255,255,0.65);text-decoration:none;padding:0.5rem 1rem;border-radius:6px;transition:color 0.2s;}
-    .nav-links a:hover,.nav-links a.active{color:var(--gold);}
-    .nav-cta{background:var(--gold)!important;color:var(--green)!important;border-radius:100px!important;padding:8px 18px!important;font-weight:600!important;}
-    .nav-cta:hover{background:#fff!important;}
-
-    /* HERO */
-    .page-hero{background:var(--green);padding:9rem 2.5rem 5rem;position:relative;overflow:hidden;width:100%;}
-    .hero-pattern{position:absolute;inset:0;opacity:0.04;background-image:repeating-linear-gradient(45deg,#fff 0,#fff 1px,transparent 0,transparent 50%);background-size:20px 20px;}
-    .hero-bar{position:absolute;top:0;left:0;right:0;height:4px;background:var(--gold);}
-    .hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
-    .breadcrumb{font-size:12px;color:rgba(255,255,255,0.45);margin-bottom:1.5rem;display:flex;align-items:center;gap:8px;}
-    .breadcrumb a{color:rgba(255,255,255,0.45);text-decoration:none;}
-    .breadcrumb a:hover{color:var(--gold);}
-    .page-eyebrow{font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
-    .page-title{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:900;color:#fff;line-height:1.1;margin-bottom:1.25rem;}
-    .page-title em{color:var(--gold);font-style:normal;}
-    .page-sub{font-size:1.1rem;color:rgba(255,255,255,0.55);line-height:1.8;font-weight:300;}
-    .hero-pkg-card{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;padding:1.25rem 1.5rem;display:flex;justify-content:space-between;align-items:center;transition:background 0.2s;}
-    .hero-pkg-card:hover{background:rgba(255,255,255,0.11);}
-    .hero-pkg-card.gold-border{border-color:var(--gold);background:rgba(255,184,28,0.08);}
-    .hero-pkg-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#fff;}
-    .hero-pkg-name.gold{color:var(--gold);}
-    .hero-pkg-sub{font-size:12px;color:rgba(255,255,255,0.5);margin-top:2px;}
-    .hero-pkg-price{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--gold);white-space:nowrap;}
-    .hero-pkg-hint{font-size:11px;color:rgba(255,255,255,0.35);text-align:center;margin-top:0.5rem;}
-
-    /* SECTIONS */
-    .pkg-sec{background:var(--cream);padding:6rem 2.5rem;width:100%;}
-    .compare-sec{background:var(--off-white);padding:6rem 2.5rem;width:100%;}
-    .market-sec{background:var(--green);padding:6rem 2.5rem;width:100%;}
-    .faq-sec{background:#fff;padding:6rem 2.5rem;width:100%;}
-    .cta-sec{background:var(--green);padding:5rem 2.5rem;text-align:center;width:100%;}
-    footer{background:var(--green-dark);padding:2.5rem;width:100%;}
-
-    .sec-inner{max-width:1200px;margin:0 auto;}
-    .sec-eyebrow{font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--green);opacity:0.55;margin-bottom:0.75rem;}
-    .sec-eyebrow-gold{font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;}
-    .sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.75rem,3vw,2.5rem);font-weight:700;color:var(--green-dark);line-height:1.2;margin-bottom:0.75rem;}
-    .sec-title em{color:var(--green-light);font-style:normal;}
-    .sec-title-white{font-family:'Playfair Display',serif;font-size:clamp(1.75rem,3vw,2.5rem);font-weight:700;color:#fff;line-height:1.2;margin-bottom:0.75rem;}
-    .sec-lead{font-size:1rem;color:var(--muted);max-width:600px;line-height:1.8;margin-bottom:3rem;font-weight:300;}
-    .sec-lead-white{font-size:1rem;color:rgba(255,255,255,0.6);max-width:600px;line-height:1.8;margin-bottom:3rem;font-weight:300;}
-
-    /* PACKAGES */
-    .pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;align-items:start;}
-    .pkg-card{background:#fff;border-radius:20px;border:1px solid rgba(21,71,52,0.1);overflow:hidden;display:flex;flex-direction:column;transition:all 0.25s;}
-    .pkg-card:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(21,71,52,0.12);}
-    .pkg-card.featured{border:2px solid var(--green);}
-    .pkg-top-bar{height:5px;}
-    .pkg-body{padding:2rem;flex:1;display:flex;flex-direction:column;}
-    .pkg-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:4px 12px;border-radius:100px;margin-bottom:1.25rem;align-self:flex-start;}
-    .pkg-badge.regional{background:rgba(21,71,52,0.08);color:var(--green);}
-    .pkg-badge.recommended{background:var(--green);color:var(--gold);}
-    .pkg-badge.platinum{background:var(--gold);color:var(--green);}
-    .pkg-name{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--green);margin-bottom:0.25rem;}
-    .pkg-price{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--text);margin-bottom:0.25rem;line-height:1.1;}
-    .pkg-price span{font-size:0.9rem;font-weight:400;color:var(--muted);font-family:'DM Sans',sans-serif;}
-    .pkg-source{font-size:11px;color:var(--muted);font-style:italic;margin-bottom:1.5rem;line-height:1.5;padding-bottom:1.5rem;border-bottom:1px solid rgba(21,71,52,0.07);}
-    .pkg-features{display:flex;flex-direction:column;gap:10px;flex:1;margin-bottom:1.75rem;}
-    .pkg-feature{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--muted);line-height:1.5;}
-    .pkg-check{width:18px;height:18px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;font-size:10px;color:var(--green);font-weight:700;}
-    .pkg-cta{display:block;width:100%;padding:13px;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;text-align:center;cursor:pointer;text-decoration:none;transition:all 0.15s;}
-    .pkg-cta.outline{border:1.5px solid var(--green);background:transparent;color:var(--green);}
-    .pkg-cta.outline:hover{background:var(--green);color:var(--gold);}
-    .pkg-cta.solid{border:none;background:var(--green);color:var(--gold);}
-    .pkg-cta.solid:hover{background:var(--green-dark);}
-    .pkg-cta.gold{border:none;background:var(--gold);color:var(--green);}
-    .pkg-cta.gold:hover{background:#e6a518;}
-    .pkg-footer-note{font-size:11px;color:var(--muted);text-align:center;margin-top:2rem;line-height:1.6;}
-
-    /* COMPARE (MOBILE OPTIMIZED) */
-    .compare-table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 16px; border: 1px solid rgba(21,71,52,0.1); background: #fff; margin-top: 2.5rem; }
-    .compare-table { width: 100%; min-width: 760px; }
-    .compare-head { display: grid; grid-template-columns: 2.5fr 1fr 1fr 1fr; background: var(--green); }
-    .compare-th { padding: 1rem 1.25rem; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.08em; }
-    .compare-th.gold { color: var(--gold); }
-    .compare-row { display: grid; grid-template-columns: 2.5fr 1fr 1fr 1fr; border-top: 1px solid rgba(21,71,52,0.06); }
-    .compare-row:hover { background: rgba(21,71,52,0.015); }
-    .compare-row.section-head { background: rgba(21,71,52,0.03); }
-    .compare-cell { padding: 0.9rem 1.25rem; font-size: 13px; color: var(--muted); display: flex; align-items: center; }
-    .compare-cell.label { font-weight: 500; color: var(--text); }
-    .compare-cell.section-label { font-weight: 700; color: var(--green); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; }
-    .compare-cell.featured { background: rgba(21,71,52,0.02); }
-    .check { color: var(--green); font-size: 16px; font-weight: 700; }
-    .cross { color: #ccc; font-size: 16px; }
-    .partial { font-size: 11px; font-weight: 600; color: var(--gold); }
-
-    /* MARKET */
-    .market-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem;}
-    .market-card{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:1.75rem;transition:background 0.2s;}
-    .market-card:hover{background:rgba(255,255,255,0.11);}
-    .market-school{font-size:14px;font-weight:700;color:#fff;margin-bottom:3px;}
-    .market-partner{font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:1rem;}
-    .market-value{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--gold);margin-bottom:4px;}
-    .market-note{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.5;}
-    .market-card.baylor{border-color:var(--gold);background:rgba(255,184,28,0.08);}
-    .market-card.baylor .market-school{color:var(--gold);}
-
-    /* FAQ */
-    .faq-inner{max-width:800px;margin:0 auto;}
-    .faq-list{display:flex;flex-direction:column;gap:1rem;margin-top:2.5rem;}
-    .faq-item{border:1px solid rgba(21,71,52,0.1);border-radius:12px;overflow:hidden;}
-    .faq-q{padding:1.25rem 1.5rem;font-size:15px;font-weight:600;color:var(--green);cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:background 0.15s;}
-    .faq-q:hover{background:rgba(21,71,52,0.03);}
-    .faq-arrow{font-size:18px;color:var(--gold);transition:transform 0.2s;}
-    .faq-a{padding:0 1.5rem;max-height:0;overflow:hidden;transition:max-height 0.3s ease,padding 0.3s ease;}
-    .faq-a.open{max-height:300px;padding:0 1.5rem 1.25rem;}
-    .faq-a p{font-size:14px;color:var(--muted);line-height:1.75;}
-    .faq-item.active .faq-arrow{transform:rotate(180deg);}
-
-    /* CTA */
-    .cta-title{font-family:'Playfair Display',serif;font-size:clamp(1.75rem,3vw,2.5rem);font-weight:700;color:#fff;margin-bottom:0.75rem;}
-    .cta-sub{font-size:1rem;color:rgba(255,255,255,0.5);margin-bottom:2.5rem;max-width:460px;margin-left:auto;margin-right:auto;line-height:1.7;font-weight:300;}
-    .btn-gold{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--green);padding:15px 30px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;transition:all 0.2s;font-family:'DM Sans',sans-serif;}
-    .btn-gold:hover{background:#fff;transform:translateY(-2px);}
-    .btn-outline{display:inline-flex;align-items:center;gap:8px;background:transparent;color:rgba(255,255,255,0.75);padding:15px 30px;border-radius:100px;font-size:14px;font-weight:500;text-decoration:none;border:1px solid rgba(255,255,255,0.2);transition:all 0.2s;font-family:'DM Sans',sans-serif;margin-left:1rem;}
-    .btn-outline:hover{border-color:var(--gold);color:var(--gold);}
-
-    /* FOOTER */
-    .foot-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
-    .foot-logo{font-family:'Playfair Display',serif;font-size:13px;font-weight:600;color:rgba(255,255,255,0.45);}
-    .foot-class{font-size:10px;color:rgba(255,255,255,0.2);margin-top:4px;}
-    .foot-links{display:flex;gap:1.5rem;flex-wrap:wrap;}
-    .foot-links a{font-size:12px;color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.2s;}
-    .foot-links a:hover{color:var(--gold);}
-    .foot-copy{font-size:10px;color:rgba(255,255,255,0.2);}
-
-    /* CHAT */
-    .chat-float{position:fixed;bottom:2rem;right:2rem;z-index:200;display:flex;flex-direction:column;align-items:flex-end;gap:10px;}
-    .chat-btn{width:64px;height:64px;border-radius:50%;background:var(--green);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(21,71,52,0.4);transition:all 0.2s;position:relative;}
-    .chat-btn:hover{background:var(--green-dark);transform:scale(1.05);}
-    .chat-btn svg{width:26px;height:26px;fill:var(--gold);}
-    .chat-pulse{position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--gold);animation:pulse 2s ease-out infinite;pointer-events:none;}
-    @keyframes pulse{0%{transform:scale(0.95);opacity:0.8;}100%{transform:scale(1.3);opacity:0;}}
-    .chat-tip{background:var(--green);color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;padding:10px 16px;border-radius:100px;white-space:nowrap;box-shadow:0 4px 20px rgba(21,71,52,0.25);display:none;align-items:center;gap:8px;cursor:pointer;}
-    .chat-box{position:absolute;bottom:78px;right:0;width:380px;background:#fff;border-radius:20px;box-shadow:0 16px 60px rgba(21,71,52,0.18);overflow:hidden;display:none;flex-direction:column;}
-    .chat-box.open{display:flex;}
-    .chat-head{background:var(--green);padding:1rem 1.25rem;display:flex;align-items:center;gap:10px;}
-    .chat-logo{width:36px;height:36px;background:var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:11px;font-weight:700;color:var(--green);flex-shrink:0;}
-    .chat-head-title{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#fff;}
-    .chat-head-sub{font-size:11px;color:rgba(255,255,255,0.5);margin-top:1px;display:flex;align-items:center;gap:5px;}
-    .chat-green-dot{width:5px;height:5px;border-radius:50%;background:#4ade80;}
-    .chat-msgs{height:280px;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:10px;background:#fafcfa;}
-    .chat-msgs::-webkit-scrollbar{width:3px;}
-    .chat-msgs::-webkit-scrollbar-thumb{background:#c5d5c5;border-radius:2px;}
-    .msg{max-width:85%;padding:9px 13px;border-radius:14px;font-size:13px;line-height:1.65;font-family:'DM Sans',sans-serif;}
-    .msg.bot{background:#fff;color:#1a1a1a;align-self:flex-start;border-bottom-left-radius:3px;border:1px solid #e0eae0;}
-    .msg.me{background:var(--green);color:var(--gold);align-self:flex-end;border-bottom-right-radius:3px;font-weight:500;}
-    .msg.thinking{background:#eef3ee;color:#999;align-self:flex-start;font-style:italic;font-size:12px;}
-    .msg.bot strong{font-weight:700;color:var(--green);}
-    .fu-wrap{align-self:flex-start;display:flex;flex-direction:column;gap:5px;max-width:90%;}
-    .fu-label{font-family:'DM Sans',sans-serif;font-size:9px;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:0.1em;opacity:0.6;}
-    .fu-chips{display:flex;flex-wrap:wrap;gap:5px;}
-    .fu-chip{font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;padding:5px 11px;border-radius:100px;border:1.5px solid var(--green);background:#fff;color:var(--green);cursor:pointer;transition:all 0.15s;}
-    .fu-chip:hover{background:var(--green);color:var(--gold);}
-    .chat-quick{padding:8px 10px;background:#fafcfa;display:flex;flex-wrap:wrap;gap:5px;border-top:1px solid #e8ede8;}
-    .q-chip{font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;padding:4px 10px;border-radius:100px;border:1px solid #b8cfb8;background:#fff;color:var(--green);cursor:pointer;transition:all 0.15s;white-space:nowrap;}
-    .q-chip:hover{background:var(--green);color:var(--gold);border-color:var(--green);}
-    .chat-input{padding:10px;border-top:1px solid #e8ede8;display:flex;gap:8px;background:#fff;}
-    .chat-input input{flex:1;font-family:'DM Sans',sans-serif;font-size:13px;padding:8px 12px;border-radius:10px;border:1.5px solid #d4ddd4;background:#fafcfa;color:#1a1a1a;outline:none;}
-    .chat-input input:focus{border-color:var(--green);}
-    .chat-input input:disabled{opacity:0.5;}
-    .chat-send{background:var(--green);color:var(--gold);border:none;border-radius:10px;padding:8px 14px;font-size:13px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;}
-    .chat-send:hover{background:var(--green-dark);}
-    .chat-send:disabled{background:#c5d5c5;color:#fff;cursor:not-allowed;}
-
-    /* MOBILE NAV */
-    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
-    .nav-hamburger span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: all 0.3s; }
-    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
-    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    .nav-mobile { display: none; position: fixed; top: 64px; left: 0; right: 0; background: rgba(21,71,52,0.98); backdrop-filter: blur(8px); z-index: 99; padding: 1rem 2.5rem 1.5rem; flex-direction: column; gap: 0.25rem; border-top: 1px solid rgba(255,255,255,0.1); }
-    .nav-mobile.open { display: flex; }
-    .nav-mobile a { font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.75); text-decoration: none; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.07); transition: color 0.2s; }
-    .nav-mobile a:last-child { border-bottom: none; }
-    .nav-mobile a:hover, .nav-mobile a.active { color: var(--gold); }
-    .nav-mobile .mob-cta { color: var(--gold) !important; font-weight: 600 !important; }
-
-    .fade-up{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease;}
-    .fade-up.in{opacity:1;transform:translateY(0);}
-    .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}.d6{transition-delay:.6s}
-
-    @media(max-width:960px){.pkg-grid,.market-grid{grid-template-columns:1fr 1fr;}}
-    @media(max-width:768px){.hero-inner{grid-template-columns:1fr!important;}}
-    @media(max-width:640px){
-      .pkg-grid,.market-grid{grid-template-columns:1fr;}
-      .nav-links{display:none !important;}
-      .nav-hamburger{display:flex;}
-      .chat-box{width:320px;}
+    :root {
+      --bg: #3e362b;
+      --bg-soft: #4c4336;
+      --bg-deep: #221d16;
+      --surface: rgba(63, 54, 43, 0.82);
+      --surface-strong: rgba(52, 45, 36, 0.9);
+      --text: rgba(247, 242, 232, 0.94);
+      --muted: rgba(225, 217, 203, 0.74);
+      --line: rgba(231, 216, 182, 0.2);
+      --line-strong: rgba(216, 183, 129, 0.48);
+      --gold: #d8b77f;
+      --gold-soft: #ead7b2;
+      --blue: #9b8361;
+      --shadow-panel: 0 24px 72px rgba(24, 19, 12, 0.3);
     }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background-color: var(--bg-deep);
+      background-image:
+        radial-gradient(circle at top left, rgba(216, 183, 127, 0.22), transparent 30%),
+        radial-gradient(circle at 85% 15%, rgba(193, 165, 118, 0.26), transparent 34%),
+        radial-gradient(circle at bottom center, rgba(99, 84, 62, 0.5), transparent 42%);
+      color: var(--text);
+      font-family: "Space Grotesk", sans-serif;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    @view-transition {
+      navigation: auto;
+    }
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation-duration: 0.62s;
+      animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    ::view-transition-new(root) {
+      filter: saturate(1.03) contrast(1.01);
+    }
+    .page-transition {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .page-transition__panel {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: min(34vw, 460px);
+      height: min(22vw, 300px);
+      background: #3e362b;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      border-radius: 28px;
+      transform: translate(-50%, -50%) scale(0.88);
+      opacity: 0;
+      overflow: hidden;
+      backdrop-filter: blur(16px) saturate(130%);
+      -webkit-backdrop-filter: blur(16px) saturate(130%);
+      will-change: transform, opacity, border-radius, width, height;
+      backface-visibility: hidden;
+      box-shadow: 0 32px 96px rgba(5, 18, 14, 0.28);
+    }
+    .page-transition.is-leaving { pointer-events: all; }
+    body.is-transitioning { overflow: hidden; }
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+      background: transparent;
+    }
+    .hero__media,
+    .hero__shade,
+    .hero__grid {
+      position: absolute;
+      inset: 0;
+    }
+    .hero__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.05);
+      filter: saturate(0.84) contrast(1.02);
+    }
+    .hero__shade {
+      background:
+        radial-gradient(circle at 20% 20%, rgba(216, 183, 127, 0.22), transparent 32%),
+        rgba(34, 29, 22, 0.62);
+    }
+    .hero__grid {
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 72px 72px;
+      opacity: 0.44;
+    }
+    .hero__inner,
+    .section__inner {
+      position: relative;
+      z-index: 2;
+      width: min(1320px, calc(100% - 72px));
+      margin: 0 auto;
+    }
+    .hero__inner {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 400px);
+      gap: clamp(28px, 5vw, 72px);
+      align-items: end;
+      padding: 12vh 0 18vh;
+    }
+    .hero__copy {
+      max-width: 740px;
+      padding-left: 18px;
+      border-left: 1px solid rgba(220, 200, 154, 0.42);
+      transform: translateY(-24px);
+    }
+    .eyebrow {
+      margin: 0 0 14px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(220, 200, 154, 0.84);
+    }
+    .title {
+      margin: 0;
+      font-size: clamp(2.9rem, 7.2vw, 5.8rem);
+      line-height: 0.94;
+      letter-spacing: -0.03em;
+      font-weight: 700;
+      text-wrap: balance;
+      max-width: 14ch;
+      min-height: 3.5em;
+      display: -webkit-box;
+      line-clamp: 4;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .title span { color: var(--gold); }
+    .lead {
+      margin: 4px 0 0;
+      max-width: 700px;
+      text-wrap: pretty;
+      font-size: clamp(1.05rem, 1.85vw, 1.42rem);
+      line-height: 1.72;
+      color: var(--muted);
+      min-height: 4.2em;
+      display: -webkit-box;
+      line-clamp: 3;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .hero__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .hero__actions .button {
+      width: 180px;
+      max-width: 100%;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(247, 242, 232, 0.05);
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+    }
+    .button:hover {
+      border-color: var(--gold-soft);
+      background: rgba(247, 242, 232, 0.1);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+    .button--primary {
+      border-color: rgba(220, 200, 154, 0.9);
+      background: rgba(216, 183, 127, 0.95);
+      color: #2a2218;
+    }
+    .button--primary:hover {
+      background: #e3c793;
+      color: #231d14;
+    }
+    .terminal,
+    .panel,
+    .visual {
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: var(--surface-strong);
+      box-shadow: var(--shadow-panel);
+      backdrop-filter: blur(18px);
+    }
+    .terminal {
+      width: 100%;
+      padding: 24px;
+      min-height: 320px;
+      align-self: end;
+      transform: translateY(-78px);
+    }
+    .terminal__label,
+    .metric__label {
+      margin: 0;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(220, 200, 154, 0.74);
+    }
+    .terminal__title {
+      margin: 14px 0 0;
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      line-height: 1.06;
+      letter-spacing: -0.02em;
+      font-weight: 700;
+      max-width: 100%;
+      min-height: 3.2em;
+      display: -webkit-box;
+      line-clamp: 3;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .terminal__copy {
+      margin: 18px 0 0;
+      max-width: 100%;
+      font-size: 13.5px;
+      line-height: 1.78;
+      color: var(--muted);
+      min-height: 7.6em;
+      display: -webkit-box;
+      line-clamp: 4;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .terminal__meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 22px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(231, 216, 182, 0.12);
+    }
+    .metric strong {
+      display: block;
+      margin-top: 6px;
+      font-size: 13px;
+      line-height: 1.65;
+      color: rgba(247, 242, 232, 0.96);
+      min-height: 2.65em;
+    }
+    .terminal__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      margin-top: 20px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(231, 216, 182, 0.12);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .terminal__link::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(182, 139, 47, 0.7), rgba(220, 200, 154, 0.2));
+    }
+    .terminal__link:hover { color: var(--gold); }
+    .section {
+      position: relative;
+      padding: 36px 0;
+      background: transparent;
+      overflow: hidden;
+    }
+    .grid {
+      display: grid;
+      gap: 22px;
+    }
+    .grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .panel { padding: 24px; }
+    .panel h2,
+    .panel h3 {
+      margin: 0;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      font-weight: 700;
+    }
+    .panel p,
+    .panel li {
+      font-size: 14px;
+      line-height: 1.78;
+      color: var(--muted);
+    }
+    .list {
+      margin: 18px 0 0;
+      padding-left: 18px;
+    }
+    .list li + li { margin-top: 10px; }
+
+    .compact-stack {
+      display: grid;
+      gap: 14px;
+    }
+
+    .compact-intro {
+      padding: 18px 20px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: linear-gradient(160deg, rgba(66, 56, 45, 0.92), rgba(49, 42, 34, 0.9));
+    }
+
+    .compact-intro h2 {
+      margin: 0;
+      font-size: clamp(1.35rem, 2.6vw, 1.9rem);
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+    }
+
+    .compact-intro p {
+      margin: 10px 0 0;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .module-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .app-module {
+      padding: 14px 14px 12px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(52, 45, 36, 0.84);
+    }
+
+    .app-module__kicker {
+      margin: 0;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: rgba(220, 200, 154, 0.86);
+    }
+
+    .app-module h3 {
+      margin: 8px 0 0;
+      font-size: 1rem;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+
+    .mini-list {
+      margin: 8px 0 0;
+      padding-left: 15px;
+    }
+
+    .mini-list li {
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    .mini-list li + li {
+      margin-top: 5px;
+    }
+    .visual {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      overflow: hidden;
+    }
+    .visual img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      transform: scale(1.15);
+      position: relative;
+      z-index: 1;
+    }
+    .visual__meta {
+      position: relative;
+      z-index: 2;
+      padding: 16px 18px 18px;
+      background: var(--surface-strong);
+      border-top: 1px solid rgba(220, 200, 154, 0.2);
+    }
+    .visual__meta strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+    .visual__meta span {
+      font-size: 14px;
+      line-height: 1.72;
+      color: var(--muted);
+    }
+    .immersive-breakout {
+      position: relative;
+      min-height: 90vh;
+      overflow: hidden;
+      border-top: 1px solid rgba(231, 216, 182, 0.1);
+    }
+    .breakout-bg {
+      position: absolute;
+      inset: -10% 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      transform: scale(1.08);
+      will-change: transform;
+    }
+    .breakout-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(18, 14, 10, 0.28), rgba(18, 14, 10, 0.72)),
+        radial-gradient(circle at 22% 28%, rgba(216, 183, 127, 0.22), transparent 26%);
+    }
+    .breakout-content {
+      position: relative;
+      z-index: 1;
+      width: min(1320px, calc(100% - 72px));
+      min-height: 90vh;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding: 0 0 12vh;
+    }
+    .suite-hero-content {
+      padding-bottom: 10vh;
+    }
+    .suite-hero-content h2 {
+      margin: 0;
+      max-width: 10ch;
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+      color: #fff;
+    }
+    .suite-intro {
+      padding: 15vh 10vw;
+      background: linear-gradient(180deg, rgba(98, 82, 61, 0.78), rgba(34, 29, 22, 0.96));
+      color: white;
+    }
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 60px;
+      align-items: end;
+    }
+    .intro-text h3 {
+      margin: 0;
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      font-weight: 300;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+    .intro-meta p {
+      margin: 0;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: rgba(247, 242, 232, 0.72);
+    }
+    .suite-gallery {
+      padding: 10vh 10vw;
+      background: linear-gradient(180deg, #4c4336, #221d16);
+    }
+    .gallery-row {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 8vw;
+      align-items: center;
+      margin-bottom: 15vh;
+    }
+    .gallery-row:last-child {
+      margin-bottom: 0;
+    }
+    .reverse-row {
+      grid-template-columns: 1fr 1.2fr;
+    }
+    .reverse-row .gallery-image {
+      order: 2;
+    }
+    .reverse-row .gallery-copy {
+      order: 1;
+    }
+    .gallery-image img {
+      width: 100%;
+      border-radius: 6px;
+      box-shadow: 0 30px 60px rgba(15, 12, 8, 0.4);
+      filter: saturate(0.95) contrast(1.05);
+    }
+    .feature-number {
+      display: block;
+      margin-bottom: 20px;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+    }
+    .gallery-copy h3 {
+      margin: 0 0 20px;
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: white;
+    }
+    .gallery-copy p {
+      margin: 0;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: rgba(247, 242, 232, 0.68);
+    }
+    .suite-data {
+      padding: 10vh 10vw 12vh;
+      background: linear-gradient(180deg, #4c4336, #221d16);
+      border-top: 1px solid rgba(231, 216, 182, 0.1);
+    }
+    .data-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .data-massive {
+      margin: 0;
+      font-size: clamp(3.6rem, 9vw, 8rem);
+      font-weight: 500;
+      line-height: 0.9;
+      letter-spacing: -0.05em;
+      color: #fff;
+    }
+    .data-label {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.3;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(247, 242, 232, 0.72);
+    }
+    .suite-roi {
+      padding: 10vh 10vw 15vh;
+      background: linear-gradient(180deg, rgba(98, 82, 61, 0.84), rgba(34, 29, 22, 0.98));
+      color: white;
+      border-top: 1px solid rgba(231, 216, 182, 0.1);
+    }
+    .roi-header {
+      margin-bottom: 6vh;
+    }
+    .roi-header h2 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+    }
+    .roi-header p {
+      margin: 0;
+      font-size: 1.1rem;
+      color: rgba(247, 242, 232, 0.62);
+    }
+    .roi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+    .roi-item {
+      padding-left: 20px;
+      border-left: 1px solid rgba(231, 216, 182, 0.22);
+    }
+    .roi-item h4 {
+      margin: 0 0 15px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+    }
+    .roi-item p {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: rgba(247, 242, 232, 0.72);
+    }
+    .app-hero {
+      margin: 0;
+      height: 90vh;
+      border-top: none;
+    }
+    .app-hero .breakout-bg {
+      background-size: cover;
+      background-position: center 20%;
+      filter: brightness(0.6) saturate(1.2);
+    }
+    .suite-cta {
+      padding: 8vh 10vw 12vh;
+      background: transparent;
+    }
+    .next-activation {
+      display: grid;
+      gap: 10px;
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 24px 28px 26px;
+      border-radius: 24px;
+      border: 1px solid rgba(216, 183, 127, 0.18);
+      background:
+        linear-gradient(135deg, rgba(216, 183, 127, 0.22), rgba(52, 45, 36, 0.94)),
+        rgba(52, 45, 36, 0.96);
+      box-shadow: 0 22px 58px rgba(24, 19, 12, 0.24);
+      text-decoration: none;
+      transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+    }
+    .next-activation:hover {
+      transform: translateY(-4px);
+      border-color: rgba(234, 215, 178, 0.34);
+      box-shadow: 0 28px 68px rgba(24, 19, 12, 0.3);
+    }
+    .next-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(234, 215, 178, 0.76);
+    }
+    .next-title {
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 3.45rem);
+      font-weight: 500;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--text);
+    }
+    .nav-island {
+      position: fixed;
+      bottom: 34px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 2rem;
+      background: var(--surface);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 1rem 2.5rem;
+      border-radius: 100px;
+      border: 1px solid var(--line);
+      box-shadow: 0 18px 44px rgba(8, 22, 18, 0.24);
+      z-index: 100;
+    }
+    .nav-island a {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(247, 242, 232, 0.9);
+      opacity: 0.72;
+      transition: opacity 0.25s ease, color 0.25s ease;
+      white-space: nowrap;
+    }
+    .nav-island a:hover,
+    .nav-island a.is-active {
+      opacity: 1;
+      color: var(--gold);
+    }
+
+    .site-footer {
+      position: relative;
+      z-index: 2;
+      width: min(1320px, calc(100% - 72px));
+      margin: 34px auto 120px;
+      padding: 22px 24px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--surface-strong);
+      box-shadow: var(--shadow-panel);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .site-footer__title {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: rgba(247, 242, 232, 0.92);
+    }
+
+    .site-footer__meta {
+      margin: 8px 0 0;
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .site-footer__links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--line);
+    }
+
+    .site-footer__links a {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(247, 242, 232, 0.84);
+      opacity: 0.82;
+      transition: opacity 0.2s ease, color 0.2s ease;
+    }
+
+    .site-footer__links a:hover {
+      opacity: 1;
+      color: var(--gold);
+    }
+
+    .site-footer__legal {
+      margin: 14px 0 0;
+      font-size: 12px;
+      line-height: 1.6;
+      color: rgba(247, 242, 232, 0.66);
+    }
+    @media (max-width: 1100px) {
+      .hero__inner,
+      .grid--3 {
+        grid-template-columns: 1fr;
+      }
+
+      .module-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero__copy {
+        transform: none;
+      }
+
+      .terminal {
+        transform: none;
+      }
+    }
+    @media (max-width: 820px) {
+      .hero__inner,
+      .section__inner,
+      .site-footer {
+        width: calc(100% - 32px);
+      }
+      .grid--2 {
+        grid-template-columns: 1fr;
+      }
+
+      .terminal {
+        transform: none;
+      }
+      .title { font-size: clamp(3rem, 14vw, 5.6rem); }
+      .lead { font-size: 1.02rem; }
+      .terminal__meta { grid-template-columns: 1fr; }
+      .title,
+      .lead,
+      .terminal__title,
+      .terminal__copy {
+        min-height: 0;
+        display: block;
+        line-clamp: unset;
+        -webkit-line-clamp: unset;
+      }
+    }
+    @media (max-width: 640px) {
+      .nav-island {
+        width: calc(100% - 24px);
+        gap: 1rem;
+        justify-content: space-between;
+        padding: 0.9rem 1rem;
+        bottom: 22px;
+      }
+      .nav-island a { font-size: 10px; }
+      .hero__inner,
+      .section__inner,
+      .site-footer {
+        width: calc(100% - 24px);
+      }
+
+      .site-footer {
+        margin-bottom: 96px;
+      }
+
+      .module-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+      .site-footer {
+        width: min(1200px, calc(100% - 36px));
+        margin: 18px auto 120px;
+        padding: 14px 18px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--surface-strong);
+        box-shadow: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      .site-footer__title {
+        margin: 0;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        text-transform: none;
+        color: rgba(243, 245, 247, 0.9);
+      }
+
+      .site-footer__meta {
+        margin: 2px 0 0;
+        font-size: 11px;
+        color: rgba(205, 217, 231, 0.7);
+      }
+
+      .site-footer__links {
+        display: none;
+      }
+
+      .site-footer__legal {
+        margin: 0;
+        font-size: 11px;
+        text-align: right;
+        color: rgba(205, 217, 231, 0.62);
+        white-space: nowrap;
+        align-self: center;
+      }
+
+      @media (max-width: 900px) {
+        .site-footer {
+          width: calc(100% - 24px);
+          margin: 14px auto 104px;
+          padding: 12px 14px;
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .site-footer__legal {
+          text-align: left;
+          white-space: normal;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .site-footer {
+          width: calc(100% - 16px);
+          margin: 10px auto 96px;
+          padding: 10px 12px;
+        }
+
+        .site-footer__title {
+          font-size: 11px;
+        }
+
+        .site-footer__meta,
+        .site-footer__legal {
+          font-size: 10px;
+        }
+      }
+      @media (max-width: 900px) {
+        .breakout-content {
+          width: min(100% - 36px, 1320px);
+          padding-bottom: 9vh;
+        }
+
+        .intro-grid {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+
+        .gallery-row,
+        .reverse-row {
+          grid-template-columns: 1fr;
+          gap: 40px;
+          margin-bottom: 10vh;
+        }
+
+        .reverse-row .gallery-image,
+        .reverse-row .gallery-copy {
+          order: unset;
+        }
+
+        .data-row {
+          flex-direction: column;
+          align-items: flex-start !important;
+        }
+
+        .roi-grid {
+          grid-template-columns: 1fr;
+        }
+      }
   </style>
 </head>
 <body>
-
-<nav>
-  <a href="index.html" class="nav-logo"><div class="nav-mark">BU</div>Baylor Athletics x SAP</a>
-  <ul class="nav-links">
-    <li><a href="opportunity.html">Opportunity</a></li>
-    <li><a href="reach.html">Reach</a></li>
-    <li><a href="roadmap.html">Roadmap</a></li>
-    <li><a href="packages.html" class="active">Packages</a></li>
-    <li><a href="contact.html" class="nav-cta">Contact</a></li>
-  </ul>
-  <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-<div class="nav-mobile" id="mobileMenu">
-  <a href="opportunity.html">Opportunity</a>
-  <a href="reach.html">Reach</a>
-  <a href="roadmap.html">Roadmap</a>
-  <a href="packages.html" class="active">Packages</a>
-  <a href="contact.html" class="mob-cta">Contact</a>
-</div>
-
-<div class="page-hero">
-  <div class="hero-pattern"></div>
-  <div class="hero-bar"></div>
-  <div class="hero-inner">
-    <div class="fade-up">
-      <div class="breadcrumb"><a href="index.html">Home</a> / Packages and Pricing</div>
-      <div class="page-eyebrow">Sponsorship packages</div>
-      <h1 class="page-title">Choose your level<br><em>of partnership.</em></h1>
-      <p class="page-sub">Every package is fully customizable and managed through Baylor Sports Properties powered by Playfly. Pricing reflects current Big 12 school-level market rates.</p>
-    </div>
-    <div class="fade-up d2" style="display:flex;flex-direction:column;gap:1rem;">
-      <div class="hero-pkg-card">
-        <div><div class="hero-pkg-name">Brand Presence</div><div class="hero-pkg-sub">Regional Partner</div></div>
-        <div class="hero-pkg-price">$25K–$100K</div>
+  <div class="page-transition" aria-hidden="true">
+    <div class="page-transition__panel"></div>
+  </div>
+  <div class="site-assistant" data-site-assistant>
+    <button class="site-assistant__toggle" type="button" data-site-assistant-toggle aria-expanded="false" aria-controls="site-assistant-panel">
+      <span class="site-assistant__toggle-mark">AI</span>
+      <span class="site-assistant__toggle-copy">
+        <strong>Briefing Assistant</strong>
+        <span>Ask about the pitch, valuation, or next steps.</span>
+      </span>
+    </button>
+    <div class="site-assistant__panel" id="site-assistant-panel" data-site-assistant-panel hidden>
+      <div class="site-assistant__header">
+        <div>
+          <p class="site-assistant__eyebrow">Baylor x SAP</p>
+          <p class="site-assistant__title">Briefing Assistant</p>
+          <p class="site-assistant__subcopy">Use the chatbot to navigate the proposal, compare activations, and sharpen executive talking points.</p>
+        </div>
+        <button class="site-assistant__close" type="button" data-site-assistant-close aria-label="Close briefing assistant">×</button>
       </div>
-      <div class="hero-pkg-card">
-        <div><div class="hero-pkg-name">Full Partnership</div><div class="hero-pkg-sub">Recommended for SAP</div></div>
-        <div class="hero-pkg-price">$100K–$500K</div>
+      <div class="site-assistant__frame-wrap">
+        <iframe class="site-assistant__frame" title="Baylor x SAP Briefing Assistant" data-site-assistant-frame data-src="widget.html" loading="lazy"></iframe>
       </div>
-      <div class="hero-pkg-card gold-border">
-        <div><div class="hero-pkg-name gold">Jersey Patch Partner</div><div class="hero-pkg-sub">Platinum — 2027 launch</div></div>
-        <div class="hero-pkg-price">Custom</div>
-      </div>
-      <div class="hero-pkg-hint">Scroll down to see full asset breakdown and pricing context</div>
     </div>
   </div>
-</div>
-
-<div class="pkg-sec">
-  <div class="sec-inner">
-    <div class="pkg-grid">
-      <div class="pkg-card fade-up d1">
-        <div class="pkg-top-bar" style="background:rgba(21,71,52,0.3)"></div>
-        <div class="pkg-body">
-          <div class="pkg-badge regional">Regional Partner</div>
-          <div class="pkg-name">Brand Presence</div>
-          <div class="pkg-price">$25K–$100K <span>/ year</span></div>
-          <div class="pkg-source">Entry-level Big 12 school rate — reflects regional brand deals across conference programs managed by Playfly Sports</div>
-          <div class="pkg-features">
-            <div class="pkg-feature"><div class="pkg-check">✓</div>In-venue LED and scoreboard signage</div>
-            <div class="pkg-feature"><div class="pkg-check">✓</div>Digital and social media integration</div>
-            <div class="pkg-feature"><div class="pkg-check">✓</div>Official partner designation and IP rights</div>
-            <div class="pkg-feature"><div class="pkg-check">✓</div>Game tickets and gameday hospitality</div>
-            <div class="pkg-feature"><div class="pkg-check">✓</div>Radio broadcast mentions across 5 TX markets</div>
-            <div class="pkg-feature"><div class="pkg-check">✓</div>Baylor.com partner listing and logo</div>
+  <main>
+    <section class="hero">
+      <div class="hero__media">
+        <img src="sap-gameday-insights-home.png" alt="SAP game intelligence inside the Baylor app" />
+      </div>
+      <div class="hero__shade"></div>
+      <div class="hero__grid"></div>
+      <div class="hero__inner">
+        <div class="hero__copy">
+          <p class="eyebrow">Activation 04 · SAP App</p>
+          <h1 class="title">One place for a fan-first <span>SAP Business AI Game Center</span></h1>
+          <p class="lead">A fan-first SAP Business AI Game Center where real-time data storytelling, predictive probabilities, and interactive football intelligence keep supporters engaged throughout the event.</p>
+          <div class="hero__actions">
+            <a class="button button--primary" href="index.html">Return To Overview</a>
+            <a class="button" href="contact.html">Review Brief</a>
           </div>
-          <a href="contact.html" class="pkg-cta outline">Get in touch</a>
         </div>
-      </div>
-      <div class="pkg-card featured fade-up d2">
-        <div class="pkg-top-bar" style="background:var(--green)"></div>
-        <div class="pkg-body">
-          <div class="pkg-badge recommended">Recommended for SAP</div>
-          <div class="pkg-name">Full Partnership</div>
-          <div class="pkg-price">$100K–$500K <span>/ year</span></div>
-          <div class="pkg-source">Mid-tier Big 12 corporate rate — comparable to multi-asset, multi-sport deals at Baylor's program level per Playfly Sports market data</div>
-          <div class="pkg-features">
-            <div class="pkg-feature"><div class="pkg-check">✓</div>TV-visible field and scoreboard signage</div>
-            <div class="pkg-feature"><div class="pkg-check">✓</div>Premier suite access and corporate hospitality</div>
-            <div class="pkg-feature"><div class="pkg-check">✓</div>B2B executive networking events</div>
-            <div class="pkg-feature"><div class="pkg-check">✓</div>Multi-sport year-round coverage</div>
-            <div class="pkg-feature"><div class="pkg-check">✓</div>NIL endorsement opportunities</div>
-            <div class="pkg-feature"><div class="pkg-check">✓</div>SAP technology showcase integration</div>
-            <div class="pkg-feature"><div class="pkg-check">✓</div>All Brand Presence assets included</div>
+        <aside class="terminal">
+          <p class="terminal__label">Product strategy</p>
+          <h2 class="terminal__title">Bringing out the best of fan engagement. Home or there.</h2>
+          <p class="terminal__copy">We lean into the AI conversation together, using machine learning to serve fans predictive play probabilities, route maps, and real-time decision support that turns the app into a live SAP Business AI showcase.</p>
+          <div class="terminal__meta">
+            <div class="metric">
+              <p class="metric__label">Feature lane 1</p>
+              <strong>Pregame access</strong>
+            </div>
+            <div class="metric">
+              <p class="metric__label">Feature lane 2</p>
+              <strong>SAP Business AI Game Center</strong>
+            </div>
           </div>
-          <a href="contact.html" class="pkg-cta solid">Get in touch</a>
+          <a class="terminal__link" href="contact.html">View Executive Brief</a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="suite-intro">
+      <div class="intro-grid">
+        <div class="intro-text">
+          <h3>One live product loop. Real-time intelligence in the hands of every fan.</h3>
+        </div>
+        <div class="intro-meta">
+          <p>The flow starts with emotional access and quickly moves fans into SAP-branded intelligence. We are taking the real-time predictive analytics SAP built for professional benches and bridging the gap between the stadium and the living room.</p>
         </div>
       </div>
-      <div class="pkg-card fade-up d3">
-        <div class="pkg-top-bar" style="background:var(--gold)"></div>
-        <div class="pkg-body">
-          <div class="pkg-badge platinum">Platinum — 2027 Launch</div>
-          <div class="pkg-name">Jersey Patch Partner</div>
-          <div class="pkg-price">Custom <span>pricing</span></div>
-          <div class="pkg-source">Power 4 patches valued $500K–$2M+/yr — UNLV $11M/5yr, LSU and Arkansas set new benchmarks in early 2026</div>
-          <div class="pkg-features">
-            <div class="pkg-feature"><div class="pkg-check">✓</div>NCAA jersey patch on all uniforms — Aug 2026+</div>
-            <div class="pkg-feature"><div class="pkg-check">✓</div>First enterprise tech company on a Power 4 jersey</div>
-            <div class="pkg-feature"><div class="pkg-check">✓</div>All Full Partnership assets included</div>
-            <div class="pkg-feature"><div class="pkg-check">✓</div>SAP Sapphire and TechEd speaking slots</div>
-            <div class="pkg-feature"><div class="pkg-check">✓</div>Dedicated SAP tech showcase reference story</div>
-            <div class="pkg-feature"><div class="pkg-check">✓</div>Multi-year preferred partnership terms</div>
-            <div class="pkg-feature"><div class="pkg-check">✓</div>Co-branded PR campaign across Texas markets</div>
-          </div>
-          <a href="contact.html" class="pkg-cta gold">Request a proposal</a>
+    </section>
+
+    <section class="suite-gallery">
+      <div class="gallery-row">
+        <div class="gallery-image">
+          <img src="player-cam-home.png" alt="Fan watching player cam at home">
+        </div>
+        <div class="gallery-copy">
+          <span class="feature-number">Module 01</span>
+          <h3>Pregame Player Cam</h3>
+          <p>Push early opens before kickoff. Fans at home can open the app and immediately watch a live, player-focused angle. This builds emotional closeness fast, driving app engagement before the broadcast even begins.</p>
         </div>
       </div>
-    </div>
-    <p class="pkg-footer-note">All packages managed exclusively by Baylor Sports Properties powered by Playfly. Pricing reflects current Big 12 school-level sponsorship market rates.<br>Sources: Playfly Sports, Big 12 Conference, industry analyst estimates 2025-26. Contact <a href="mailto:Luke_Holcomb@baylor.edu">Luke_Holcomb@baylor.edu</a> for a custom proposal.</p>
-  </div>
-</div>
 
-<div class="compare-sec">
-  <div class="sec-inner">
-    <div class="fade-up">
-      <div class="sec-eyebrow">Full asset breakdown</div>
-      <h2 class="sec-title">What's included <em>in each tier.</em></h2>
-      <p class="sec-lead">A complete side-by-side comparison of every asset available across all three partnership tiers.</p>
-    </div>
-    
-    <div class="compare-table-wrap fade-up">
-      <div class="compare-table">
-        <div class="compare-head">
-          <div class="compare-th">Asset</div>
-          <div class="compare-th">Brand Presence</div>
-          <div class="compare-th gold">Full Partnership</div>
-          <div class="compare-th">Jersey Patch</div>
+      <div class="gallery-row reverse-row">
+        <div class="gallery-image">
+          <img src="sap-live-stats-app.png" alt="SAP Live Stats App Interface">
         </div>
-        <div class="compare-row section-head"><div class="compare-cell section-label">Signage and visibility</div><div class="compare-cell"></div><div class="compare-cell featured"></div><div class="compare-cell"></div></div>
-        <div class="compare-row"><div class="compare-cell label">In-venue LED signage</div><div class="compare-cell"><span class="check">✓</span></div><div class="compare-cell featured"><span class="check">✓</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
-        <div class="compare-row"><div class="compare-cell label">TV-visible scoreboard and field logos</div><div class="compare-cell"><span class="cross">—</span></div><div class="compare-cell featured"><span class="check">✓</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
-        <div class="compare-row"><div class="compare-cell label">Jersey patch — all 4 colorways</div><div class="compare-cell"><span class="cross">—</span></div><div class="compare-cell featured"><span class="cross">—</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
-        <div class="compare-row section-head"><div class="compare-cell section-label">Digital and media</div><div class="compare-cell"></div><div class="compare-cell featured"></div><div class="compare-cell"></div></div>
-        <div class="compare-row"><div class="compare-cell label">Social media features and content</div><div class="compare-cell"><span class="check">✓</span></div><div class="compare-cell featured"><span class="check">✓</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
-        <div class="compare-row"><div class="compare-cell label">Radio broadcast — 5 Texas markets</div><div class="compare-cell"><span class="check">✓</span></div><div class="compare-cell featured"><span class="check">✓</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
-        <div class="compare-row"><div class="compare-cell label">Co-branded PR campaign</div><div class="compare-cell"><span class="cross">—</span></div><div class="compare-cell featured"><span class="cross">—</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
-        <div class="compare-row section-head"><div class="compare-cell section-label">B2B and hospitality</div><div class="compare-cell"></div><div class="compare-cell featured"></div><div class="compare-cell"></div></div>
-        <div class="compare-row"><div class="compare-cell label">Game tickets and gameday access</div><div class="compare-cell"><span class="check">✓</span></div><div class="compare-cell featured"><span class="check">✓</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
-        <div class="compare-row"><div class="compare-cell label">Premier suite and corporate hospitality</div><div class="compare-cell"><span class="cross">—</span></div><div class="compare-cell featured"><span class="check">✓</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
-        <div class="compare-row"><div class="compare-cell label">B2B executive networking events</div><div class="compare-cell"><span class="cross">—</span></div><div class="compare-cell featured"><span class="check">✓</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
-        <div class="compare-row section-head"><div class="compare-cell section-label">SAP-specific assets</div><div class="compare-cell"></div><div class="compare-cell featured"></div><div class="compare-cell"></div></div>
-        <div class="compare-row"><div class="compare-cell label">Technology showcase integration</div><div class="compare-cell"><span class="cross">—</span></div><div class="compare-cell featured"><span class="check">✓</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
-        <div class="compare-row"><div class="compare-cell label">SAP Sapphire and TechEd speaking slots</div><div class="compare-cell"><span class="cross">—</span></div><div class="compare-cell featured"><span class="cross">—</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
-        <div class="compare-row"><div class="compare-cell label">NIL endorsement opportunities</div><div class="compare-cell"><span class="cross">—</span></div><div class="compare-cell featured"><span class="check">✓</span></div><div class="compare-cell"><span class="check">✓</span></div></div>
-        <div class="compare-row"><div class="compare-cell label">Multi-sport year-round coverage</div><div class="compare-cell"><span class="partial">Football only</span></div><div class="compare-cell featured"><span class="check">✓ All sports</span></div><div class="compare-cell"><span class="check">✓ All sports</span></div></div>
+        <div class="gallery-copy">
+          <span class="feature-number">Module 02</span>
+          <h3>Live Insight Overlay</h3>
+          <p>Fans stay in the app to follow live stats, trends, and game context from their own device. By owning the insight language from predictive play probabilities to route maps, SAP is explained through football intelligence, not abstract brand copy.</p>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
 
-<div class="market-sec">
-  <div class="sec-inner">
-    <div class="fade-up">
-      <div class="sec-eyebrow-gold">Market context</div>
-      <h2 class="sec-title-white">How Baylor compares<br>to recent patch deals.</h2>
-      <p class="sec-lead-white">Jersey patch pricing is still being established by the market. Here is what comparable programs have signed — and where Baylor fits.</p>
-    </div>
-    <div class="market-grid">
-      <div class="market-card fade-up d1"><div class="market-school">UNLV</div><div class="market-partner">Access Biologics — Mountain West</div><div class="market-value">$11M / 5 years</div><div class="market-note">$2.2M per year — first major deal. Set the baseline for the market.</div></div>
-      <div class="market-card fade-up d2"><div class="market-school">LSU</div><div class="market-partner">Woodside Energy — SEC</div><div class="market-value">Multi-year deal</div><div class="market-note">SEC program with 100K+ stadium capacity. Estimated above UNLV baseline given market size and TV exposure.</div></div>
-      <div class="market-card fade-up d3"><div class="market-school">Arkansas</div><div class="market-partner">Tyson Foods — SEC</div><div class="market-value">Record-setting</div><div class="market-note">Home state Fortune 500 company. Local brand alignment drove premium pricing above market average.</div></div>
-      <div class="market-card baylor fade-up d4"><div class="market-school">Baylor — SAP opportunity</div><div class="market-partner">Big 12 — I-35 corridor — Enterprise tech</div><div class="market-value">$500K–$2M+ / yr</div><div class="market-note">Industry analyst estimate for Power 4 Big 12 program. First enterprise tech category — potential for premium pricing.</div></div>
-      <div class="market-card fade-up d5"><div class="market-school">Big 12 average</div><div class="market-partner">Conference-wide estimate</div><div class="market-value">$3.5M–$6M / yr</div><div class="market-note">Top-tier Big 12 programs expected to command $3.5M to $6M annually based on conference TV deal value per school.</div></div>
-      <div class="market-card fade-up d6"><div class="market-school">Enterprise tech category</div><div class="market-partner">First mover advantage</div><div class="market-value">Wide open</div><div class="market-note">No major enterprise software company has yet signed a Power 4 jersey patch deal. SAP can own this category.</div></div>
-    </div>
-  </div>
-</div>
+      <div class="gallery-row">
+        <div class="gallery-image">
+          <img src="player-cam-stadium.png" alt="In-stadium app usage">
+        </div>
+        <div class="gallery-copy">
+          <span class="feature-number">Module 03</span>
+          <h3>The B2B Crossover</h3>
+          <p>We give fans a reason to open the app, and we give mid-market B2B executives live proof of SAP's capabilities. When users interact with the premium data layer, business owners are prompted to <strong>"Run your business like Baylor runs Game Day,"</strong> linking directly into SAP's mid-market sales funnel.</p>
+        </div>
+      </div>
+    </section>
 
-<div class="faq-sec">
-  <div class="faq-inner">
-    <div class="fade-up">
-      <div class="sec-eyebrow">Common questions</div>
-      <h2 class="sec-title">Frequently asked <em>questions.</em></h2>
-    </div>
-    <div class="faq-list fade-up">
-      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Who manages the Baylor Athletics sponsorship process? <span class="faq-arrow">&#8964;</span></div><div class="faq-a"><p>All Baylor Athletics sponsorships are managed exclusively by Baylor Sports Properties, powered by Playfly Sports. The primary contact is Luke Holcomb at <a href="mailto:Luke_Holcomb@baylor.edu">Luke_Holcomb@baylor.edu</a>.</p></div></div>
-      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Are packages customizable? <span class="faq-arrow">&#8964;</span></div><div class="faq-a"><p>Yes — all three tiers are starting points. Baylor Sports Properties works with each partner to build a custom asset mix that fits their specific goals, budget, and timeline.</p></div></div>
-      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">When would a 2027 jersey patch deal need to be signed? <span class="faq-arrow">&#8964;</span></div><div class="faq-a"><p>To have the SAP logo on Baylor jerseys for the 2027 season opener, the agreement would ideally be finalized by Q3 2026 — allowing time for NCAA patch approval, jersey production, and tech integration planning.</p></div></div>
-      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Does SAP need to use Baylor's technology for the Full Partnership or Jersey Patch tier? <span class="faq-arrow">&#8964;</span></div><div class="faq-a"><p>The technology integration is a key part of what makes these tiers uniquely valuable. Dan Fleetwood was explicit that SAP's best partnerships are built around partners who actually use SAP software — it creates the reference story SAP can use at Sapphire and TechEd.</p></div></div>
-      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What sports are included in multi-sport coverage? <span class="faq-arrow">&#8964;</span></div><div class="faq-a"><p>Full Partnership and Jersey Patch tiers include coverage across all Baylor Athletics sports — football, men's and women's basketball, baseball, soccer, tennis, and more.</p></div></div>
-      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Is there a minimum contract length? <span class="faq-arrow">&#8964;</span></div><div class="faq-a"><p>Baylor Sports Properties typically works on multi-year agreements. The exact term is negotiable — comparable deals like UNLV's have been structured at 5 years.</p></div></div>
-    </div>
-  </div>
-</div>
+    <section class="opportunity-data suite-data">
+      <div class="data-row" style="align-items: center;">
+        <h2 class="data-massive" style="font-size: 6vw;">$60k<span style="font-size: 0.5em; opacity: 0.5;">-$130k</span></h2>
+        <div style="text-align: right;">
+          <p class="data-label" style="margin-bottom: 5px;">Annual Allocation</p>
+          <p style="opacity: 0.6; font-size: 1rem; margin: 0;">Position SAP as the intelligence layer of the live game.</p>
+        </div>
+      </div>
+    </section>
 
-<div class="cta-sec fade-up">
-  <div class="cta-title">Ready to move forward?</div>
-  <div class="cta-sub">Submit an inquiry and a member of the Baylor Athletics partnership team will be in touch within 48 hours.</div>
-  <a href="contact.html" class="btn-gold">Submit a partnership inquiry</a>
-  <a href="roadmap.html" class="btn-outline">View the roadmap</a>
-</div>
+    <section class="suite-roi">
+      <div class="roi-header">
+        <h2>Rubric Fit & Measurement</h2>
+        <p>How this activation guarantees memorable impact and verifiable ROI.</p>
+      </div>
+      <div class="roi-grid">
+        <div class="roi-item">
+          <h4>01 / Engagement & Behavior</h4>
+          <p>Identify fans through login behavior. We track pregame open rates, repeat session loops, average watch time, and conversion from the live player cam directly into the stats environment.</p>
+        </div>
+        <div class="roi-item">
+          <h4>02 / Education & Brand Lift</h4>
+          <p>Compare favorability among app users vs. non-users via seasonal pulse surveys. We report brand recall explicitly tied to the <em>"SAP Business AI Game Center"</em> rather than generic sponsor awareness.</p>
+        </div>
+        <div class="roi-item">
+          <h4>03 / Relationship Building</h4>
+          <p>App usage creates an ongoing digital touchpoint with measurable repeat behavior. Track opens, dwell time, and replay interactions to build post-event retargeting pipelines.</p>
+        </div>
+      </div>
+    </section>
 
-<footer>
-  <div class="foot-inner">
-    <div>
-      <div class="foot-logo">Baylor Athletics x SAP Partnership Proposal 2027</div>
-      <div class="foot-class">Student Pitch &bull; Baylor University Sales Program &bull; Spring 2026</div>
-    </div>
-    <div class="foot-links">
-      <a href="opportunity.html">Opportunity</a>
-      <a href="reach.html">Reach</a>
-      <a href="roadmap.html">Roadmap</a>
-      <a href="packages.html">Packages</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <div class="foot-copy">Baylor Sports Properties powered by Playfly</div>
-  </div>
-</footer>
+    <section class="suite-cta">
+      <a href="index.html" class="next-activation">
+        <span class="next-label">Complete Pitch</span>
+        <h2 class="next-title">Return to Overview &#8594;</h2>
+      </a>
+    </section>
+  </main>
 
-<div class="chat-float">
-  <div class="chat-box" id="chatBox">
-    <div class="chat-head"><div class="chat-logo">BU</div><div><div class="chat-head-title">Partnership Advisor</div><div class="chat-head-sub"><span class="chat-green-dot"></span>Live — web search enabled</div></div></div>
-    <div class="chat-msgs" id="chatMsgs"><div class="msg bot">Welcome. Ask me anything about the Baylor x SAP sponsorship opportunity.</div></div>
-    <div class="chat-quick">
-      <span class="q-chip" onclick="chatChip(this)">What does each package include?</span>
-      <span class="q-chip" onclick="chatChip(this)">Jersey patch pricing?</span>
-      <span class="q-chip" onclick="chatChip(this)">What is recommended for SAP?</span>
-    </div>
-    <div class="chat-input">
-      <input type="text" id="chatIn" placeholder="Ask a question..." onkeydown="if(event.key==='Enter')chatSend()"/>
-      <button class="chat-send" id="chatBtn" onclick="chatSend()">Send</button>
-    </div>
-  </div>
-  <div id="chatTip" class="chat-tip" onclick="openChat();this.style.display='none'">Ask me anything about this partnership</div>
-  <button class="chat-btn" onclick="toggleChat()">
-    <div class="chat-pulse"></div>
-    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
-  </button>
-</div>
+  <footer class="site-footer" aria-label="Proposal footer">
+    <p class="site-footer__title">Baylor Athletics x SAP Partnership Proposal</p>
+    <p class="site-footer__meta">Student Pitch • Baylor University S3E Program • Spring 2026</p>
+    <p class="site-footer__legal">Baylor Sports Properties powered by Playfly</p>
+  </footer>
 
-<script>
-function toggleMenu(){
-  const h=document.getElementById('hamburger');
-  const m=document.getElementById('mobileMenu');
-  h.classList.toggle('open');
-  m.classList.toggle('open');
-}
+  <nav class="nav-island" aria-label="Primary navigation">
+    <a href="index.html">Overview</a>
+    <a href="sap-jersey-patch.html">Patch</a>
+    <a href="sap-suites.html">Suites</a>
+    <a href="sap-keynote.html">Keynotes</a>
+    <a class="is-active" href="packages.html">App</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const transitionWrap = document.querySelector(".page-transition");
+      const panel = transitionWrap?.querySelector(".page-transition__panel");
+      const hasGSAP = typeof gsap !== "undefined";
+      const hasScrollTrigger = typeof ScrollTrigger !== "undefined";
+      const supportsNativeViewTransition = typeof CSS !== "undefined" && CSS.supports("view-transition-name: none") && "startViewTransition" in document;
+      let parallaxInitialized = false;
+      let isLeaving = false;
+      const prefetchedHrefs = new Set();
+      if (!transitionWrap || !panel) return;
+      const pageNodes = [
+        document.querySelector("main"),
+        document.querySelector(".nav-island")
+      ].filter(Boolean);
+      const setCompactPanel = () => {
+        panel.style.opacity = "0";
+        panel.style.left = "50%";
+        panel.style.top = "50%";
+        panel.style.width = "min(34vw, 460px)";
+        panel.style.height = "min(22vw, 300px)";
+        panel.style.borderRadius = "28px";
+        panel.style.transform = "translate(-50%, -50%) scale(0.88)";
+      };
+      const cleanupPageNodes = () => {
+        pageNodes.forEach((node) => {
+          node.style.removeProperty("opacity");
+          node.style.removeProperty("transform");
+          node.style.removeProperty("will-change");
+        });
+      };
+      const primePanelFromElement = (element) => {
+        const rect = element?.getBoundingClientRect?.();
+        if (!rect || !rect.width || !rect.height) {
+          gsap.set(panel, {
+            opacity: 1,
+            left: "50%",
+            top: "50%",
+            width: "min(34vw, 460px)",
+            height: "min(22vw, 300px)",
+            borderRadius: 28,
+            scale: 0.88,
+            xPercent: -50,
+            yPercent: -50
+          });
+          return;
+        }
+        gsap.set(panel, {
+          opacity: 1,
+          left: rect.left + rect.width / 2,
+          top: rect.top + rect.height / 2,
+          width: Math.max(rect.width, 92),
+          height: Math.max(rect.height, 44),
+          borderRadius: Math.min(Math.max(rect.height * 0.5, 18), 28),
+          scale: 1,
+          xPercent: -50,
+          yPercent: -50
+        });
+      };
+      const initParallax = () => {
+        if (!hasGSAP || !hasScrollTrigger) return;
+        gsap.registerPlugin(ScrollTrigger);
+        if (!parallaxInitialized) {
+          const heroImg = document.querySelector(".hero__media img");
+          const breakoutBg = document.querySelector(".breakout-bg");
+          if (heroImg) {
+            gsap.to(heroImg, {
+              yPercent: 30,
+              ease: "none",
+              scrollTrigger: {
+                trigger: ".hero",
+                start: "top top",
+                end: "bottom top",
+                scrub: true
+              }
+            });
+          }
+          if (breakoutBg) {
+            gsap.to(breakoutBg, {
+              yPercent: 30,
+              ease: "none",
+              scrollTrigger: {
+                trigger: ".immersive-breakout",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true
+              }
+            });
+          }
+          gsap.utils.toArray(".gallery-image img").forEach((img) => {
+            gsap.fromTo(img, { yPercent: -10 }, {
+              yPercent: 10,
+              ease: "none",
+              scrollTrigger: {
+                trigger: img,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true
+              }
+            });
+          });
+          parallaxInitialized = true;
+        }
+        ScrollTrigger.refresh();
+      };
+      const playEntrance = () => {
+        document.body.classList.remove("is-transitioning");
+        if (hasGSAP) {
+          gsap.set(panel, {
+            opacity: 1,
+            left: "50%",
+            top: "50%",
+            width: "100vw",
+            height: "100vh",
+            borderRadius: 0,
+            scale: 1,
+            xPercent: -50,
+            yPercent: -50
+          });
+          gsap.set(pageNodes, {
+            opacity: 0,
+            scale: 0.985,
+            y: 18,
+            transformOrigin: "50% 50%",
+            willChange: "transform, opacity"
+          });
+          const tl = gsap.timeline({
+            onComplete: () => {
+              transitionWrap.classList.remove("is-entering", "is-leaving");
+              setCompactPanel();
+              cleanupPageNodes();
+              initParallax();
+            }
+          });
+          tl.to(panel, {
+            opacity: 0,
+            scale: 1.015,
+            duration: 0.46,
+            ease: "expo.out"
+          }, 0).to(pageNodes, {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            duration: 0.62,
+            ease: "power4.out",
+            stagger: 0.03
+          }, 0.08);
+        } else {
+          setCompactPanel();
+        }
+      };
 
-// Close menu when a link is clicked
-document.querySelectorAll('.nav-mobile a').forEach(a=>{
-  a.addEventListener('click',()=>{
-    document.getElementById('hamburger').classList.remove('open');
-    document.getElementById('mobileMenu').classList.remove('open');
-  });
-});
+      const tabColorByFile = {
+        "": "#050505",
+        "index.html": "#050505",
+        "sap-jersey-patch.html": "#16392f",
+        "sap-suites.html": "#2b3138",
+        "sap-keynote.html": "#5a5330",
+        "packages.html": "#3e362b",
+        "contact.html": "#0c1522"
+      };
 
-const API='/api/chat';
-let hist=[],open=false;
+      const resolveTabColor = (targetURL) => {
+        try {
+          const url = new URL(targetURL, window.location.origin);
+          const fileName = url.pathname.split("/").pop().toLowerCase();
+          return tabColorByFile[fileName] || null;
+        } catch {
+          return null;
+        }
+      };
 
-function toggleFaq(el){
-  const item=el.parentElement;
-  const ans=item.querySelector('.faq-a');
-  const isOpen=ans.classList.contains('open');
-  document.querySelectorAll('.faq-a.open').forEach(a=>{
-    a.classList.remove('open');
-    a.parentElement.classList.remove('active');
-  });
-  if(!isOpen){
-    ans.classList.add('open');
-    item.classList.add('active');
-  }
-}
+      const prefetchInternalLink = (href) => {
+        if (!href || prefetchedHrefs.has(href)) return;
+        try {
+          const url = new URL(href, window.location.origin);
+          if (url.origin !== window.location.origin) return;
+          const link = document.createElement("link");
+          link.rel = "prefetch";
+          link.as = "document";
+          link.href = url.href;
+          document.head.appendChild(link);
+          prefetchedHrefs.add(url.href);
+        } catch {
+          return;
+        }
+      };
 
-function toggleChat(){open=!open;document.getElementById('chatBox').classList.toggle('open',open);document.getElementById('chatTip').style.display='none';}
-function openChat(){open=true;document.getElementById('chatBox').classList.add('open');document.getElementById('chatTip').style.display='none';setTimeout(()=>document.getElementById('chatIn').focus(),100);}
-function chatChip(el){document.getElementById('chatIn').value=el.textContent.trim();chatSend();}
-function chatFU(q){document.getElementById('chatIn').value=q;chatSend();}
-function addMsg(text,type,html){const c=document.getElementById('chatMsgs');const d=document.createElement('div');d.className='msg '+type;if(html)d.innerHTML=text;else d.textContent=text;c.appendChild(d);c.scrollTop=c.scrollHeight;return d;}
-function addFU(chips){const c=document.getElementById('chatMsgs');const w=document.createElement('div');w.className='fu-wrap';const l=document.createElement('div');l.className='fu-label';l.textContent='Dig deeper';w.appendChild(l);const cw=document.createElement('div');cw.className='fu-chips';chips.forEach(q=>{const b=document.createElement('button');b.className='fu-chip';b.textContent=q;b.onclick=()=>chatFU(q);cw.appendChild(b);});w.appendChild(cw);c.appendChild(w);c.scrollTop=c.scrollHeight;}
-function md(t){return t.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');}
-function chips(t){const m=t.match(/\[CHIPS:\s*(.+?)\]/s);return m?m[1].split('|').map(s=>s.trim()).filter(Boolean):null;}
-function clean(t){return t.replace(/\[CHIPS:\s*.+?\]/s,'').trim();}
-function setLoad(on){document.getElementById('chatBtn').disabled=on;document.getElementById('chatIn').disabled=on;}
+      const playExit = (targetURL, triggerElement) => {
+        if (isLeaving) return;
+        isLeaving = true;
+        transitionWrap.classList.add("is-leaving");
+        document.body.classList.add("is-transitioning");
 
-async function chatSend(){
-  const inp=document.getElementById('chatIn');const txt=inp.value.trim();if(!txt)return;
-  inp.value='';if(!open)openChat();addMsg(txt,'me',false);hist.push({role:'user',content:txt});setLoad(true);
-  const th=addMsg('Thinking...','thinking',false);
-  try{
-    let msgs=[...hist],full='',it=0;
-    while(it<6){it++;
-      const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:msgs})});
-      const d=await r.json();
-      if(d.stop_reason==='end_turn'){full=d.content.filter(b=>b.type==='text').map(b=>b.text).join('');break;}
-      if(d.stop_reason==='tool_use'){
-        const ac=d.content;
-        msgs.push({role:'assistant',content:ac});th.textContent='Searching...';
-        const res=ac.filter(b=>b.type==='tool_use').map(b=>({type:'tool_result',tool_use_id:b.id,content:'Search completed.'}));
-        if(res.length)msgs.push({role:'user',content:res});
-        else{full=ac.filter(b=>b.type==='text').map(b=>b.text).join('');break;}
+        const nextTabColor = resolveTabColor(targetURL);
+        if (nextTabColor) {
+          panel.style.background = nextTabColor;
+        }
+
+        if (hasGSAP) {
+          primePanelFromElement(triggerElement);
+          const tl = gsap.timeline({
+            onComplete: () => {
+              window.location.href = targetURL;
+            }
+          });
+          tl.to(pageNodes, {
+            opacity: 0.24,
+            scale: 0.992,
+            y: -8,
+            duration: 0.28,
+            ease: "power2.out",
+            stagger: 0.01
+          }, 0).to(panel, {
+            scale: 1.04,
+            duration: 0.16,
+            ease: "power2.out"
+          }, 0).to(panel, {
+            left: "50%",
+            top: "50%",
+            width: "100vw",
+            height: "100vh",
+            borderRadius: 0,
+            scale: 1,
+            duration: 0.62,
+            ease: "expo.inOut"
+          }, 0.05);
+        } else {
+          window.location.href = targetURL;
+        }
+      };
+      const isInternalLink = (anchor) => {
+        if (!anchor || !anchor.href) return false;
+        if (anchor.target === "_blank") return false;
+        if (anchor.hasAttribute("download")) return false;
+        try {
+          const url = new URL(anchor.href, window.location.origin);
+          if (url.origin !== window.location.origin) return false;
+          if (url.pathname === window.location.pathname && url.hash) return false;
+          if (anchor.protocol === "javascript:" || anchor.protocol === "mailto:") return false;
+          return true;
+        } catch {
+          return false;
+        }
+      };
+      document.addEventListener("click", (event) => {
+        const anchor = event.target.closest("a");
+        if (!anchor || !isInternalLink(anchor)) return;
+        try {
+          const target = new URL(anchor.href, window.location.origin);
+          if (target.pathname === window.location.pathname) return;
+        } catch {
+          return;
+        }
+        prefetchInternalLink(anchor.href);
+        if (supportsNativeViewTransition) return;
+        event.preventDefault();
+        sessionStorage.setItem("__pt_pending", "1");
+        playExit(anchor.href, anchor);
+      });
+      document.addEventListener("pointerenter", (event) => {
+        const anchor = event.target.closest("a");
+        if (!anchor || !isInternalLink(anchor)) return;
+        prefetchInternalLink(anchor.href);
+      }, true);
+      const shouldEnter = !supportsNativeViewTransition && sessionStorage.getItem("__pt_pending") === "1";
+      if (shouldEnter) {
+        sessionStorage.removeItem("__pt_pending");
+        playEntrance();
       } else {
-        full=(d.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('');break;
+        setCompactPanel();
+        cleanupPageNodes();
+        initParallax();
       }
-    }
-    th.remove();
-    if(full){
-      const c=chips(full),cl=clean(full);
-      addMsg(md(cl),'bot',true);
-      hist.push({role:'assistant',content:cl});
-      if(c&&c.length)addFU(c);
-    }
-  }catch(e){
-    th.textContent='Something went wrong. Please try again.';
-  }
-  setLoad(false);
-}
-
-setTimeout(()=>{const t=document.getElementById('chatTip');if(t)t.style.display='flex';},3000);
-setTimeout(()=>{const t=document.getElementById('chatTip');if(t&&!open)t.style.display='none';},9000);
-const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in');});},{threshold:0.1});
-document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
-</script>
+      window.addEventListener("pageshow", (event) => {
+        if (event.persisted) {
+          transitionWrap.classList.remove("is-leaving");
+          setCompactPanel();
+          cleanupPageNodes();
+          initParallax();
+        }
+      });
+    });
+  </script>
+  <script src="assistant.js"></script>
 </body>
 </html>

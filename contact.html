@@ -1,640 +1,1618 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contact — Baylor Athletics x SAP</title>
-  <link rel="icon" type="image/png" href="favicon.png"/>
-  <link rel="shortcut icon" href="favicon.ico"/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Baylor x SAP</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assistant.css" />
   <style>
     :root {
-      --green: #154734; --green-dark: #0d2e22; --green-light: #2a7a58;
-      --gold: #FFB81C; --cream: #f8f6f0; --off-white: #f2f4f0;
-      --text: #1a1a1a; --muted: #666;
+      --bg: #0c1522;
+      --bg-soft: #101c2b;
+      --surface: rgba(15, 25, 39, 0.82);
+      --surface-strong: rgba(18, 31, 49, 0.94);
+      --surface-highlight: rgba(23, 40, 62, 0.94);
+      --text: rgba(255, 255, 255, 0.94);
+      --muted: rgba(225, 232, 240, 0.74);
+      --line: rgba(181, 199, 221, 0.16);
+      --line-strong: rgba(15, 124, 201, 0.58);
+      --gold: #ffb81c;
+      --blue: #0f7cc9;
+      --shadow-soft: 0 18px 48px rgba(3, 8, 18, 0.28);
+      --shadow-panel: 0 24px 72px rgba(2, 10, 24, 0.34);
     }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
-
-    /* SCREEN-ONLY — hide print doc on screen */
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(15, 124, 201, 0.12), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(255, 184, 28, 0.08), transparent 24%),
+        linear-gradient(180deg, #0b1420 0%, #101b2a 46%, #0b1320 100%);
+      color: var(--text);
+      font-family: "Space Grotesk", sans-serif;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    @view-transition {
+      navigation: auto;
+    }
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation-duration: 0.62s;
+      animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    ::view-transition-new(root) {
+      filter: saturate(1.03) contrast(1.01);
+    }
+    .page-transition {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .page-transition__panel {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: min(34vw, 460px);
+      height: min(22vw, 300px);
+      background: #132131;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      border-radius: 28px;
+      transform: translate(-50%, -50%) scale(0.88);
+      opacity: 0;
+      overflow: hidden;
+      backdrop-filter: blur(16px) saturate(130%);
+      -webkit-backdrop-filter: blur(16px) saturate(130%);
+      will-change: transform, opacity, border-radius, width, height;
+      backface-visibility: hidden;
+      box-shadow: 0 32px 96px rgba(5, 18, 14, 0.28);
+    }
+    .page-transition.is-leaving { pointer-events: all; }
+    body.is-transitioning { overflow: hidden; }
     .print-onepager { display: none; }
-
-    /* PRINT — show doc, hide everything else */
-    @media print {
-      nav, .chat-float, .print-bar, .form-sec, .team-sec, .quick-sec, footer, .page-hero { display: none !important; }
-      body { background: #fff; margin: 0; padding: 0; }
-      .print-onepager { display: block !important; }
-      .op-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; background: #154734 !important; }
-      .op-gold-bar { -webkit-print-color-adjust: exact; print-color-adjust: exact; background: #FFB81C !important; }
-      .op-stat { -webkit-print-color-adjust: exact; print-color-adjust: exact; background: #154734 !important; }
-      .op-cna-head-left { -webkit-print-color-adjust: exact; print-color-adjust: exact; background: #154734 !important; }
-      .op-cna-head-right { -webkit-print-color-adjust: exact; print-color-adjust: exact; background: #FFB81C !important; }
-      .op-footer { -webkit-print-color-adjust: exact; print-color-adjust: exact; background: #154734 !important; }
+    
+    /* Premium One-Pager Design */
+    .onepager {
+      max-width: 940px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.15);
+      font-family: 'Space Grotesk', sans-serif;
+      color: #1a2433;
+    }
+    .onepager__head {
+      padding: 28px 36px;
+      background: linear-gradient(135deg, #0e2a1e 0%, #154734 100%);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #ffffff;
+    }
+    .onepager__head-left strong {
+      display: block;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #ffb81c;
+      margin-bottom: 4px;
+    }
+    .onepager__head-left span {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.85);
+    }
+    .onepager__head-right {
+      text-align: right;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.5;
+    }
+    .onepager__rule {
+      height: 5px;
+      background: linear-gradient(90deg, #ffb81c 0%, #0f7cc9 50%, #154734 100%);
+    }
+    .onepager__body {
+      padding: 36px;
+      background: #fafcff;
+    }
+    .onepager__title {
+      margin: 0 0 12px;
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 1.1;
+      color: #0c1522;
+      letter-spacing: -0.02em;
+    }
+    .onepager__title span {
+      color: #0f7cc9;
+    }
+    .onepager__sub {
+      font-size: 14px;
+      line-height: 1.65;
+      color: #4a5568;
+      max-width: 85%;
+      margin: 0 0 32px;
+    }
+    .onepager__kpi {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-bottom: 32px;
+    }
+    .onepager__kpi-item {
+      padding: 18px 22px;
+      border-radius: 14px;
+      background: #ffffff;
+      border: 1px solid rgba(15, 124, 201, 0.15);
+      box-shadow: 0 6px 16px rgba(15, 124, 201, 0.06);
+      border-left: 5px solid #0f7cc9;
+    }
+    .onepager__kpi-item:nth-child(2) {
+      border-left-color: #ffb81c;
+      border-color: rgba(255, 184, 28, 0.2);
+      box-shadow: 0 6px 16px rgba(255, 184, 28, 0.06);
+    }
+    .onepager__kpi-item:nth-child(3) {
+      border-left-color: #154734;
+      border-color: rgba(21, 71, 52, 0.15);
+      box-shadow: 0 6px 16px rgba(21, 71, 52, 0.06);
+    }
+    .onepager__kpi-item strong {
+      display: block;
+      font-size: 26px;
+      font-weight: 700;
+      color: #0c1522;
+      margin-bottom: 4px;
+    }
+    .onepager__kpi-item span {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #64748b;
+    }
+    .onepager__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .onepager__panel {
+      padding: 24px;
+      border-radius: 14px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+    .onepager__panel h3 {
+      margin: 0 0 14px;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #154734;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #f1f5f9;
+    }
+    .onepager__list {
+      margin: 0;
+      padding-left: 18px;
+      color: #334155;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+    .onepager__list li + li {
+      margin-top: 8px;
+    }
+    .onepager__list li::marker {
+      color: #0f7cc9;
+      font-weight: bold;
+    }
+    .onepager__foot {
+      padding: 20px 36px;
+      background: #090f1a;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 11px;
+    }
+    .onepager__foot strong {
+      color: #ffffff;
+      font-size: 13px;
+      margin-bottom: 4px;
+      display: block;
+    }
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+      background: transparent;
+    }
+    .hero__media,
+    .hero__shade,
+    .hero__grid {
+      position: absolute;
+      inset: 0;
+    }
+    .hero__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.15);
+      filter: saturate(0.84) contrast(1.02);
+    }
+    .hero__shade {
+      background:
+        linear-gradient(90deg, rgba(10, 20, 34, 0.92) 0%, rgba(11, 22, 35, 0.72) 42%, rgba(10, 18, 29, 0.82) 100%),
+        linear-gradient(180deg, rgba(8, 14, 24, 0.26) 0%, rgba(8, 14, 24, 0.22) 36%, rgba(8, 14, 24, 0.78) 100%);
+    }
+    .hero__grid {
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 72px 72px;
+      opacity: 0.52;
+    }
+    .hero__inner,
+    .print-bar__inner,
+    .contact__inner {
+      position: relative;
+      z-index: 2;
+      width: min(1320px, calc(100% - 72px));
+      margin: 0 auto;
+    }
+    .hero__inner {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 400px);
+      gap: clamp(28px, 5vw, 72px);
+      align-items: end;
+      padding: 12vh 0 18vh;
+    }
+    .hero__copy {
+      max-width: 740px;
+      padding-left: 18px;
+      border-left: 1px solid rgba(15, 124, 201, 0.3);
+      transform: translateY(-24px);
+    }
+    .eyebrow {
+      margin: 0 0 14px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(225, 232, 240, 0.62);
+    }
+    .title {
+      margin: 0;
+      font-size: clamp(2.9rem, 7.2vw, 5.8rem);
+      line-height: 0.94;
+      letter-spacing: -0.03em;
+      font-weight: 700;
+      text-wrap: balance;
+      max-width: 14ch;
+      min-height: 3.5em;
+      display: -webkit-box;
+      line-clamp: 4;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .title span { color: #0f7cc9; }
+    .lead {
+      margin: 4px 0 0;
+      max-width: 700px;
+      text-wrap: pretty;
+      font-size: clamp(1.05rem, 1.85vw, 1.42rem);
+      line-height: 1.72;
+      color: var(--muted);
+      min-height: 4.2em;
+      display: -webkit-box;
+      line-clamp: 3;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .hero__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 14px;
     }
 
-    /* ONE-PAGER STYLES */
-    .op-header { background: #154734; color: #fff; padding: 1.25rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
-    .op-header-left { display: flex; align-items: center; gap: 12px; }
-    .op-logo-mark { width: 36px; height: 36px; background: #FFB81C; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; color: #154734; flex-shrink: 0; }
-    .op-title { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: #fff; }
-    .op-subtitle { font-size: 9px; color: rgba(255,255,255,0.55); margin-top: 2px; }
-    .op-header-right { text-align: right; font-size: 9px; color: rgba(255,255,255,0.55); line-height: 1.6; }
-    .op-gold-bar { height: 3px; background: #FFB81C; }
-    .op-body { padding: 0.9rem 1.5rem; }
-    .op-hero { margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e8ede8; }
-    .op-hero-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 900; color: #154734; margin-bottom: 4px; }
-    .op-hero-title span { color: #FFB81C; }
-    .op-hero-sub { font-size: 10px; color: #666; line-height: 1.55; max-width: 700px; }
-    .op-stat-row { display: grid; grid-template-columns: repeat(6,1fr); gap: 6px; margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e8ede8; }
-    .op-stat { background: #154734; border-radius: 6px; padding: 6px 4px; text-align: center; }
-    .op-stat-num { font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 700; color: #FFB81C; }
-    .op-stat-label { font-size: 8px; color: rgba(255,255,255,0.65); margin-top: 2px; line-height: 1.3; }
-    .op-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; margin-bottom: 0.75rem; }
-    .op-section-label { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #154734; opacity: 0.6; margin-bottom: 5px; }
-    .op-card { background: #f8f6f0; border-radius: 6px; padding: 7px 9px; border-left: 3px solid #FFB81C; margin-bottom: 5px; }
-    .op-card-title { font-family: 'Playfair Display', serif; font-size: 11px; font-weight: 700; color: #154734; margin-bottom: 2px; }
-    .op-card-text { font-size: 9px; color: #666; line-height: 1.45; }
-    .op-cna { border: 1px solid #e8ede8; border-radius: 6px; overflow: hidden; }
-    .op-cna-head { display: grid; grid-template-columns: 1fr 1fr; }
-    .op-cna-head-left { background: #154734; color: #FFB81C; font-size: 8px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 8px; }
-    .op-cna-head-right { background: #FFB81C; color: #154734; font-size: 8px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 8px; }
-    .op-cna-row { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid #e8ede8; }
-    .op-cna-cell { padding: 5px 8px; font-size: 9px; color: #666; line-height: 1.4; }
-    .op-cna-cell.left { background: rgba(21,71,52,0.03); border-right: 1px solid #e8ede8; }
-    .op-cna-cell strong { color: #154734; display: block; font-size: 9px; font-weight: 700; margin-bottom: 1px; }
-    .op-packages { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e8ede8; }
-    .op-pkg { border-radius: 6px; padding: 8px; border: 1px solid #e0e8e0; }
-    .op-pkg.featured { border: 2px solid #154734; }
-    .op-pkg-badge { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 3px; }
-    .op-pkg-name { font-family: 'Playfair Display', serif; font-size: 12px; font-weight: 700; color: #154734; margin-bottom: 2px; }
-    .op-pkg-price { font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 900; color: #1a1a1a; margin-bottom: 5px; }
-    .op-pkg-feature { font-size: 9px; color: #666; margin-bottom: 2px; padding-left: 11px; position: relative; line-height: 1.4; }
-    .op-pkg-feature::before { content: "✓"; position: absolute; left: 0; color: #FFB81C; font-weight: 700; }
-    .op-timeline { display: grid; grid-template-columns: repeat(4,1fr); gap: 6px; margin-bottom: 0.75rem; }
-    .op-tl-item { text-align: center; }
-    .op-tl-dot { width: 26px; height: 26px; border-radius: 50%; background: #FFB81C; display: flex; align-items: center; justify-content: center; margin: 0 auto 3px; font-size: 10px; font-weight: 700; color: #154734; }
-    .op-tl-date { font-size: 9px; font-weight: 700; color: #154734; margin-bottom: 2px; }
-    .op-tl-text { font-size: 8px; color: #666; line-height: 1.4; }
-    .op-footer { background: #154734; color: rgba(255,255,255,0.55); font-size: 8px; padding: 8px 1.5rem; display: flex; justify-content: space-between; align-items: center; margin-top: 0.5rem; }
-    .op-footer strong { color: #FFB81C; }
+    .hero__actions .button {
+      width: 180px;
+      max-width: 100%;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(247, 242, 232, 0.05);
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+      cursor: pointer;
+    }
+    .button:hover {
+      border-color: var(--gold);
+      background: rgba(247, 242, 232, 0.1);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+    .button--primary {
+      border-color: var(--blue);
+      background: rgba(15, 124, 201, 0.95);
+      color: #f5fbff;
+    }
+    .button--primary:hover {
+      background: #1691eb;
+      color: #ffffff;
+    }
+    .terminal,
+    .print-card,
+    .contact-panel,
+    .form-shell {
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(19, 31, 49, 0.96) 0%, rgba(12, 22, 34, 0.96) 100%);
+      box-shadow: var(--shadow-panel);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+    .terminal {
+      width: 100%;
+      padding: 24px;
+      min-height: 320px;
+      border-radius: 28px;
+      align-self: end;
+      transform: translateY(-78px);
+    }
+    .terminal__label,
+    .metric__label,
+    .field label,
+    .info-block h3 {
+      margin: 0;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(205, 217, 231, 0.6);
+    }
+    .terminal__title {
+      margin: 14px 0 0;
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      line-height: 1.06;
+      letter-spacing: -0.02em;
+      font-weight: 700;
+      max-width: 100%;
+      min-height: 3.2em;
+      display: -webkit-box;
+      line-clamp: 3;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .terminal__copy,
+    .contact-panel p,
+    .form-shell > p,
+    .form-note,
+    .success {
+      margin: 18px 0 0;
+      font-size: 14px;
+      line-height: 1.78;
+      color: var(--muted);
+    }
 
-    /* SCREEN STYLES */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1rem 2.5rem; display: flex; align-items: center; justify-content: space-between; background: rgba(21,71,52,0.97); backdrop-filter: blur(8px); }
-    .nav-logo { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .nav-mark { width: 32px; height: 32px; background: var(--gold); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: var(--green); }
-    .nav-links { display: flex; list-style: none; }
-    .nav-links a { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.65); text-decoration: none; padding: 0.5rem 1rem; border-radius: 6px; transition: color 0.2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
-    .nav-cta { background: var(--gold) !important; color: var(--green) !important; border-radius: 100px !important; padding: 8px 18px !important; font-weight: 600 !important; }
+    .terminal__copy {
+      max-width: 100%;
+      min-height: 7.6em;
+      font-size: 13.5px;
+      display: -webkit-box;
+      line-clamp: 4;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .terminal__meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 22px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .terminal__metric strong {
+      display: block;
+      margin-top: 6px;
+      font-size: 13px;
+      line-height: 1.65;
+      min-height: 2.65em;
+      color: rgba(243, 245, 247, 0.94);
+    }
+    .terminal__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      margin-top: 20px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .terminal__link::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--line-strong);
+    }
+    .terminal__link:hover { color: var(--gold); }
+    .print-bar,
+    .contact {
+      position: relative;
+      padding: 36px 0;
+      background: transparent;
+    }
+    .print-bar::before,
+    .contact::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 12% 24%, rgba(15, 124, 201, 0.08), transparent 26%),
+        radial-gradient(circle at 84% 16%, rgba(255, 184, 28, 0.06), transparent 20%);
+    }
+    .print-card {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 16px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(19, 31, 49, 0.96) 0%, rgba(12, 22, 34, 0.96) 100%);
+      box-shadow: var(--shadow-panel);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .print-card p {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.45;
+      color: var(--muted);
+      max-width: 560px;
+    }
+    .contact__inner {
+      display: grid;
+      grid-template-columns: minmax(300px, 360px) minmax(0, 1fr);
+      gap: 22px;
+      align-items: start;
+      padding-bottom: 140px;
+    }
+    .contact-panel,
+    .form-shell {
+      padding: 30px;
+      border-radius: 28px;
+    }
+    .contact-panel h2,
+    .form-shell h2 {
+      margin: 10px 0 0;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      font-weight: 700;
+    }
+    .contact-panel {
+      position: sticky;
+      top: 28px;
+    }
+    .contact-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .contact-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 0 12px;
+      border: 1px solid rgba(181, 199, 221, 0.16);
+      border-radius: 999px;
+      background: rgba(9, 17, 28, 0.34);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(233, 239, 246, 0.8);
+    }
+    .info-block {
+      margin-top: 22px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(181, 199, 221, 0.12);
+    }
+    .info-block p { margin: 10px 0 0; }
+    .info-block a:hover { color: var(--gold); }
+    .list {
+      margin: 12px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.78;
+    }
+    .list li + li { margin-top: 10px; }
+    .form {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 24px;
+    }
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin: 24px 0 6px;
+    }
+    .process-card {
+      padding: 16px;
+      border: 1px solid rgba(181, 199, 221, 0.12);
+      border-radius: 18px;
+      background: rgba(9, 17, 28, 0.34);
+    }
+    .process-card strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(205, 217, 231, 0.62);
+    }
+    .process-card span {
+      display: block;
+      font-size: 14px;
+      line-height: 1.65;
+      color: rgba(241, 245, 249, 0.86);
+    }
+    .brief-summary {
+      position: relative;
+      padding: 0 0 36px;
+      background: transparent;
+    }
+    .brief-summary__inner {
+      width: min(1320px, calc(100% - 72px));
+      margin: 0 auto;
+    }
+    .brief-summary__grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+    .brief-summary__card {
+      padding: 24px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(19, 31, 49, 0.96) 0%, rgba(12, 22, 34, 0.96) 100%);
+      box-shadow: var(--shadow-panel);
+    }
+    .brief-summary__card h3 {
+      margin: 0 0 10px;
+      font-size: 1.35rem;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+    }
+    .brief-summary__card p,
+    .brief-summary__card li {
+      font-size: 14px;
+      line-height: 1.76;
+      color: var(--muted);
+    }
+    .brief-summary__card ul {
+      margin: 14px 0 0;
+      padding-left: 18px;
+    }
+    .brief-summary__card li + li {
+      margin-top: 8px;
+    }
+    .brief-summary__card--brand {
+      overflow: hidden;
+    }
+    .partner-lockup {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(181, 199, 221, 0.14);
+      background:
+        linear-gradient(135deg, rgba(20, 62, 51, 0.96) 0%, rgba(16, 36, 31, 0.96) 100%);
+    }
+    .partner-lockup__bu {
+      font-size: 2rem;
+      line-height: 1;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      color: var(--gold);
+    }
+    .partner-lockup__x {
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(247, 242, 232, 0.68);
+    }
+    .partner-lockup__playfly {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+    .partner-lockup__playfly strong {
+      font-size: 1.35rem;
+      letter-spacing: 0.14em;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.94);
+    }
+    .partner-lockup__playfly span {
+      margin-top: 4px;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(205, 217, 231, 0.72);
+    }
+    .field {
+      display: grid;
+      gap: 10px;
+    }
+    .field--full { grid-column: 1 / -1; }
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      min-height: 56px;
+      padding: 14px 16px;
+      border: 1px solid rgba(181, 199, 221, 0.18);
+      border-radius: 16px;
+      background: rgba(9, 17, 28, 0.42);
+      color: #fff;
+      font: inherit;
+      outline: none;
+      transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    }
+    .field textarea {
+      min-height: 160px;
+      resize: vertical;
+    }
+    .field select { appearance: none; }
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: rgba(205, 217, 231, 0.36);
+    }
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: rgba(15, 124, 201, 0.72);
+      background: rgba(12, 22, 35, 0.72);
+      box-shadow: 0 0 0 4px rgba(15, 124, 201, 0.12);
+    }
+    .form-actions {
+      grid-column: 1 / -1;
+      display: grid;
+      gap: 10px;
+      margin-top: 6px;
+    }
+    .success {
+      display: none;
+      padding: 14px 16px;
+      border: 1px solid rgba(15, 124, 201, 0.35);
+      border-radius: 16px;
+      background: rgba(11, 26, 41, 0.58);
+      color: rgba(255, 255, 255, 0.9);
+      margin-top: 8px;
+    }
+    .nav-island {
+      position: fixed;
+      bottom: 34px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 2rem;
+      background: rgba(16, 27, 42, 0.78);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 1rem 2.5rem;
+      border-radius: 100px;
+      border: 1px solid rgba(181, 199, 221, 0.14);
+      z-index: 100;
+    }
+    .nav-island a {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fff;
+      opacity: 0.6;
+      transition: opacity 0.25s ease, color 0.25s ease;
+      white-space: nowrap;
+    }
+    .nav-island a:hover,
+    .nav-island a.is-active {
+      opacity: 1;
+      color: var(--gold);
+    }
 
-    .page-hero { background: var(--green); padding: 9rem 2.5rem 5rem; position: relative; overflow: hidden; }
-    .hero-pattern { position: absolute; inset: 0; opacity: 0.04; background-image: repeating-linear-gradient(45deg,#fff 0,#fff 1px,transparent 0,transparent 50%); background-size: 20px 20px; }
-    .hero-bar { position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--gold); }
-    .hero-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-    .breadcrumb { font-size: 12px; color: rgba(255,255,255,0.45); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 8px; }
-    .breadcrumb a { color: rgba(255,255,255,0.45); text-decoration: none; }
-    .breadcrumb a:hover { color: var(--gold); }
-    .page-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
-    .page-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem,5vw,4rem); font-weight: 900; color: #fff; line-height: 1.1; margin-bottom: 1.25rem; }
-    .page-title em { color: var(--gold); font-style: normal; }
-    .page-sub { font-size: 1.1rem; color: rgba(255,255,255,0.55); line-height: 1.8; font-weight: 300; margin-bottom: 2.5rem; }
-    .hero-contact-details { display: flex; flex-direction: column; gap: 1rem; }
-    .contact-detail { display: flex; align-items: flex-start; gap: 12px; }
-    .contact-detail-icon { width: 36px; height: 36px; background: rgba(255,184,28,0.15); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
-    .contact-detail-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); opacity: 0.8; margin-bottom: 2px; }
-    .contact-detail-val { font-size: 14px; color: rgba(255,255,255,0.8); }
-    .contact-detail-val a { color: rgba(255,255,255,0.8); text-decoration: none; }
-    .contact-detail-val a:hover { color: var(--gold); }
+    .site-footer {
+      position: relative;
+      z-index: 2;
+      width: min(1320px, calc(100% - 72px));
+      margin: 34px auto 120px;
+      padding: 22px 24px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background:
+        linear-gradient(180deg, rgba(19, 31, 49, 0.96) 0%, rgba(12, 22, 34, 0.96) 100%);
+      box-shadow: var(--shadow-panel);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
 
-    .print-bar { background: #fff; border-bottom: 1px solid rgba(21,71,52,0.08); padding: 1rem 2.5rem; }
-    .print-bar-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
-    .print-bar-text { font-size: 14px; color: var(--muted); }
-    .print-btn { font-family: 'DM Sans', sans-serif; background: var(--green); color: var(--gold); border: none; border-radius: 100px; padding: 10px 22px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
-    .print-btn:hover { background: var(--green-dark); transform: translateY(-1px); }
+    .site-footer__title {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: rgba(243, 245, 247, 0.92);
+    }
 
-    .form-sec { background: var(--cream); padding: 6rem 2.5rem; }
-    .form-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: start; }
-    .form-sidebar { position: sticky; top: 7rem; }
-    .sec-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green); opacity: 0.55; margin-bottom: 0.75rem; }
-    .sec-title { font-family: 'Playfair Display', serif; font-size: clamp(1.75rem,3vw,2.25rem); font-weight: 700; color: var(--green-dark); line-height: 1.2; margin-bottom: 0.75rem; }
-    .sec-title em { color: var(--green-light); font-style: normal; }
-    .sec-lead { font-size: 1rem; color: var(--muted); line-height: 1.8; font-weight: 300; margin-bottom: 2rem; }
-    .sidebar-steps { display: flex; flex-direction: column; gap: 1.25rem; }
-    .sidebar-step { display: flex; gap: 1rem; align-items: flex-start; }
-    .step-num { width: 28px; height: 28px; border-radius: 50%; background: var(--gold); color: var(--green); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .step-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
-    .step-text { font-size: 12px; color: var(--muted); line-height: 1.5; }
-    .sidebar-note { margin-top: 2rem; padding: 1.25rem; background: rgba(21,71,52,0.05); border-radius: 12px; border-left: 3px solid var(--gold); }
-    .sidebar-note-text { font-size: 13px; color: var(--muted); line-height: 1.65; }
-    .sidebar-note-text a { color: var(--green); font-weight: 600; text-decoration: none; }
+    .site-footer__meta {
+      margin: 8px 0 0;
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
 
-    .contact-form { background: #fff; border-radius: 20px; padding: 2.5rem; border: 1px solid rgba(21,71,52,0.08); box-shadow: 0 8px 40px rgba(21,71,52,0.06); }
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
-    .form-group { display: flex; flex-direction: column; gap: 6px; }
-    .form-group.full { grid-column: 1 / -1; }
-    .form-label { font-size: 12px; font-weight: 600; color: var(--green); text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.8; }
-    .form-input, .form-select, .form-textarea { font-family: 'DM Sans', sans-serif; font-size: 14px; padding: 12px 16px; border-radius: 10px; border: 1.5px solid #e0e8e0; background: #fafcfa; color: var(--text); outline: none; transition: border-color 0.15s; width: 100%; }
-    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--green); background: #fff; }
-    .form-input::placeholder, .form-textarea::placeholder { color: #b8c8b8; }
-    .form-input:disabled, .form-select:disabled, .form-textarea:disabled { opacity: 0.5; }
-    .form-textarea { resize: vertical; min-height: 120px; }
-    .form-submit-row { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem; }
-    .form-submit { font-family: 'DM Sans', sans-serif; background: var(--green); color: var(--gold); border: none; border-radius: 100px; padding: 14px 32px; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
-    .form-submit:hover { background: var(--green-dark); transform: translateY(-1px); }
-    .form-submit:disabled { background: #b8c8b8; color: #fff; cursor: not-allowed; transform: none; }
-    .form-privacy { font-size: 11px; color: var(--muted); line-height: 1.5; max-width: 260px; }
-    .form-success { display: none; grid-column: 1/-1; background: #eef6f1; border-radius: 12px; padding: 1.5rem; border-left: 3px solid var(--green-light); }
-    .form-success-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--green); margin-bottom: 0.5rem; }
-    .form-success-text { font-size: 14px; color: var(--muted); line-height: 1.65; }
+    .site-footer__links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
 
-    .team-sec { background: var(--off-white); padding: 6rem 2.5rem; }
-    .team-inner { max-width: 1200px; margin: 0 auto; }
-    .team-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 2.5rem; }
-    .team-card { background: #fff; border-radius: 16px; padding: 1.75rem; border: 1px solid rgba(21,71,52,0.08); text-align: center; }
-    .team-avatar { width: 64px; height: 64px; border-radius: 50%; background: var(--green); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--gold); margin: 0 auto 1rem; }
-    .team-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--green); margin-bottom: 3px; }
-    .team-title { font-size: 12px; color: var(--muted); margin-bottom: 0.75rem; }
-    .team-org { font-size: 11px; font-weight: 600; color: var(--green); opacity: 0.7; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; }
-    .team-email { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--green); text-decoration: none; font-weight: 500; padding: 6px 14px; border-radius: 100px; border: 1px solid rgba(21,71,52,0.2); transition: all 0.15s; }
-    .team-email:hover { background: var(--green); color: var(--gold); border-color: transparent; }
+    .site-footer__links a {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(243, 245, 247, 0.84);
+      opacity: 0.82;
+      transition: opacity 0.2s ease, color 0.2s ease;
+    }
 
-    .quick-sec { background: var(--green); padding: 5rem 2.5rem; }
-    .quick-inner { max-width: 1200px; margin: 0 auto; }
-    .quick-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; margin-top: 2.5rem; }
-    .quick-card { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 1.5rem; text-decoration: none; transition: background 0.2s; display: block; }
-    .quick-card:hover { background: rgba(255,255,255,0.12); }
-    .quick-icon { font-size: 24px; margin-bottom: 0.75rem; }
-    .quick-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 0.4rem; }
-    .quick-desc { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.5; }
-    .quick-link-text { font-size: 12px; font-weight: 600; color: var(--gold); margin-top: 0.75rem; }
+    .site-footer__links a:hover {
+      opacity: 1;
+      color: var(--gold);
+    }
 
-    footer { background: var(--green-dark); padding: 2.5rem; }
-    .foot-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
-    .foot-logo { font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.45); }
-    .foot-class { font-size: 10px; color: rgba(255,255,255,0.2); margin-top: 4px; }
-    .foot-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-    .foot-links a { font-size: 12px; color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
-    .foot-links a:hover { color: var(--gold); }
-    .foot-copy { font-size: 10px; color: rgba(255,255,255,0.2); }
+    .site-footer__legal {
+      margin: 14px 0 0;
+      font-size: 12px;
+      line-height: 1.6;
+      color: rgba(205, 217, 231, 0.66);
+    }
+    @media (max-width: 1100px) {
+      .hero__inner,
+      .contact__inner,
+      .print-card {
+        grid-template-columns: 1fr;
+      }
+      .print-card { display: grid; }
 
-    .chat-float { position: fixed; bottom: 2rem; right: 2rem; z-index: 200; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
-    .chat-btn { width: 64px; height: 64px; border-radius: 50%; background: var(--green); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 24px rgba(21,71,52,0.4); transition: all 0.2s; position: relative; }
-    .chat-btn:hover { background: var(--green-dark); transform: scale(1.05); }
-    .chat-btn svg { width: 26px; height: 26px; fill: var(--gold); }
-    .chat-pulse { position: absolute; inset: -4px; border-radius: 50%; border: 2px solid var(--gold); animation: pulse 2s ease-out infinite; pointer-events: none; }
-    @keyframes pulse { 0% { transform: scale(0.95); opacity: 0.8; } 100% { transform: scale(1.3); opacity: 0; } }
-    .chat-tip { background: var(--green); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; padding: 10px 16px; border-radius: 100px; white-space: nowrap; box-shadow: 0 4px 20px rgba(21,71,52,0.25); display: none; align-items: center; gap: 8px; cursor: pointer; }
-    .chat-box { position: absolute; bottom: 78px; right: 0; width: 380px; background: #fff; border-radius: 20px; box-shadow: 0 16px 60px rgba(21,71,52,0.18); overflow: hidden; display: none; flex-direction: column; }
-    .chat-box.open { display: flex; }
-    .chat-head { background: var(--green); padding: 1rem 1.25rem; display: flex; align-items: center; gap: 10px; }
-    .chat-logo { width: 36px; height: 36px; background: var(--gold); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 11px; font-weight: 700; color: var(--green); flex-shrink: 0; }
-    .chat-head-title { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 700; color: #fff; }
-    .chat-head-sub { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 1px; display: flex; align-items: center; gap: 5px; }
-    .chat-green-dot { width: 5px; height: 5px; border-radius: 50%; background: #4ade80; }
-    .chat-msgs { height: 280px; overflow-y: auto; padding: 1rem; display: flex; flex-direction: column; gap: 10px; background: #fafcfa; }
-    .chat-msgs::-webkit-scrollbar { width: 3px; }
-    .chat-msgs::-webkit-scrollbar-thumb { background: #c5d5c5; border-radius: 2px; }
-    .msg { max-width: 85%; padding: 9px 13px; border-radius: 14px; font-size: 13px; line-height: 1.65; font-family: 'DM Sans', sans-serif; }
-    .msg.bot { background: #fff; color: #1a1a1a; align-self: flex-start; border-bottom-left-radius: 3px; border: 1px solid #e0eae0; }
-    .msg.me { background: var(--green); color: var(--gold); align-self: flex-end; border-bottom-right-radius: 3px; font-weight: 500; }
-    .msg.thinking { background: #eef3ee; color: #999; align-self: flex-start; font-style: italic; font-size: 12px; }
-    .msg.bot strong { font-weight: 700; color: var(--green); }
-    .fu-wrap { align-self: flex-start; display: flex; flex-direction: column; gap: 5px; max-width: 90%; }
-    .fu-label { font-family: 'DM Sans', sans-serif; font-size: 9px; font-weight: 600; color: var(--green); text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.6; }
-    .fu-chips { display: flex; flex-wrap: wrap; gap: 5px; }
-    .fu-chip { font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500; padding: 5px 11px; border-radius: 100px; border: 1.5px solid var(--green); background: #fff; color: var(--green); cursor: pointer; transition: all 0.15s; }
-    .fu-chip:hover { background: var(--green); color: var(--gold); }
-    .chat-quick { padding: 8px 10px; background: #fafcfa; display: flex; flex-wrap: wrap; gap: 5px; border-top: 1px solid #e8ede8; }
-    .q-chip { font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 100px; border: 1px solid #b8cfb8; background: #fff; color: var(--green); cursor: pointer; transition: all 0.15s; white-space: nowrap; }
-    .q-chip:hover { background: var(--green); color: var(--gold); border-color: var(--green); }
-    .chat-input { padding: 10px; border-top: 1px solid #e8ede8; display: flex; gap: 8px; background: #fff; }
-    .chat-input input { flex: 1; font-family: 'DM Sans', sans-serif; font-size: 13px; padding: 8px 12px; border-radius: 10px; border: 1.5px solid #d4ddd4; background: #fafcfa; color: #1a1a1a; outline: none; }
-    .chat-input input:focus { border-color: var(--green); }
-    .chat-input input:disabled { opacity: 0.5; }
-    .chat-send { background: var(--green); color: var(--gold); border: none; border-radius: 10px; padding: 8px 14px; font-size: 13px; font-weight: 600; font-family: 'DM Sans', sans-serif; cursor: pointer; }
-    .chat-send:hover { background: var(--green-dark); }
-    .chat-send:disabled { background: #c5d5c5; color: #fff; cursor: not-allowed; }
+      .hero__copy {
+        transform: none;
+      }
 
+      .terminal {
+        transform: none;
+      }
+    }
+    @media (max-width: 820px) {
+      .hero__inner,
+      .print-bar__inner,
+      .brief-summary__inner,
+      .contact__inner,
+      .site-footer {
+        width: calc(100% - 32px);
+      }
+      .title { font-size: clamp(3rem, 14vw, 5.6rem); }
+      .lead { font-size: 1.02rem; }
+      .terminal__meta,
+      .form,
+      .process-grid,
+      .brief-summary__grid {
+        grid-template-columns: 1fr;
+      }
 
-    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
-    .nav-hamburger span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: all 0.3s; }
-    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
-    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    .nav-mobile { display: none; position: fixed; top: 64px; left: 0; right: 0; background: rgba(21,71,52,0.98); backdrop-filter: blur(8px); z-index: 99; padding: 1rem 2.5rem 1.5rem; flex-direction: column; gap: 0.25rem; border-top: 1px solid rgba(255,255,255,0.1); }
-    .nav-mobile.open { display: flex; }
-    .nav-mobile a { font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.75); text-decoration: none; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.07); transition: color 0.2s; }
-    .nav-mobile a:last-child { border-bottom: none; }
-    .nav-mobile a:hover, .nav-mobile a.active { color: var(--gold); }
-    .nav-mobile .mob-cta { color: var(--gold) !important; font-weight: 600 !important; }
-    @media(max-width:640px) { .nav-links { display: none !important; } .nav-hamburger { display: flex; } }
-    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .fade-up.in { opacity: 1; transform: translateY(0); }
-    .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+      .title,
+      .lead,
+      .terminal__title,
+      .terminal__copy {
+        min-height: 0;
+        display: block;
+        line-clamp: unset;
+        -webkit-line-clamp: unset;
+      }
+    }
+    @media (max-width: 640px) {
+      .nav-island {
+        width: calc(100% - 24px);
+        gap: 1rem;
+        justify-content: space-between;
+        padding: 0.9rem 1rem;
+        bottom: 22px;
+      }
+      .nav-island a { font-size: 10px; }
+      .hero__inner,
+      .print-bar__inner,
+      .brief-summary__inner,
+      .contact__inner,
+      .site-footer {
+        width: calc(100% - 24px);
+      }
 
-    @media(max-width:960px){ .hero-inner,.form-inner{grid-template-columns:1fr;gap:3rem;} .team-grid,.quick-grid{grid-template-columns:1fr 1fr;} .form-sidebar{position:static;} }
-    @media(max-width:640px){ .team-grid,.quick-grid,.form-grid{grid-template-columns:1fr;} .nav-links{display:none;} .chat-box{width:320px;} }
+      .site-footer {
+        margin-bottom: 96px;
+      }
+    }
+    @page {
+      size: Letter portrait;
+      margin: 0.35in;
+    }
+    @media print {
+      .page-transition,
+      .hero,
+      .print-bar,
+      .brief-summary,
+      .contact,
+      .site-footer,
+      .nav-island {
+        display: none !important;
+      }
+      body {
+        background: #fff !important;
+        color: #172019 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .print-onepager {
+        display: block !important;
+        padding: 0 !important;
+      }
+      .onepager {
+        max-width: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        overflow: visible !important;
+      }
+      .onepager__head {
+        padding: 14px 20px 10px !important;
+      }
+      .onepager__head-left strong {
+        font-size: 15px !important;
+      }
+      .onepager__head-left span,
+      .onepager__head-right {
+        font-size: 10px !important;
+        line-height: 1.15 !important;
+      }
+      .onepager__rule {
+        height: 2px !important;
+      }
+      .onepager__body {
+        padding: 8px 20px 14px !important;
+      }
+      .onepager__title {
+        margin-bottom: 4px !important;
+        font-size: 24px !important;
+      }
+      .onepager__sub {
+        max-width: 100% !important;
+        margin-bottom: 14px !important;
+        font-size: 11px !important;
+        line-height: 1.35 !important;
+      }
+      .onepager__kpi {
+        gap: 10px !important;
+        margin-bottom: 14px !important;
+      }
+      .onepager__kpi-item {
+        padding: 10px 12px !important;
+      }
+      .onepager__kpi-item strong {
+        font-size: 17px !important;
+      }
+      .onepager__kpi-item span {
+        font-size: 8.5px !important;
+      }
+      .onepager__grid {
+        gap: 10px !important;
+      }
+      .onepager__panel {
+        padding: 12px !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+      .onepager__panel h3 {
+        margin-bottom: 8px !important;
+        padding-bottom: 5px !important;
+        font-size: 11px !important;
+      }
+      .onepager__list {
+        font-size: 10.2px !important;
+        line-height: 1.28 !important;
+        padding-left: 14px !important;
+      }
+      .onepager__list li + li {
+        margin-top: 4px !important;
+      }
+      .onepager__panel[style] {
+        grid-column: 1 / -1 !important;
+      }
+      .onepager__panel[style] .onepager__list {
+        gap: 4px 18px !important;
+        padding-left: 14px !important;
+      }
+      .onepager__foot {
+        padding: 10px 20px !important;
+        font-size: 9px !important;
+      }
+      .onepager__foot strong {
+        font-size: 10px !important;
+      }
+    }
+    .site-footer {
+      width: min(1200px, calc(100% - 36px));
+      margin: 18px auto 120px;
+      padding: 14px 18px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface-strong);
+      box-shadow: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .site-footer__title {
+      margin: 0;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      text-transform: none;
+      color: rgba(243, 245, 247, 0.9);
+    }
+
+    .site-footer__meta {
+      margin: 2px 0 0;
+      font-size: 11px;
+      color: rgba(205, 217, 231, 0.7);
+    }
+
+    .site-footer__links {
+      display: none;
+    }
+
+    .site-footer__legal {
+      margin: 0;
+      font-size: 11px;
+      text-align: right;
+      color: rgba(205, 217, 231, 0.62);
+      white-space: nowrap;
+      align-self: center;
+    }
+
+    @media (max-width: 900px) {
+      .site-footer {
+        width: calc(100% - 24px);
+        margin: 14px auto 104px;
+        padding: 12px 14px;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .site-footer__legal {
+        text-align: left;
+        white-space: normal;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .site-footer {
+        width: calc(100% - 16px);
+        margin: 10px auto 96px;
+        padding: 10px 12px;
+      }
+
+      .site-footer__title {
+        font-size: 11px;
+      }
+
+      .site-footer__meta,
+      .site-footer__legal {
+        font-size: 10px;
+      }
+    }
   </style>
 </head>
 <body>
-
-<div class="print-onepager">
-  <div class="op-header">
-    <div class="op-header-left">
-      <div class="op-logo-mark">BU</div>
-      <div>
-        <div class="op-title">Baylor Athletics x SAP — Partnership Proposal 2027</div>
-        <div class="op-subtitle">Baylor Sports Properties powered by Playfly &bull; Student Pitch &bull; Baylor University Sales Program &bull; Spring 2026</div>
+  <div class="page-transition" aria-hidden="true"><div class="page-transition__panel"></div></div>
+  <div class="site-assistant" data-site-assistant>
+    <button class="site-assistant__toggle" type="button" data-site-assistant-toggle aria-expanded="false" aria-controls="site-assistant-panel">
+      <span class="site-assistant__toggle-mark">AI</span>
+      <span class="site-assistant__toggle-copy">
+        <strong>Briefing Assistant</strong>
+        <span>Ask about the pitch, valuation, or next steps.</span>
+      </span>
+    </button>
+    <div class="site-assistant__panel" id="site-assistant-panel" data-site-assistant-panel hidden>
+      <div class="site-assistant__header">
+        <div>
+          <p class="site-assistant__eyebrow">Baylor x SAP</p>
+          <p class="site-assistant__title">Briefing Assistant</p>
+          <p class="site-assistant__subcopy">Use the chatbot to navigate the proposal, compare activations, and sharpen executive talking points.</p>
+        </div>
+        <button class="site-assistant__close" type="button" data-site-assistant-close aria-label="Close briefing assistant">×</button>
       </div>
-    </div>
-    <div class="op-header-right">
-      <div id="printHost">Live proposal URL</div>
-      <div><a href="mailto:Luke_Holcomb@baylor.edu">Luke_Holcomb@baylor.edu</a></div>
+      <div class="site-assistant__frame-wrap">
+        <iframe class="site-assistant__frame" title="Baylor x SAP Briefing Assistant" data-site-assistant-frame data-src="widget.html" loading="lazy"></iframe>
+      </div>
     </div>
   </div>
-  <div class="op-gold-bar"></div>
-  <div class="op-body">
-    <div class="op-hero">
-      <div class="op-hero-title">The South's <span>Biggest Stage</span> Is Open.</div>
-      <div class="op-hero-sub">SAP has zero college athletics presence in the American South. Baylor sits halfway between Dallas (90mi) and Austin (100mi) on the I-35 corridor — the fastest-growing business market in the US. This is SAP's first-mover opportunity to own the enterprise tech category in Power 4 college athletics ahead of the 2027 jersey patch launch window.</div>
-    </div>
-    <div class="op-stat-row">
-      <div class="op-stat"><div class="op-stat-num">11.7M+</div><div class="op-stat-label">TV viewers annually</div></div>
-      <div class="op-stat"><div class="op-stat-num">37%</div><div class="op-stat-label">Fans are biz decision-makers</div></div>
-      <div class="op-stat"><div class="op-stat-num">3x</div><div class="op-stat-label">More likely senior exec</div></div>
-      <div class="op-stat"><div class="op-stat-num">83%</div><div class="op-stat-label">Recall sponsorships</div></div>
-      <div class="op-stat"><div class="op-stat-num">657K+</div><div class="op-stat-label">Home attendees/yr</div></div>
-      <div class="op-stat"><div class="op-stat-num">160K+</div><div class="op-stat-label">Alumni nationwide</div></div>
-    </div>
-    <div class="op-two-col">
-      <div>
-        <div class="op-section-label">Why Baylor — 4 key reasons</div>
-        <div class="op-card"><div class="op-card-title">Southern market gap</div><div class="op-card-text">SAP has zero college athletics presence in the South. Texas is the fastest-growing business market with 200+ companies relocating HQ in 5 years — Oracle, Tesla, SpaceX, Chevron.</div></div>
-        <div class="op-card"><div class="op-card-title">I-35 corridor advantage</div><div class="op-card-text">Waco sits exactly between Dallas and Austin — two of the top 5 US growth metros. The corridor is home to hundreds of $500M–$2B mid-market companies SAP is targeting.</div></div>
-        <div class="op-card"><div class="op-card-title">Jersey patch first-mover</div><div class="op-card-text">NCAA approved jersey patches Aug 2026. SAP would be the first enterprise tech company on a Power 4 jersey. UNLV signed at $11M/5yr. Big 12 valued at $3.5M–$6M/yr.</div></div>
-        <div class="op-card"><div class="op-card-title">First real US collegiate partnership</div><div class="op-card-text">Unlike brand-only plays (Villanova, Stanford), Baylor offers tech integration, B2B hospitality, and a Sapphire/TechEd reference story — the gold standard per Dan Fleetwood.</div></div>
+  <div class="print-onepager">
+    <div class="onepager">
+      <div class="onepager__head">
+        <div>
+          <strong>Baylor x SAP Executive One-Pager</strong>
+          <div class="onepager__small">Strategic Roadmap: 2027 and Beyond</div>
+        </div>
+        <div class="onepager__small">
+          <div id="printHost">Proposal URL</div>
+          <div>Luke_Holcomb@baylor.edu</div>
+        </div>
       </div>
-      <div>
-        <div class="op-section-label">Client Needs Analysis — Dan Fleetwood, SAP Head of Global Sponsorships</div>
-        <div class="op-cna">
-          <div class="op-cna-head">
-            <div class="op-cna-head-left">What SAP told us</div>
-            <div class="op-cna-head-right">How Baylor delivers</div>
+      <div class="onepager__rule"></div>
+      <div class="onepager__body">
+        <h1 class="onepager__title">Year-One Recommendation for <span>Baylor x SAP</span></h1>
+        <p class="onepager__sub">Approve the integrated package across Suites, Keynotes, and SAP App Intelligence. Keep jersey patch rights on a separate premium track after year-one performance proof.</p>
+
+        <div class="onepager__kpi">
+          <div class="onepager__kpi-item">
+            <strong>$250K-$750K</strong>
+            <span class="onepager__small">Annual integration range</span>
           </div>
-          <div class="op-cna-row">
-            <div class="op-cna-cell left"><strong>Authentic storytelling, not logo slaps</strong>"How are we walking hand in hand in their success?"</div>
-            <div class="op-cna-cell">Values-aligned, first-of-its-kind US collegiate partnership with genuine integration and real storytelling.</div>
+          <div class="onepager__kpi-item">
+            <strong>12</strong>
+            <span class="onepager__small">Keynote touchpoints</span>
           </div>
-          <div class="op-cna-row">
-            <div class="op-cna-cell left"><strong>Tech showcase is #1 priority</strong>"What business problems are you trying to solve?"</div>
-            <div class="op-cna-cell">Baylor integrates SAP software into athletic operations — analytics, ticketing, facilities — creating a live reference story for Sapphire and TechEd.</div>
+          <div class="onepager__kpi-item">
+            <strong>Quarterly</strong>
+            <span class="onepager__small">Executive KPI reporting</span>
           </div>
-          <div class="op-cna-row">
-            <div class="op-cna-cell left"><strong>B2B decision-maker access</strong>"Who are the business decision-makers in your fan base?"</div>
-            <div class="op-cna-cell">37% of fans are biz decision-makers (22% above average). Corporate suites at McLane Stadium deliver SAP's exact target audience on the I-35 corridor.</div>
+        </div>
+
+        <div class="onepager__grid">
+          <div class="onepager__panel">
+            <h3>Strategic Rationale</h3>
+            <ul class="onepager__list">
+              <li>Baylor combines Power 4 visibility with premium business hospitality.</li>
+              <li>The Baylor Club supports executive-level networking and meetings.</li>
+              <li>The system balances brand presence with measurable business outcomes.</li>
+            </ul>
           </div>
-          <div class="op-cna-row">
-            <div class="op-cna-cell left"><strong>Mid-market is SAP's growth target</strong>"We're trying to shed the 'only for big business' stigma."</div>
-            <div class="op-cna-cell">I-35 corridor packed with $500M–$2B companies. 200+ brands moved HQ to Texas in 5 years. Baylor is the gateway to this market.</div>
+          <div class="onepager__panel">
+            <h3>Included Activations</h3>
+            <ul class="onepager__list">
+              <li>Suites strategy for hosted guests and partner conversion moments.</li>
+              <li>Baylor Athletics B2B software integration (Business Back) showing how SAP supports stadium operations.</li>
+              <li>Monthly keynote program for thought leadership and regional authority.</li>
+              <li>SAP App intelligence layer for engagement and audience tracking.</li>
+              <li>Student talent pipeline connecting SAP with Baylor S3E and MIS graduates.</li>
+            </ul>
+          </div>
+          <div class="onepager__panel">
+            <h3>Measurement Model</h3>
+            <ul class="onepager__list">
+              <li>Track audience IDs, guest quality, repeat participation, and app behavior.</li>
+              <li>Separate activity metrics from business outcomes for leadership clarity.</li>
+              <li>Report quarterly with concise executive dashboards by activation lane.</li>
+            </ul>
+          </div>
+          <div class="onepager__panel">
+            <h3>Decision Required</h3>
+            <ul class="onepager__list">
+              <li>Determine the required scope: outlining a scalable path from a high-impact, single-year tech showcase to a multi-year, multi-million dollar flagship integration.</li>
+              <li>Confirm whether patch valuation is now or after year-one proof.</li>
+              <li>Authorize the official Baylor Sports Properties follow-up.</li>
+            </ul>
           </div>
         </div>
       </div>
-    </div>
-    <div class="op-section-label">Sponsorship packages</div>
-    <div class="op-packages">
-      <div class="op-pkg">
-        <div class="op-pkg-badge" style="color:#154734;">Regional Partner</div>
-        <div class="op-pkg-name">Brand Presence</div>
-        <div class="op-pkg-price">$25K–$100K/yr</div>
-        <div class="op-pkg-feature">In-venue LED and scoreboard signage</div>
-        <div class="op-pkg-feature">Digital and social media integration</div>
-        <div class="op-pkg-feature">Game tickets and gameday hospitality</div>
-        <div class="op-pkg-feature">Radio broadcast — 5 Texas markets</div>
-        <div class="op-pkg-feature">Official partner designation and IP rights</div>
+      <div class="onepager__rule"></div>
+      <div class="onepager__foot">
+        <div>Prepared for Baylor x SAP sponsorship review</div>
+        <div class="onepager__small">Official contact: Luke Holcomb · Baylor Sports Properties powered by Playfly</div>
       </div>
-      <div class="op-pkg featured">
-        <div class="op-pkg-badge" style="color:#FFB81C;background:#154734;padding:2px 8px;border-radius:100px;display:inline-block;">Recommended for SAP</div>
-        <div class="op-pkg-name" style="margin-top:4px;">Full Partnership</div>
-        <div class="op-pkg-price">$100K–$500K/yr</div>
-        <div class="op-pkg-feature">TV-visible field and scoreboard signage</div>
-        <div class="op-pkg-feature">Premier suite and B2B executive networking</div>
-        <div class="op-pkg-feature">SAP technology showcase integration</div>
-        <div class="op-pkg-feature">Multi-sport year-round coverage + NIL</div>
-        <div class="op-pkg-feature">All Brand Presence assets included</div>
-      </div>
-      <div class="op-pkg">
-        <div class="op-pkg-badge" style="color:#154734;background:#FFB81C;padding:2px 8px;border-radius:100px;display:inline-block;">Platinum — 2027</div>
-        <div class="op-pkg-name" style="margin-top:4px;">Jersey Patch Partner</div>
-        <div class="op-pkg-price">Custom pricing</div>
-        <div class="op-pkg-feature">NCAA jersey patch — all 4 colorways</div>
-        <div class="op-pkg-feature">First enterprise tech on Power 4 jersey</div>
-        <div class="op-pkg-feature">SAP Sapphire and TechEd speaking slots</div>
-        <div class="op-pkg-feature">Multi-year preferred partnership terms</div>
-        <div class="op-pkg-feature">All Full Partnership assets included</div>
-      </div>
-    </div>
-    <div class="op-section-label">2026–2027 launch timeline</div>
-    <div class="op-timeline">
-      <div class="op-tl-item"><div class="op-tl-dot">1</div><div class="op-tl-date">Q3 2026</div><div class="op-tl-text">Partnership agreement finalized — tech integration scoped and planned</div></div>
-      <div class="op-tl-item"><div class="op-tl-dot">2</div><div class="op-tl-date">Q4 2026</div><div class="op-tl-text">SAP software onboarding begins across Baylor athletic operations</div></div>
-      <div class="op-tl-item"><div class="op-tl-dot">3</div><div class="op-tl-date">Spring 2027</div><div class="op-tl-text">Public announcement — co-branded PR campaign across Texas markets</div></div>
-      <div class="op-tl-item"><div class="op-tl-dot">4</div><div class="op-tl-date">2027 Season</div><div class="op-tl-text">SAP patch debuts on all Baylor jerseys — 11.7M+ annual TV impressions begin</div></div>
     </div>
   </div>
-  <div class="op-footer">
-    <div>Managed by <strong>Baylor Sports Properties powered by Playfly</strong> &bull; Contact: <strong><a href="mailto:Luke_Holcomb@baylor.edu">Luke_Holcomb@baylor.edu</a></strong></div>
-    <div>Full proposal at <strong id="proposalHost">live proposal URL</strong> &bull; Student Pitch &bull; Baylor University Sales Program &bull; Spring 2026</div>
-  </div>
-</div>
-
-<nav>
-  <a href="index.html" class="nav-logo"><div class="nav-mark">BU</div>Baylor Athletics x SAP</a>
-  <ul class="nav-links">
-    <li><a href="opportunity.html">Opportunity</a></li>
-    <li><a href="reach.html">Reach</a></li>
-    <li><a href="roadmap.html">Roadmap</a></li>
-    <li><a href="packages.html">Packages</a></li>
-    <li><a href="contact.html" class="nav-cta active">Contact</a></li>
-  </ul>
-  <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-<div class="nav-mobile" id="mobileMenu">
-  <a href="opportunity.html">Opportunity</a>
-  <a href="reach.html">Reach</a>
-  <a href="roadmap.html">Roadmap</a>
-  <a href="packages.html">Packages</a>
-  <a href="contact.html" class="mob-cta">Contact</a>
-</div>
-
-<div class="page-hero">
-  <div class="hero-pattern"></div>
-  <div class="hero-bar"></div>
-  <div class="hero-inner">
-    <div class="fade-up">
-      <div class="breadcrumb"><a href="index.html">Home</a> / Contact</div>
-      <div class="page-eyebrow">Get in touch</div>
-      <h1 class="page-title">Let's start<br><em>the conversation.</em></h1>
-      <p class="page-sub">Fill out the form and a member of the Baylor Sports Properties team will be in touch within 48 hours. Every package is customizable — there's no wrong place to start.</p>
-      <div class="hero-contact-details">
-        <div class="contact-detail">
-          <div class="contact-detail-icon">&#9993;&#65039;</div>
-          <div><div class="contact-detail-label">Primary contact</div><div class="contact-detail-val"><a href="mailto:Luke_Holcomb@baylor.edu">Luke_Holcomb@baylor.edu</a></div></div>
-        </div>
-        <div class="contact-detail">
-          <div class="contact-detail-icon">&#127968;</div>
-          <div><div class="contact-detail-label">Managed by</div><div class="contact-detail-val">Baylor Sports Properties powered by Playfly</div></div>
-        </div>
-        <div class="contact-detail">
-          <div class="contact-detail-icon">&#128337;</div>
-          <div><div class="contact-detail-label">Response time</div><div class="contact-detail-val">Within 48 business hours</div></div>
-        </div>
-        <div class="contact-detail">
-          <div class="contact-detail-icon">&#128197;</div>
-          <div><div class="contact-detail-label">Ideal timeline</div><div class="contact-detail-val">Q3 2026 for 2027 jersey patch launch</div></div>
-        </div>
+  <main>
+    <section class="hero">
+      <div class="hero__media">
+        <img src="mclane_stadium.png" alt="McLane Stadium and Baylor x SAP partnership environment" />
       </div>
-    </div>
-    <div class="fade-up d2">
-      <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:2rem;">
-        <div style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);opacity:0.8;margin-bottom:1.25rem;">Package summary</div>
-        <div style="display:flex;flex-direction:column;gap:1rem;">
-          <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,0.08);">
-            <div><div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#fff;">Brand Presence</div><div style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:2px;">Regional Partner</div></div>
-            <div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--gold);">$25K–$100K</div>
-          </div>
-          <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,0.08);">
-            <div><div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#fff;">Full Partnership</div><div style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:2px;">Recommended for SAP</div></div>
-            <div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--gold);">$100K–$500K</div>
-          </div>
-          <div style="display:flex;justify-content:space-between;align-items:center;">
-            <div><div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--gold);">Jersey Patch Partner</div><div style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:2px;">Platinum — 2027 launch</div></div>
-            <div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--gold);">Custom</div>
+      <div class="hero__shade"></div>
+      <div class="hero__grid"></div>
+      <div class="hero__inner">
+        <div class="hero__copy">
+          <p class="eyebrow">Contact · Enterprise brief</p>
+          <h1 class="title">Move from presentation to a <span>formal partnership</span></h1>
+          <p class="lead">This page closes the proposal by consolidating the narrative, pricing logic, asset structure, and measurement model in one place, giving decision-makers a clear bridge from concept to professional follow-up.</p>
+          <div class="hero__actions">
+            <a class="button button--primary" href="index.html">Review Overview</a>
+            <a class="button" href="packages.html">Return To App</a>
           </div>
         </div>
-        <a href="packages.html" style="display:block;text-align:center;margin-top:1.5rem;font-size:13px;font-weight:600;color:rgba(255,255,255,0.5);text-decoration:none;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">View full package breakdown &#8594;</a>
+        <aside class="terminal">
+          <p class="terminal__label">Strategic Roadmap: 2027 and Beyond</p>
+          <h2 class="terminal__title">Define the scope first, then scale the integration.</h2>
+          <p class="terminal__copy">The negotiation model is built for 2027 and beyond, helping SAP understand whether the right next step is a point-in-time single-year technology showcase or a multi-year, multi-million dollar flagship integration with the patch valued on a separate track.</p>
+          <div class="terminal__meta">
+            <div class="terminal__metric">
+              <p class="metric__label">Annual envelope</p>
+              <strong>$250K-$750K</strong>
+            </div>
+            <div class="terminal__metric">
+              <p class="metric__label">Patch framework</p>
+              <strong>Custom Power 4 valuation</strong>
+            </div>
+          </div>
+          <a class="terminal__link" href="javascript:window.print()">Open Printable Brief</a>
+        </aside>
       </div>
-    </div>
-  </div>
-</div>
-
-<div class="print-bar fade-up">
-  <div class="print-bar-inner">
-    <span class="print-bar-text">Want a one-page summary to take away?</span>
-    <button class="print-btn" onclick="window.print()">&#128438; Download / Print one-pager</button>
-  </div>
-</div>
-
-<div class="form-sec">
-  <div class="form-inner">
-    <div class="form-sidebar fade-up">
-      <div class="sec-eyebrow">What happens next</div>
-      <h2 class="sec-title">How the process <em>works.</em></h2>
-      <p class="sec-lead">Submitting this form starts a direct conversation with the Baylor Sports Properties team.</p>
-      <div class="sidebar-steps">
-        <div class="sidebar-step"><div class="step-num">1</div><div><div class="step-title">You submit this form</div><div class="step-text">Tell us about your goals, your company, and which package interests you most.</div></div></div>
-        <div class="sidebar-step"><div class="step-num">2</div><div><div class="step-title">We follow up within 48 hours</div><div class="step-text">Luke Holcomb from Baylor Sports Properties will reach out to schedule an introductory call.</div></div></div>
-        <div class="sidebar-step"><div class="step-num">3</div><div><div class="step-title">Fact-find and scoping call</div><div class="step-text">We learn about your goals, budget, and timeline — and build a custom proposal around them.</div></div></div>
-        <div class="sidebar-step"><div class="step-num">4</div><div><div class="step-title">Custom proposal delivered</div><div class="step-text">A tailored partnership package with specific assets, pricing, and a 2027 launch plan.</div></div></div>
-      </div>
-      <div class="sidebar-note">
-        <div class="sidebar-note-text">Prefer to reach out directly? Contact Luke Holcomb at <a href="mailto:Luke_Holcomb@baylor.edu">Luke_Holcomb@baylor.edu</a> - he manages all Baylor Athletics corporate partnership inquiries through Playfly Sports.</div>
-      </div>
-    </div>
-    <div class="contact-form fade-up d2">
-      <form id="contactForm" onsubmit="submitForm(event)">
-        <div class="form-grid">
-          <div class="form-group"><label class="form-label">First name *</label><input type="text" name="first_name" class="form-input" placeholder="Dan" required/></div>
-          <div class="form-group"><label class="form-label">Last name *</label><input type="text" name="last_name" class="form-input" placeholder="Fleetwood" required/></div>
-          <div class="form-group"><label class="form-label">Company *</label><input type="text" name="company" class="form-input" placeholder="SAP SE" required/></div>
-          <div class="form-group"><label class="form-label">Title</label><input type="text" name="title" class="form-input" placeholder="Head of Global Sponsorships"/></div>
-          <div class="form-group"><label class="form-label">Work email *</label><input type="email" name="email" class="form-input" placeholder="dan.fleetwood@sap.com" required/></div>
-          <div class="form-group"><label class="form-label">Phone</label><input type="tel" name="phone" class="form-input" placeholder="+1 (555) 000-0000"/></div>
-          <div class="form-group full">
-            <label class="form-label">Partnership interest *</label>
-            <select name="package" class="form-select" required>
-              <option value="" disabled selected>Select a package</option>
-              <option>Brand Presence — $25K–$100K per year</option>
-              <option>Full Partnership — $100K–$500K per year</option>
-              <option>Jersey Patch Partner — Custom pricing</option>
-              <option>Not sure — I would like to discuss options</option>
-            </select>
-          </div>
-          <div class="form-group full">
-            <label class="form-label">Timeline</label>
-            <select name="timeline" class="form-select">
-              <option value="" disabled selected>When are you looking to get started?</option>
-              <option>As soon as possible — 2026</option>
-              <option>2027 season launch — ideal</option>
-              <option>Exploring for 2028 and beyond</option>
-              <option>Just researching for now</option>
-            </select>
-          </div>
-          <div class="form-group full"><label class="form-label">Message</label><textarea name="message" class="form-textarea" placeholder="Tell us about your goals and any specific questions about the Baylor Athletics partnership opportunity..."></textarea></div>
-          <div class="form-submit-row">
-            <button type="submit" class="form-submit" id="submitBtn">Submit inquiry &#8594;</button>
-            <div class="form-privacy">Submitting opens a prefilled email draft to the Baylor Sports Properties team so your inquiry is ready to send immediately.</div>
-          </div>
-          <div class="form-success" id="formSuccess">
-            <div class="form-success-title">Your email draft is ready.</div>
-            <div class="form-success-text">If your email app did not open automatically, send your note directly to Luke_Holcomb@baylor.edu and mention the package you are exploring.</div>
-          </div>
+    </section>
+    <section class="print-bar">
+      <div class="print-bar__inner">
+        <div class="print-card">
+          <p>Print a one-page executive summary for leadership review and meeting follow-up.</p>
+          <button class="button button--primary" type="button" onclick="window.print()">Print One-Pager</button>
         </div>
-      </form>
-    </div>
-  </div>
-</div>
+      </div>
+    </section>
+    <section class="contact" id="contact-form">
+      <div class="contact__inner">
+        <aside class="contact-panel">
+          <p class="eyebrow">Official contact</p>
+          <h2>Luke Holcomb</h2>
+          <p>Corporate Partnerships · Baylor Sports Properties powered by Playfly</p>
+          <div class="contact-pills">
+            <span class="contact-pill">Official channel</span>
+            <span class="contact-pill">Boardroom brief ready</span>
+            <span class="contact-pill">Enterprise negotiation path</span>
+          </div>
+          <div class="info-block">
+            <h3>Email</h3>
+            <p><a href="mailto:Luke_Holcomb@baylor.edu">Luke_Holcomb@baylor.edu</a></p>
+          </div>
+          <div class="info-block">
+            <h3>Recommended sequence</h3>
+            <ul class="list">
+              <li>Confirm whether the conversation is about enterprise integration only or includes the custom jersey patch track.</li>
+              <li>Identify which activation lane should anchor the follow-up: suites, keynotes, or SAP App intelligence.</li>
+              <li>Use the printable brief if the conversation needs a boardroom summary before a formal response.</li>
+            </ul>
+          </div>
+        </aside>
+        <div class="form-shell">
+          <p class="eyebrow">Inquiry form</p>
+          <h2>Start the email handoff</h2>
+          <p>The form still uses the current official backend flow. Submitting it opens a prefilled email draft addressed to Luke Holcomb so the inquiry can be sent directly through the correct contact channel with a clear record of the activation path, package interest, and next-step intent.</p>
+          <div class="process-grid" aria-hidden="true">
+            <div class="process-card">
+              <strong>Step 01</strong>
+              <span>Choose the activation path you want to discuss first.</span>
+            </div>
+            <div class="process-card">
+              <strong>Step 02</strong>
+              <span>Open the prefilled email draft through the official contact route.</span>
+            </div>
+            <div class="process-card">
+              <strong>Step 03</strong>
+              <span>Use the printable brief if leadership needs a one-page leave-behind.</span>
+            </div>
+          </div>
+          <form id="contactForm" class="form" onsubmit="submitForm(event)">
+            <div class="field">
+              <label for="first_name">First name *</label>
+              <input id="first_name" name="first_name" type="text" placeholder="Dan" required />
+            </div>
+            <div class="field">
+              <label for="last_name">Last name *</label>
+              <input id="last_name" name="last_name" type="text" placeholder="Fleetwood" required />
+            </div>
+            <div class="field">
+              <label for="company">Organization *</label>
+              <input id="company" name="company" type="text" placeholder="SAP" required />
+            </div>
+            <div class="field">
+              <label for="email">Work email *</label>
+              <input id="email" name="email" type="email" placeholder="dan@sap.com" required />
+            </div>
+            <div class="field field--full">
+              <label for="interest">Primary interest *</label>
+              <select id="interest" name="interest" required>
+                <option value="">Select an activation focus</option>
+                <option>Enterprise integration package</option>
+                <option>First-mover jersey patch</option>
+                <option>Suites and executive hospitality</option>
+                <option>Monthly keynote series</option>
+                <option>SAP App intelligence</option>
+              </select>
+            </div>
+            <div class="field field--full">
+              <label for="message">Message *</label>
+              <textarea id="message" name="message" placeholder="We would like to review the enterprise integration structure and discuss how the keynote platform could support SAP's regional executive engagement goals." required></textarea>
+            </div>
+            <div class="form-actions">
+              <button class="button button--primary" id="submitBtn" type="submit">Open Official Inquiry</button>
+              <div class="form-note">Submitting this form opens a prefilled email draft addressed to the official Baylor Sports Properties contact.</div>
+              <div class="success" id="formSuccess">Your email draft is ready. If your email client did not open automatically, send your note directly to Luke_Holcomb@baylor.edu.</div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
 
-<div class="team-sec">
-  <div class="team-inner">
-    <div class="fade-up"><div class="sec-eyebrow">The team</div><h2 class="sec-title">Who you'll be <em>working with.</em></h2></div>
-    <div class="team-grid">
-      <div class="team-card fade-up d1"><div class="team-avatar">LH</div><div class="team-name">Luke Holcomb</div><div class="team-title">Corporate Partnerships</div><div class="team-org">Baylor Sports Properties - Playfly</div><a href="mailto:Luke_Holcomb@baylor.edu" class="team-email">&#9993; Luke_Holcomb@baylor.edu</a></div>
-      <div class="team-card fade-up d2"><div class="team-avatar" style="background:rgba(21,71,52,0.08);color:var(--green);">BA</div><div class="team-name">Baylor Athletics</div><div class="team-title">Corporate Partnership Team</div><div class="team-org">Baylor University Athletics</div><a href="https://baylor.edu" target="_blank" class="team-email">&#127968; baylor.edu</a></div>
-      <div class="team-card fade-up d3"><div class="team-avatar" style="background:rgba(21,71,52,0.08);color:var(--green);">PL</div><div class="team-name">Playfly Sports</div><div class="team-title">Multimedia Rights Partner</div><div class="team-org">Exclusive MMR Holder - Baylor</div><a href="https://playfly.com" target="_blank" class="team-email">&#127968; playfly.com</a></div>
-    </div>
-  </div>
-</div>
+  <footer class="site-footer" aria-label="Proposal footer">
+    <p class="site-footer__title">Baylor Athletics x SAP Partnership Proposal</p>
+    <p class="site-footer__meta">Student Pitch • Baylor University S3E Program • Spring 2026</p>
+    <p class="site-footer__legal">Baylor Sports Properties powered by Playfly</p>
+  </footer>
 
-<div class="quick-sec">
-  <div class="quick-inner">
-    <div class="fade-up">
-      <div style="font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;">Before you go</div>
-      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.75rem,3vw,2.25rem);font-weight:700;color:#fff;margin-bottom:0.5rem;">Still have questions?</h2>
-      <p style="font-size:1rem;color:rgba(255,255,255,0.55);font-weight:300;line-height:1.7;max-width:500px;margin-bottom:0;">Explore the rest of the proposal or ask our AI advisor directly.</p>
-    </div>
-    <div class="quick-grid">
-      <a href="opportunity.html" class="quick-card fade-up d1"><div class="quick-icon">&#127919;</div><div class="quick-title">The Opportunity</div><div class="quick-desc">SAP's Southern gap, I-35 corridor, jersey patch first-mover</div><div class="quick-link-text">Read more &#8594;</div></a>
-      <a href="reach.html" class="quick-card fade-up d2"><div class="quick-icon">&#128202;</div><div class="quick-title">Audience and Reach</div><div class="quick-desc">Fan base data, B2B breakdown, I-35 corridor map</div><div class="quick-link-text">Read more &#8594;</div></a>
-      <a href="roadmap.html" class="quick-card fade-up d3"><div class="quick-icon">&#128197;</div><div class="quick-title">Partnership Roadmap</div><div class="quick-desc">2026-2027 timeline, milestones, collaboration model</div><div class="quick-link-text">Read more &#8594;</div></a>
-      <a href="#" class="quick-card fade-up d4" onclick="openChat();return false;"><div class="quick-icon">&#129302;</div><div class="quick-title">Ask Our AI Advisor</div><div class="quick-desc">Live AI trained on the full pitch — ask anything</div><div class="quick-link-text">Chat now &#8594;</div></a>
-    </div>
-  </div>
-</div>
+  <nav class="nav-island" aria-label="Primary navigation">
+    <a href="index.html">Overview</a>
+    <a href="sap-jersey-patch.html">Patch</a>
+    <a href="sap-suites.html">Suites</a>
+    <a href="sap-keynote.html">Keynotes</a>
+    <a href="packages.html">App</a>
+    <a class="is-active" href="contact.html">Contact</a>
+  </nav>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script>
+    const CONTACT_EMAIL = "Luke_Holcomb@baylor.edu";
+    async function submitForm(event) {
+      event.preventDefault();
+      const form = event.target;
+      const submitButton = document.getElementById("submitBtn");
+      const success = document.getElementById("formSuccess");
+      submitButton.textContent = "Opening Email Draft...";
+      submitButton.disabled = true;
+      success.style.display = "none";
+      const data = new FormData(form);
+      const firstName = data.get("first_name");
+      const lastName = data.get("last_name");
+      const company = data.get("company");
+      const email = data.get("email");
+      const interest = data.get("interest");
+      const message = data.get("message");
+      const subject = `${company} inquiry regarding Baylor x SAP partnership`;
+      const body = [
+        "Hello Luke,",
+        "",
+        `My name is ${firstName} ${lastName} from ${company}.`,
+        `Our primary area of interest is: ${interest}.`,
+        "",
+        "Message:",
+        `${message}`,
+        "",
+        `Preferred follow-up email: ${email}`,
+        "",
+        "Thank you,",
+        `${firstName} ${lastName}`
+      ].join("\n");
+      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      success.style.display = "block";
+      submitButton.textContent = "Open Official Inquiry";
+      submitButton.disabled = false;
+    }
+    document.addEventListener("DOMContentLoaded", () => {
+      const siteHost = window.location.host || "live proposal URL";
+      const printHost = document.getElementById("printHost");
+      if (printHost) printHost.textContent = siteHost;
+      const transitionWrap = document.querySelector(".page-transition");
+      const panel = transitionWrap?.querySelector(".page-transition__panel");
+      const hasGSAP = typeof gsap !== "undefined";
+      const hasScrollTrigger = typeof ScrollTrigger !== "undefined";
+      const supportsNativeViewTransition = typeof CSS !== "undefined" && CSS.supports("view-transition-name: none") && "startViewTransition" in document;
+      let parallaxInitialized = false;
+      let isLeaving = false;
+      const prefetchedHrefs = new Set();
+      if (!transitionWrap || !panel) return;
+      const pageNodes = [
+        document.querySelector("main"),
+        document.querySelector(".nav-island")
+      ].filter(Boolean);
+      const setCompactPanel = () => {
+        panel.style.opacity = "0";
+        panel.style.width = "min(34vw, 460px)";
+        panel.style.height = "min(22vw, 300px)";
+        panel.style.borderRadius = "28px";
+        panel.style.transform = "translate(-50%, -50%) scale(0.88)";
+      };
+      const cleanupPageNodes = () => {
+        pageNodes.forEach((node) => {
+          node.style.removeProperty("opacity");
+          node.style.removeProperty("transform");
+          node.style.removeProperty("will-change");
+        });
+      };
+      const initParallax = () => {
+        if (!hasGSAP || !hasScrollTrigger) return;
+        gsap.registerPlugin(ScrollTrigger);
+        if (!parallaxInitialized) {
+          const heroImg = document.querySelector(".hero__media img");
+          if (heroImg) {
+            gsap.to(heroImg, {
+              yPercent: 18,
+              ease: "none",
+              scrollTrigger: {
+                trigger: ".hero",
+                start: "top top",
+                end: "bottom top",
+                scrub: true
+              }
+            });
+          }
+          parallaxInitialized = true;
+        }
+        ScrollTrigger.refresh();
+      };
+      const playEntrance = () => {
+        document.body.classList.remove("is-transitioning");
+        if (hasGSAP) {
+          gsap.set(panel, {
+            opacity: 1,
+            left: "50%",
+            top: "50%",
+            width: "100vw",
+            height: "100vh",
+            borderRadius: 0,
+            scale: 1,
+            xPercent: -50,
+            yPercent: -50
+          });
+          gsap.set(pageNodes, {
+            opacity: 0,
+            scale: 0.985,
+            y: 18,
+            transformOrigin: "50% 50%",
+            willChange: "transform, opacity"
+          });
+          const tl = gsap.timeline({
+            onComplete: () => {
+              transitionWrap.classList.remove("is-entering", "is-leaving");
+              setCompactPanel();
+              cleanupPageNodes();
+              initParallax();
+            }
+          });
+          tl.to(panel, {
+            opacity: 0,
+            scale: 1.015,
+            duration: 0.46,
+            ease: "expo.out"
+          }, 0).to(pageNodes, {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            duration: 0.62,
+            ease: "power4.out",
+            stagger: 0.03
+          }, 0.08);
+        } else {
+          setCompactPanel();
+        }
+      };
 
-<footer>
-  <div class="foot-inner">
-    <div>
-      <div class="foot-logo">Baylor Athletics x SAP Partnership Proposal 2027</div>
-      <div class="foot-class">Student Pitch &bull; Baylor University Sales Program &bull; Spring 2026</div>
-    </div>
-    <div class="foot-links">
-      <a href="opportunity.html">Opportunity</a>
-      <a href="reach.html">Reach</a>
-      <a href="roadmap.html">Roadmap</a>
-      <a href="packages.html">Packages</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <div class="foot-copy">Baylor Sports Properties powered by Playfly</div>
-  </div>
-</footer>
+      const tabColorByFile = {
+        "": "#050505",
+        "index.html": "#050505",
+        "sap-jersey-patch.html": "#16392f",
+        "sap-suites.html": "#2b3138",
+        "sap-keynote.html": "#5a5330",
+        "packages.html": "#3e362b",
+        "contact.html": "#0c1522"
+      };
 
-<div class="chat-float">
-  <div class="chat-box" id="chatBox">
-    <div class="chat-head"><div class="chat-logo">BU</div><div><div class="chat-head-title">Partnership Advisor</div><div class="chat-head-sub"><span class="chat-green-dot"></span>Live — web search enabled</div></div></div>
-    <div class="chat-msgs" id="chatMsgs"><div class="msg bot">Welcome. Ask me anything about the Baylor x SAP sponsorship opportunity.</div></div>
-    <div class="chat-quick">
-      <span class="q-chip" onclick="chatChip(this)">What package is right for SAP?</span>
-      <span class="q-chip" onclick="chatChip(this)">What is the process?</span>
-    </div>
-    <div class="chat-input">
-      <input type="text" id="chatIn" placeholder="Ask a question..." onkeydown="if(event.key==='Enter')chatSend()"/>
-      <button class="chat-send" id="chatBtn" onclick="chatSend()">Send</button>
-    </div>
-  </div>
-  <div id="chatTip" class="chat-tip" onclick="openChat();this.style.display='none'">Ask me anything about this partnership</div>
-  <button class="chat-btn" onclick="toggleChat()">
-    <div class="chat-pulse"></div>
-    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
-  </button>
-</div>
+      const resolveTabColor = (targetURL) => {
+        try {
+          const url = new URL(targetURL, window.location.origin);
+          const fileName = url.pathname.split("/").pop().toLowerCase();
+          return tabColorByFile[fileName] || null;
+        } catch {
+          return null;
+        }
+      };
 
-<script>
-function toggleMenu(){
-  const h=document.getElementById('hamburger');
-  const m=document.getElementById('mobileMenu');
-  h.classList.toggle('open');
-  m.classList.toggle('open');
-}
+      const prefetchInternalLink = (href) => {
+        if (!href || prefetchedHrefs.has(href)) return;
+        try {
+          const url = new URL(href, window.location.origin);
+          if (url.origin !== window.location.origin) return;
+          const link = document.createElement("link");
+          link.rel = "prefetch";
+          link.as = "document";
+          link.href = url.href;
+          document.head.appendChild(link);
+          prefetchedHrefs.add(url.href);
+        } catch {
+          return;
+        }
+      };
 
-// Close menu when a link is clicked
-document.querySelectorAll('.nav-mobile a').forEach(a=>{
-  a.addEventListener('click',()=>{
-    document.getElementById('hamburger').classList.remove('open');
-    document.getElementById('mobileMenu').classList.remove('open');
-  });
-});
+      const playExit = (targetURL, triggerElement) => {
+        if (isLeaving) return;
+        isLeaving = true;
+        transitionWrap.classList.add("is-leaving");
+        document.body.classList.add("is-transitioning");
 
-const API='/api/chat';
-const CONTACT_EMAIL='Luke_Holcomb@baylor.edu';
-let hist=[],open=false;
+        const nextTabColor = resolveTabColor(targetURL);
+        if (nextTabColor) {
+          panel.style.background = nextTabColor;
+        }
 
-async function submitForm(e){
-  e.preventDefault();
-  const btn=document.getElementById('submitBtn');
-  btn.textContent='Submitting...';btn.disabled=true;
-  await new Promise(r=>setTimeout(r,800));
-  document.getElementById('formSuccess').style.display='block';
-  e.target.querySelectorAll('input,select,textarea').forEach(el=>el.disabled=true);
-  btn.textContent='Submitted ✓';
-}
-
-function toggleChat(){open=!open;document.getElementById('chatBox').classList.toggle('open',open);document.getElementById('chatTip').style.display='none';}
-function openChat(){open=true;document.getElementById('chatBox').classList.add('open');document.getElementById('chatTip').style.display='none';setTimeout(()=>document.getElementById('chatIn').focus(),100);}
-function chatChip(el){document.getElementById('chatIn').value=el.textContent.trim();chatSend();}
-function chatFU(q){document.getElementById('chatIn').value=q;chatSend();}
-function addMsg(text,type,html){const c=document.getElementById('chatMsgs');const d=document.createElement('div');d.className='msg '+type;if(html)d.innerHTML=text;else d.textContent=text;c.appendChild(d);c.scrollTop=c.scrollHeight;return d;}
-function addFU(chips){const c=document.getElementById('chatMsgs');const w=document.createElement('div');w.className='fu-wrap';const l=document.createElement('div');l.className='fu-label';l.textContent='Dig deeper';w.appendChild(l);const cw=document.createElement('div');cw.className='fu-chips';chips.forEach(q=>{const b=document.createElement('button');b.className='fu-chip';b.textContent=q;b.onclick=()=>chatFU(q);cw.appendChild(b);});w.appendChild(cw);c.appendChild(w);c.scrollTop=c.scrollHeight;}
-function md(t){return t.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');}
-function chips(t){const m=t.match(/\[CHIPS:\s*(.+?)\]/s);return m?m[1].split('|').map(s=>s.trim()).filter(Boolean):null;}
-function clean(t){return t.replace(/\[CHIPS:\s*.+?\]/s,'').trim();}
-function setLoad(on){document.getElementById('chatBtn').disabled=on;document.getElementById('chatIn').disabled=on;}
-
-async function chatSend(){
-  const inp=document.getElementById('chatIn');const txt=inp.value.trim();if(!txt)return;
-  inp.value='';if(!open)openChat();addMsg(txt,'me',false);hist.push({role:'user',content:txt});setLoad(true);
-  const th=addMsg('Thinking...','thinking',false);
-  try{
-    let msgs=[...hist],full='',it=0;
-    while(it<6){it++;
-      const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:msgs})});
-      const d=await r.json();
-      if(d.stop_reason==='end_turn'){full=d.content.filter(b=>b.type==='text').map(b=>b.text).join('');break;}
-      if(d.stop_reason==='tool_use'){
-        const ac=d.content;
-        msgs.push({role:'assistant',content:ac});th.textContent='Searching...';
-        const res=ac.filter(b=>b.type==='tool_use').map(b=>({type:'tool_result',tool_use_id:b.id,content:'Search completed.'}));
-        if(res.length)msgs.push({role:'user',content:res});
-        else{full=ac.filter(b=>b.type==='text').map(b=>b.text).join('');break;}
+        if (hasGSAP) {
+          const rect = triggerElement?.getBoundingClientRect?.();
+          if (rect && rect.width && rect.height) {
+            gsap.set(panel, {
+              opacity: 1,
+              left: rect.left + rect.width / 2,
+              top: rect.top + rect.height / 2,
+              width: Math.max(rect.width, 92),
+              height: Math.max(rect.height, 44),
+              borderRadius: Math.min(Math.max(rect.height * 0.5, 18), 28),
+              scale: 1,
+              xPercent: -50,
+              yPercent: -50
+            });
+          } else {
+            gsap.set(panel, {
+              opacity: 1,
+              left: "50%",
+              top: "50%",
+              width: "min(34vw, 460px)",
+              height: "min(22vw, 300px)",
+              borderRadius: 28,
+              scale: 0.88,
+              xPercent: -50,
+              yPercent: -50
+            });
+          }
+          const tl = gsap.timeline({
+            onComplete: () => {
+              window.location.href = targetURL;
+            }
+          });
+          tl.to(pageNodes, {
+            opacity: 0.24,
+            scale: 0.992,
+            y: -10,
+            duration: 0.28,
+            ease: "power2.out",
+            stagger: 0.01
+          }, 0).to(panel, {
+            scale: 1.04,
+            duration: 0.16,
+            ease: "power2.out"
+          }, 0).to(panel, {
+            left: "50%",
+            top: "50%",
+            width: "100vw",
+            height: "100vh",
+            borderRadius: 0,
+            scale: 1,
+            duration: 0.62,
+            ease: "expo.inOut"
+          }, 0.05);
+        } else {
+          window.location.href = targetURL;
+        }
+      };
+      const isInternalLink = (anchor) => {
+        if (!anchor || !anchor.href) return false;
+        if (anchor.target === "_blank") return false;
+        if (anchor.hasAttribute("download")) return false;
+        try {
+          const url = new URL(anchor.href, window.location.origin);
+          if (url.origin !== window.location.origin) return false;
+          if (url.pathname === window.location.pathname && url.hash) return false;
+          if (anchor.protocol === "javascript:" || anchor.protocol === "mailto:") return false;
+          return true;
+        } catch {
+          return false;
+        }
+      };
+      document.addEventListener("click", (event) => {
+        const anchor = event.target.closest("a");
+        if (!anchor || !isInternalLink(anchor)) return;
+        try {
+          const target = new URL(anchor.href, window.location.origin);
+          if (target.pathname === window.location.pathname) return;
+        } catch {
+          return;
+        }
+        prefetchInternalLink(anchor.href);
+        if (supportsNativeViewTransition) return;
+        event.preventDefault();
+        sessionStorage.setItem("__pt_pending", "1");
+        playExit(anchor.href, anchor);
+      });
+      document.addEventListener("pointerenter", (event) => {
+        const anchor = event.target.closest("a");
+        if (!anchor || !isInternalLink(anchor)) return;
+        prefetchInternalLink(anchor.href);
+      }, true);
+      const shouldEnter = !supportsNativeViewTransition && sessionStorage.getItem("__pt_pending") === "1";
+      if (shouldEnter) {
+        sessionStorage.removeItem("__pt_pending");
+        playEntrance();
       } else {
-        full=(d.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('');break;
+        setCompactPanel();
+        cleanupPageNodes();
+        initParallax();
       }
-    }
-    th.remove();
-    if(full){
-      const c=chips(full),cl=clean(full);
-      addMsg(md(cl),'bot',true);
-      hist.push({role:'assistant',content:cl});
-      if(c&&c.length)addFU(c);
-    }
-  }catch(e){
-    th.textContent='Something went wrong. Please try again.';
-  }
-  setLoad(false);
-}
-
-const siteHost=window.location.host || 'live proposal URL';
-const printHost=document.getElementById('printHost');
-const proposalHost=document.getElementById('proposalHost');
-if(printHost) printHost.textContent=siteHost;
-if(proposalHost) proposalHost.textContent=siteHost;
-
-setTimeout(()=>{const t=document.getElementById('chatTip');if(t)t.style.display='flex';},3000);
-setTimeout(()=>{const t=document.getElementById('chatTip');if(t&&!open)t.style.display='none';},9000);
-const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in');});},{threshold:0.1});
-document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
-</script>
+      window.addEventListener("pageshow", (event) => {
+        if (event.persisted) {
+          isLeaving = false;
+          transitionWrap.classList.remove("is-leaving");
+          setCompactPanel();
+          cleanupPageNodes();
+          initParallax();
+        }
+      });
+    });
+  </script>
+  <script src="assistant.js"></script>
 </body>
 </html>

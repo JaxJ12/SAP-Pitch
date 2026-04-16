@@ -1,4 +1,4 @@
-export default async function handler(req, res) {
+﻿export default async function handler(req, res) {
   if (req.headers.origin) {
     res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
     res.setHeader('Vary', 'Origin');
@@ -86,3 +86,4 @@ Tone: Editorial, authoritative, precise. Write like a senior executive briefing 
     return res.status(500).json({ error: 'Internal server error', details: error.message });
   }
 }
+
