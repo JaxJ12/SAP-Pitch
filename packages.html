@@ -623,6 +623,36 @@
       padding: 0 10vw 10vh;
       background: linear-gradient(180deg, rgba(98, 82, 61, 0.84), rgba(34, 29, 22, 0.98));
     }
+    .measurement-panel {
+      max-width: 980px;
+      margin: 40px auto 0;
+      padding: 28px;
+      border: 1px solid rgba(231, 216, 182, 0.16);
+      border-radius: 28px;
+      background: rgba(34, 29, 22, 0.46);
+      box-shadow: var(--shadow-panel);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .measurement-panel h3 {
+      margin: 0;
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+    .measurement-panel p {
+      margin: 14px 0 0;
+      max-width: 720px;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: rgba(247, 242, 232, 0.78);
+    }
+    .measurement-panel__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
     .inventory-section .panel {
       max-width: 920px;
       margin: 0 auto;
@@ -1081,6 +1111,15 @@
           <p>App usage creates an ongoing digital touchpoint with measurable repeat behavior. Track opens, dwell time, and replay interactions to build post-event retargeting pipelines.</p>
         </div>
       </div>
+      <div class="measurement-panel">
+        <p class="eyebrow">Playfly Proof Layer</p>
+        <h3>See the full measurement framework built for SAP.</h3>
+        <p>The dedicated Measurement page expands this section into an enterprise-grade ROI story, naming the vendor stack, explaining the cross-channel lift model, and showing the survey controls that protect the proposal from weak methodology.</p>
+        <div class="measurement-panel__actions">
+          <a class="button button--primary" href="measurement.html">Open Measurement Framework</a>
+          <a class="button" href="contact.html">Review Executive Brief</a>
+        </div>
+      </div>
     </section>
 
     <section class="inventory-section">
@@ -1284,6 +1323,7 @@
         "sap-suites.html": "#2b3138",
         "sap-keynote.html": "#5a5330",
         "packages.html": "#3e362b",
+        "measurement.html": "#0c1522",
         "contact.html": "#0c1522"
       };
 
