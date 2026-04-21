@@ -150,16 +150,16 @@
     .hero__inner {
       min-height: 100vh;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(320px, 410px);
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 400px);
       gap: clamp(28px, 5vw, 72px);
       align-items: end;
       padding: 12vh 0 18vh;
     }
 
     .hero__copy {
-      max-width: 760px;
+      max-width: 740px;
       padding-left: 18px;
-      border-left: 1px solid rgba(181, 199, 221, 0.5);
+      border-left: 1px solid rgba(220, 200, 154, 0.42);
       transform: translateY(-24px);
     }
 
@@ -169,17 +169,23 @@
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: rgba(181, 199, 221, 0.86);
+      color: rgba(220, 200, 154, 0.84);
     }
 
     .title {
       margin: 0;
-      font-size: clamp(2.9rem, 7vw, 5.6rem);
+      font-size: clamp(2.9rem, 7.2vw, 5.8rem);
       line-height: 0.94;
       letter-spacing: -0.03em;
       font-weight: 700;
       text-wrap: balance;
-      max-width: 12ch;
+      max-width: 14ch;
+      min-height: 3.5em;
+      display: -webkit-box;
+      line-clamp: 4;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
     .title span {
@@ -187,20 +193,18 @@
     }
 
     .lead {
-      margin: 14px 0 0;
+      margin: 4px 0 0;
       max-width: 700px;
       text-wrap: pretty;
       font-size: clamp(1.05rem, 1.85vw, 1.42rem);
       line-height: 1.72;
       color: var(--muted);
-    }
-
-    .hero__guide {
-      margin: 18px 0 0;
-      max-width: 650px;
-      font-size: 13px;
-      line-height: 1.8;
-      color: rgba(181, 199, 221, 0.82);
+      min-height: 4.2em;
+      display: -webkit-box;
+      line-clamp: 3;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
     .hero__actions,
@@ -208,7 +212,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 18px;
+      margin-top: 14px;
     }
 
     .hero__actions .button {
@@ -393,6 +397,12 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
+    .activation-bridge {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 22px;
+    }
+
     .card,
     .visual-shell,
     .panel,
@@ -427,6 +437,30 @@
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
+    }
+
+    .card__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 18px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .card__link::after {
+      content: "";
+      width: 34px;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(15, 124, 201, 0.86), rgba(255, 184, 28, 0.72));
+      transition: width 0.24s ease;
+    }
+
+    .card:hover .card__link::after {
+      width: 52px;
     }
 
     .logo-chip,
@@ -631,21 +665,31 @@
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 2rem;
+      gap: clamp(0.6rem, 0.95vw, 0.95rem);
+      width: min(1000px, calc(100% - 24px));
+      justify-content: center;
+      overflow-x: auto;
+      overflow-y: hidden;
       background: var(--surface);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      padding: 1rem 2.5rem;
+      padding: 0.88rem 1.1rem;
       border-radius: 100px;
       border: 1px solid var(--line);
       box-shadow: var(--shadow-panel);
       z-index: 40;
+      scrollbar-width: none;
+    }
+
+    .nav-island::-webkit-scrollbar {
+      display: none;
     }
 
     .nav-island a {
-      font-size: 13px;
+      flex: 0 0 auto;
+      font-size: 11px;
       font-weight: 600;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
       color: rgba(247, 242, 232, 0.9);
       opacity: 0.72;
@@ -702,6 +746,7 @@
       .lift-grid,
       .recap-shell,
       .vendor-grid,
+      .activation-bridge,
       .method-grid,
       .metric-strip {
         grid-template-columns: 1fr;
@@ -737,9 +782,9 @@
 
       .nav-island {
         width: calc(100% - 24px);
-        gap: 1rem;
-        justify-content: space-between;
-        padding: 0.9rem 1rem;
+        gap: 0.7rem;
+        justify-content: flex-start;
+        padding: 0.85rem 0.95rem;
         bottom: 22px;
       }
 
@@ -830,7 +875,6 @@
 
       .nav-island {
         gap: 0.7rem;
-        overflow-x: auto;
         justify-content: flex-start;
       }
 
@@ -887,12 +931,11 @@
       <div class="hero__grid"></div>
       <div class="hero__inner">
         <div class="hero__copy">
-          <p class="eyebrow">The Playfly Promise</p>
-          <h1 class="title">Beyond Eyeballs. Measuring <span>True Business Outcomes.</span></h1>
-          <p class="lead">We do not guess. We do not rely on vanity metrics. Playfly deploys a rigorous Annual Recap framework to quantify brand trust, B2B pipeline growth, and cross-channel lift for SAP.</p>
-          <p class="hero__guide">This is the enterprise proof layer behind the pitch: a measurement architecture designed to show SAP exactly how jersey visibility, app engagement, suites hospitality, and executive programming translate into business value.</p>
+          <p class="eyebrow">Activation 05 · Measurement</p>
+          <h1 class="title">Measurement that proves <span>enterprise impact</span></h1>
+          <p class="lead">Playfly's Annual Recap framework quantifies brand trust, B2B pipeline growth, and cross-channel lift so SAP can see exactly how the full Baylor activation system performs.</p>
           <div class="hero__actions">
-            <a class="button button--primary" href="#architecture">View Measurement Stack</a>
+            <a class="button button--primary" href="contact.html">Open Executive Brief</a>
             <a class="button" href="packages.html">Return To App</a>
           </div>
         </div>
@@ -918,6 +961,46 @@
     <section class="section section--tight" id="architecture">
       <div class="section__inner">
         <div class="section-heading">
+          <p class="kicker">Complete activation system</p>
+          <h2>Measurement has to prove every part of the story.</h2>
+          <p>The page now pulls in the full activation mix from the deck. The patch drives visibility, suites create executive proof, keynotes build authority, and the app creates trackable digital behavior. This framework works because it measures all of them together.</p>
+        </div>
+
+        <div class="activation-bridge">
+          <article class="card">
+            <span class="logo-chip">Patch</span>
+            <h3>Broadcast Signal</h3>
+            <h4>Visibility and innovation recall</h4>
+            <p>Measure jersey patch and LED exposure to prove the top-of-funnel awareness and innovation signal SAP creates across Baylor athletics broadcasts.</p>
+            <a class="card__link" href="sap-jersey-patch.html">Review Patch Slide</a>
+          </article>
+
+          <article class="card">
+            <span class="logo-chip">Suites</span>
+            <h3>Executive Proof</h3>
+            <h4>Hospitality and relationship depth</h4>
+            <p>Track hosted attendance, executive engagement, demo recall, and post-event follow-up quality to show how suites produce high-value B2B relationship outcomes.</p>
+            <a class="card__link" href="sap-suites.html">Review Suites Slide</a>
+          </article>
+
+          <article class="card">
+            <span class="logo-chip">Keynotes</span>
+            <h3>Thought Leadership</h3>
+            <h4>Authority and market relevance</h4>
+            <p>Evaluate keynote registration quality, repeat executive attendance, and SAP relevance among mid-market decision-makers in the I-35 corridor.</p>
+            <a class="card__link" href="sap-keynote.html">Review Keynotes Slide</a>
+          </article>
+
+          <article class="card">
+            <span class="logo-chip">App</span>
+            <h3>Digital Behavior</h3>
+            <h4>Usage, repeat interaction, and lift</h4>
+            <p>Track app opens, dwell time, repeat sessions, and key-stat engagement so SAP can tie live digital behavior to measurable education and retargeting value.</p>
+            <a class="card__link" href="packages.html">Review App Slide</a>
+          </article>
+        </div>
+
+        <div class="section-heading" style="margin-top: 34px;">
           <p class="kicker">The architecture of measurement</p>
           <h2>Trusted vendors. One Playfly reporting system.</h2>
           <p>Baylor Sports Properties partners with the industry's most trusted analytics vendors to ensure SAP's return on objective is measured with total accuracy across broadcast exposure, digital performance, and qualitative mindset shifts.</p>
@@ -1110,6 +1193,7 @@
     <a href="index.html">Overview</a>
     <a href="sap-jersey-patch.html">Patch</a>
     <a href="sap-suites.html">Suites</a>
+    <a href="sap-keynote.html">Keynotes</a>
     <a href="packages.html">App</a>
     <a class="is-active" href="measurement.html">Measurement</a>
     <a href="contact.html">Contact</a>
