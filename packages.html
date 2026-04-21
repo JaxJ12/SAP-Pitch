@@ -653,6 +653,87 @@
       gap: 12px;
       margin-top: 18px;
     }
+    .social-activation-card {
+      max-width: 980px;
+      margin: 32px auto 0;
+      padding: 28px;
+      border: 1px solid rgba(231, 216, 182, 0.16);
+      border-radius: 28px;
+      background: rgba(34, 29, 22, 0.58);
+      box-shadow: var(--shadow-panel);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .social-activation-card h3 {
+      margin: 0;
+      font-size: clamp(1.55rem, 2.6vw, 2.1rem);
+      line-height: 1.08;
+      color: var(--gold-soft);
+    }
+    .social-activation-card p {
+      margin: 14px 0 0;
+      font-size: 15px;
+      line-height: 1.76;
+      color: rgba(247, 242, 232, 0.78);
+    }
+    .social-activation-list {
+      list-style: none;
+      padding: 0;
+      margin: 22px 0 0;
+    }
+    .social-activation-list li {
+      padding: 10px 0;
+      color: var(--text);
+      line-height: 1.7;
+    }
+    .social-activation-list li + li {
+      border-top: 1px solid rgba(231, 216, 182, 0.12);
+    }
+    .social-activation-list strong {
+      color: var(--text);
+    }
+    .social-activation-note {
+      color: var(--gold-soft);
+      font-style: italic;
+    }
+    .integration-matrix {
+      max-width: 980px;
+      margin: 32px auto 0;
+      padding: 28px;
+      border: 1px solid rgba(231, 216, 182, 0.16);
+      border-radius: 28px;
+      background: rgba(34, 29, 22, 0.54);
+      box-shadow: var(--shadow-panel);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .integration-matrix h2 {
+      margin: 0;
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+    .integration-matrix__grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 22px;
+    }
+    .integration-matrix__grid h3 {
+      margin: 0 0 12px;
+      font-size: 1.18rem;
+      color: var(--blue);
+    }
+    .integration-matrix__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      color: rgba(247, 242, 232, 0.78);
+    }
+    .integration-matrix__list li {
+      margin-bottom: 14px;
+      line-height: 1.72;
+    }
     .inventory-section .panel {
       max-width: 920px;
       margin: 0 auto;
@@ -981,6 +1062,10 @@
         .roi-grid {
           grid-template-columns: 1fr;
         }
+
+        .integration-matrix__grid {
+          grid-template-columns: 1fr;
+        }
       }
   </style>
 </head>
@@ -1094,10 +1179,10 @@
 
     <section class="opportunity-data suite-data">
       <div class="data-row" style="align-items: center;">
-        <h2 class="data-massive" style="font-size: 6vw;">$60k<span style="font-size: 0.5em; opacity: 0.5;">-$130k</span></h2>
+        <h2 class="data-massive" style="font-size: 6vw;">$1.5M<span style="font-size: 0.5em; opacity: 0.5;">-$2.0M</span></h2>
         <div style="text-align: right;">
-          <p class="data-label" style="margin-bottom: 5px;">Annual Allocation</p>
-          <p style="opacity: 0.6; font-size: 1rem; margin: 0;">Position SAP as the intelligence layer of the live game.</p>
+          <p class="data-label" style="margin-bottom: 5px;">Annual Investment</p>
+          <p style="opacity: 0.6; font-size: 1rem; margin: 0;">Priced as an enterprise operating partnership built around B2B pipeline value, premium environments, and measurable ROI.</p>
         </div>
       </div>
     </section>
@@ -1121,6 +1206,39 @@
           <p>App usage creates an ongoing digital touchpoint with measurable repeat behavior. Track opens, dwell time, and replay interactions to build post-event retargeting pipelines.</p>
         </div>
       </div>
+      <div class="social-activation-card">
+        <h3>Social Media & Digital Activation</h3>
+        <p>Cross-platform digital integration ensuring SAP reaches fans where they actively consume content.</p>
+        <ul class="social-activation-list">
+          <li>
+            <strong>The "SAP Key Stat of the Week"</strong><br>
+            Exclusive branded graphics featuring SAP software UI analytics.
+          </li>
+          <li><strong>X (Twitter):</strong> Five (5) high-value posts per season</li>
+          <li><strong>Instagram:</strong> Five (5) high-value posts per season (Feed & Story combinations)</li>
+          <li><strong>LinkedIn:</strong> Five (5) high-value B2B-targeted posts per season</li>
+          <li class="social-activation-note">Total Output: 15 Guaranteed Premium Social Activations</li>
+        </ul>
+      </div>
+      <div class="integration-matrix">
+        <h2>Academic & Fan Integration</h2>
+        <div class="integration-matrix__grid">
+          <div>
+            <h3>The Hankamer School of Business</h3>
+            <ul class="integration-matrix__list">
+              <li><strong>Keynote Series:</strong> SAP executives can be integrated as guest lecturers for Baylor sports strategy and tech programs, creating a direct talent recruitment pipeline.</li>
+              <li><strong>Live Case Studies:</strong> SAP and Playfly can partner to let students analyze anonymized fan data, bridging the gap between athletics and academics.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Playfly App Integration</h3>
+            <ul class="integration-matrix__list">
+              <li><strong>Push Notifications:</strong> Strategic game-day push alerts powered by SAP HANA drive fans to live stat interfaces and premium app modules.</li>
+              <li><strong>Data Value Loop:</strong> Fans get real-time analytics, Playfly captures high-quality first-party user data, and SAP gets direct engagement with a projected 42% of the active audience.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
       <div class="measurement-panel">
         <p class="eyebrow">Playfly Proof Layer</p>
         <h3>See the full measurement framework built for SAP.</h3>
@@ -1136,11 +1254,11 @@
       <article class="panel">
         <p class="eyebrow">Asset Mix & Pricing</p>
         <h2>The Digital & Media Integration</h2>
-        <p>Position SAP as the intelligence layer of the live game, tracking known-user engagement to build post-event retargeting pipelines.</p>
+        <p>Position SAP as the intelligence layer of the live game through a premium, enterprise-level B2B acquisition platform with measurable operating, hospitality, and media value.</p>
         <div class="terminal__meta">
           <div class="metric">
-            <p class="metric__label">Annual Allocation</p>
-            <strong>$60K - $130K</strong>
+            <p class="metric__label">Annual Investment</p>
+            <strong>$1.5M - $2.0M</strong>
           </div>
           <div class="metric">
             <p class="metric__label">Exact Inventory</p>

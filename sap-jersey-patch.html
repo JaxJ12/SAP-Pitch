@@ -411,6 +411,116 @@
       line-height: 1.72;
       color: var(--muted);
     }
+    .amplification-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.8fr);
+      gap: 28px;
+      align-items: center;
+    }
+    .amplification-copy h2 {
+      margin: 0 0 18px;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+    }
+    .amplification-copy p {
+      margin: 0 0 14px;
+      font-size: 15px;
+      line-height: 1.82;
+      color: var(--muted);
+    }
+    .amplification-list {
+      list-style: none;
+      padding: 0;
+      margin: 18px 0 0;
+      color: var(--muted);
+    }
+    .amplification-list li {
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 12px;
+      line-height: 1.72;
+    }
+    .amplification-list li::before {
+      content: "+";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .amplification-list strong {
+      color: var(--text);
+    }
+    .amplification-stat {
+      padding: 34px 30px;
+      border-radius: 28px;
+      border: 1px solid rgba(220, 200, 154, 0.14);
+      background: rgba(17, 44, 36, 0.92);
+      box-shadow: var(--shadow-panel);
+    }
+    .amplification-stat h3 {
+      margin: 0 0 16px;
+      font-size: 1.3rem;
+      letter-spacing: -0.02em;
+      color: var(--gold);
+    }
+    .amplification-stat strong {
+      display: block;
+      font-size: clamp(3rem, 7vw, 4.4rem);
+      line-height: 0.92;
+      letter-spacing: -0.05em;
+      color: var(--text);
+    }
+    .amplification-stat span {
+      display: block;
+      margin-top: 12px;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+    .integration-matrix {
+      margin-top: 24px;
+      padding: 28px;
+      border-radius: 24px;
+      border-top: 3px solid var(--blue);
+      background: var(--surface-strong);
+      box-shadow: var(--shadow-panel);
+    }
+    .integration-matrix h2 {
+      margin: 0;
+      font-size: clamp(1.75rem, 3vw, 2.4rem);
+      line-height: 1.04;
+      letter-spacing: -0.02em;
+      color: var(--blue);
+    }
+    .integration-matrix__intro {
+      margin: 14px 0 0;
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+    .integration-matrix__grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 24px;
+    }
+    .integration-matrix__grid h3 {
+      margin: 0 0 12px;
+      font-size: 1.2rem;
+      color: var(--gold);
+    }
+    .integration-matrix__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      color: var(--text);
+    }
+    .integration-matrix__list li {
+      margin-bottom: 14px;
+      line-height: 1.72;
+    }
     .patch-framework {
       padding: 8vh 0 2vh;
     }
@@ -657,7 +767,9 @@
       .hero__inner,
       .grid--3,
       .grid--4,
-      .grid--5 {
+      .grid--5,
+      .amplification-grid,
+      .integration-matrix__grid {
         grid-template-columns: 1fr;
       }
 
@@ -956,6 +1068,50 @@
         </div>
       </div>
     </section>
+    <section class="section">
+      <div class="section__inner">
+        <div class="amplification-grid">
+          <div class="amplification-copy">
+            <h2>Digital Amplification & Earned Media</h2>
+            <p>The jersey patch does not stop at the stadium gates. Every highlight, viral moment, and photo gallery shared across X (Twitter), Instagram, and TikTok carries the SAP brand.</p>
+            <ul class="amplification-list">
+              <li><strong>Broadcast Capture:</strong> Center-screen visibility during prime-time ESPN and Fox broadcasts.</li>
+              <li><strong>Highlight Reels:</strong> SAP visibility integrated into every shared clip distributed by sports media networks and publisher social channels.</li>
+              <li><strong>Athlete Synergy:</strong> Exposure amplified through player-owned social media channels, capturing Gen-Z and Millennial tech demographics.</li>
+            </ul>
+          </div>
+          <div class="amplification-stat">
+            <h3>The Viewership Multiplier</h3>
+            <strong>12.5M+</strong>
+            <span>Projected annual digital impressions when broadcast capture, highlight distribution, and earned social sharing are valued together.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section__inner">
+        <div class="integration-matrix">
+          <h2>Multi-Channel Integration Strategy</h2>
+          <p class="integration-matrix__intro">The jersey patch is the visual anchor that drives our cross-platform social and digital value creation.</p>
+          <div class="integration-matrix__grid">
+            <div>
+              <h3>Social Media Integration</h3>
+              <ul class="integration-matrix__list">
+                <li><strong>Key Stat Graphics:</strong> The patch is prominently featured in all five guaranteed SAP Stat of the Game posts across Instagram, X, and Facebook-style social storytelling.</li>
+                <li><strong>Viral Highlight Reels:</strong> Center-frame exposure appears on natively uploaded Baylor highlight videos, designed for TikTok and Instagram algorithm maximization.</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Value Creation for All Parties</h3>
+              <ul class="integration-matrix__list">
+                <li><strong>For SAP:</strong> Unskippable, high-emotion brand affinity and millions of quantified digital impressions via Zoomph AI.</li>
+                <li><strong>For Baylor:</strong> Alignment with a Fortune 500 tech leader that elevates the program's national prestige for recruiting and institutional storytelling.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <section class="section patch-framework">
       <div class="section__inner">
         <div class="patch-framework__header">
@@ -1018,7 +1174,7 @@
           <article class="patch-card">
             <p class="eyebrow">Launch Assets & Valuation</p>
             <h3>Custom Power 4 Pricing</h3>
-            <p>Because this asset carries first-mover status and national visibility, it is negotiated on a separate premium track outside the baseline integration package.</p>
+            <p>Because this asset carries first-mover status and national visibility, it is negotiated on a separate premium track outside the integrated enterprise package. In pro sports, jersey patches regularly command $5M-$15M+ annually, which is exactly why this asset cannot be valued like standard local signage.</p>
             <div class="terminal__meta">
               <div class="metric">
                 <p class="metric__label">Exclusivity</p>
@@ -1026,7 +1182,7 @@
               </div>
               <div class="metric">
                 <p class="metric__label">Pricing Model</p>
-                <strong>Custom Premium Track</strong>
+                <strong>Separate flagship valuation track</strong>
               </div>
             </div>
           </article>

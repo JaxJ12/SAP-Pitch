@@ -330,6 +330,42 @@
       padding-left: 18px;
     }
     .list li + li { margin-top: 10px; }
+    .integration-matrix {
+      margin-top: 30px;
+      padding: 28px;
+      border-radius: 24px;
+      background: rgba(45, 42, 24, 0.84);
+      border: 1px solid rgba(231, 216, 182, 0.12);
+      box-shadow: var(--shadow-panel);
+    }
+    .integration-matrix h2 {
+      margin: 0;
+      font-size: clamp(1.75rem, 3vw, 2.4rem);
+      line-height: 1.04;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+    .integration-matrix__grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 22px;
+    }
+    .integration-matrix__grid h3 {
+      margin: 0 0 12px;
+      font-size: 1.2rem;
+      color: var(--gold);
+    }
+    .integration-matrix__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      color: var(--muted);
+    }
+    .integration-matrix__list li {
+      margin-bottom: 14px;
+      line-height: 1.72;
+    }
 
     .keynote-stage {
       border: 1px solid var(--line-strong);
@@ -992,6 +1028,10 @@
         text-align: left;
         white-space: normal;
       }
+
+      .integration-matrix__grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 640px) {
@@ -1137,6 +1177,25 @@
         <div class="roi-item">
           <h4>03 / Content Syndication</h4>
           <p>Recording and packaging keynote sessions into high-production B2B marketing assets for SAP's regional digital campaigns.</p>
+        </div>
+      </div>
+      <div class="integration-matrix">
+        <h2>Academic & Fan Integration</h2>
+        <div class="integration-matrix__grid">
+          <div>
+            <h3>The Hankamer School of Business</h3>
+            <ul class="integration-matrix__list">
+              <li><strong>Keynote Series:</strong> SAP executives can be integrated as guest lecturers for Baylor sports strategy and tech programs, creating a direct talent recruitment pipeline.</li>
+              <li><strong>Live Case Studies:</strong> SAP and Playfly can partner to let students analyze anonymized fan data, bridging athletics and academics.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Playfly App Integration</h3>
+            <ul class="integration-matrix__list">
+              <li><strong>Push Notifications:</strong> Strategic game-day alerts powered by SAP HANA can drive fans to live stat interfaces and keynote follow-up content.</li>
+              <li><strong>Data Value Loop:</strong> Fans get real-time analytics, Playfly captures accurate first-party user data, and SAP gets direct engagement with a projected 42% of the active audience.</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
