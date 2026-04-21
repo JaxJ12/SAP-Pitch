@@ -642,6 +642,53 @@
       margin-top: 18px;
     }
 
+    .recap-table-shell {
+      margin-top: 20px;
+      padding: 24px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(181, 199, 221, 0.08);
+    }
+
+    .recap-table-shell h3 {
+      margin: 0;
+      font-size: 1.12rem;
+      letter-spacing: -0.02em;
+    }
+
+    .recap-table-shell p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.72;
+    }
+
+    .recap-table {
+      width: 100%;
+      margin-top: 18px;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .recap-table th,
+    .recap-table td {
+      padding: 12px 10px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid rgba(181, 199, 221, 0.1);
+    }
+
+    .recap-table th {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(181, 199, 221, 0.74);
+    }
+
+    .recap-table td strong {
+      color: var(--text);
+    }
+
     .cta-panel {
       text-align: center;
     }
@@ -666,7 +713,8 @@
       transform: translateX(-50%);
       display: flex;
       gap: clamp(0.6rem, 0.95vw, 0.95rem);
-      width: min(1000px, calc(100% - 24px));
+      width: max-content;
+      max-width: calc(100% - 24px);
       justify-content: center;
       overflow-x: auto;
       overflow-y: hidden;
@@ -946,7 +994,7 @@
           <div class="terminal__meta">
             <div class="terminal__metric">
               <p class="metric__label">Core vendors</p>
-              <strong>Nielsen | Zoomph | Wakefield</strong>
+              <strong>Nielsen | Zoomph | Wakefield Services</strong>
             </div>
             <div class="terminal__metric">
               <p class="metric__label">Primary outputs</p>
@@ -1009,22 +1057,22 @@
         <div class="vendor-grid">
           <article class="card">
             <span class="logo-chip">Nielsen</span>
-            <h3>Broadcast & Reach</h3>
+            <h3>TV, Radio & Reach</h3>
             <h4>Total audience accountability</h4>
-            <p>Utilizing Nielsen to quantify total in-home and out-of-home TV audience, ensuring every second of LED sideline signage and jersey patch exposure is measured with enterprise-grade discipline.</p>
+            <p>Utilizing Nielsen to quantify total in-home and out-of-home TV and radio audience, ensuring every second of jersey patch exposure and each three-spot sideline LED rotation is measured with enterprise-grade discipline.</p>
           </article>
 
           <article class="card">
             <span class="logo-chip">Zoomph</span>
             <h3>Digital & Social Valuation</h3>
             <h4>Inventory-level post value</h4>
-            <p>Deploying Zoomph to track impressions, engagement, and monetary post value across the exact SAP inventory of X, LinkedIn, and Instagram Key Stat campaigns, app storytelling, and digital recap content.</p>
+            <p>Deploying Zoomph to track impressions, engagement, and monetary post value across five Key Stat posts on X/Twitter, five on LinkedIn, and five on Instagram, alongside app storytelling and digital recap content.</p>
           </article>
 
           <article class="card">
-            <span class="logo-chip">Wakefield</span>
+            <span class="logo-chip">Wakefield Services</span>
             <h3>Qualitative Mindset Shifts</h3>
-            <h4>Brand trust and relevance</h4>
+            <h4>Qualitative surveys</h4>
             <p>Executing deep-dive qualitative surveys to track how the SAP partnership changes brand perception, trust, and relevance among key B2B decision-makers tied to Baylor's broader athletics audience.</p>
           </article>
         </div>
@@ -1048,7 +1096,7 @@
           <div class="metric-box">
             <p class="metric__label">Control discipline</p>
             <strong>Matched survey design</strong>
-            <span>Separates real brand lift from inflated game-day enthusiasm or convenience sampling bias.</span>
+            <span>Separates real brand lift from inflated game-day enthusiasm by matching against the total Baylor fan database population.</span>
           </div>
         </div>
       </div>
@@ -1061,7 +1109,7 @@
             <p class="kicker">The seller's story</p>
             <h2>The Cross-Channel Lift Multiplier</h2>
             <p>The data is clear: isolated assets generate isolated awareness. True brand preference is unlocked through ecosystem integration. That is why this proposal is built as a system rather than a pile of disconnected logo placements.</p>
-            <p>Playfly's framework measures fans and business audiences who recognize SAP across <strong>multiple touchpoints</strong>: seeing the jersey patch, engaging with the mobile app, and entering SAP-branded premium spaces. Those audiences consistently show stronger brand trust and stronger B2B preference than groups exposed to only one asset.</p>
+            <p>Playfly's framework measures fans and business audiences who recognize SAP across <strong>three or more touchpoints</strong>: seeing the jersey patch, engaging with the mobile app, and entering SAP-branded premium spaces. In the Year 1 model, that repeated exposure produces a projected <strong>2.4x cross-channel lift</strong> in brand trust and B2B preference relative to audiences exposed to only one asset.</p>
             <p>That matters because SAP is not buying attention alone. SAP is buying a more credible, more repeated, and more contextual presence inside the Baylor ecosystem.</p>
           </article>
 
@@ -1101,7 +1149,7 @@
             <article class="method-card">
               <span class="check">+</span>
               <h3>Population Matching</h3>
-              <p>Survey samples are matched to reflect the overall demographic makeup of the Baylor Athletics fan database rather than a narrow subset of attendees.</p>
+              <p>Wakefield Services survey samples are matched to reflect the overall demographic makeup of the total Baylor Athletics fan database rather than a narrow subset of attendees.</p>
               <ul>
                 <li>Keeps the sample aligned to the real Baylor audience.</li>
                 <li>Improves confidence in year-over-year comparisons.</li>
@@ -1128,7 +1176,60 @@
           <article class="recap-copy">
             <p class="kicker">The annual recap</p>
             <h2>How the proof gets packaged for SAP leadership.</h2>
-            <p>The recap is designed like an enterprise dashboard, not a scrapbook. Each quarter and at year-end, Playfly can summarize the partnership in language that matters to a boardroom audience:</p>
+            <p>The recap is designed like an enterprise dashboard, not a scrapbook. Each quarter and at year-end, Playfly can summarize the partnership in language that matters to a boardroom audience.</p>
+            <div class="recap-table-shell">
+              <h3>Projected Year 1 Outcomes</h3>
+              <p>Nielsen covers TV and radio reach, Zoomph values the social inventory, and Wakefield Services captures the mindset shifts that justify SAP paying a premium for this partnership.</p>
+              <table class="recap-table">
+                <thead>
+                  <tr>
+                    <th>Category</th>
+                    <th>Metric</th>
+                    <th>Year 1 Projection</th>
+                    <th>Measurement Vendor</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Broadcast Reach</strong></td>
+                    <td>Total TV/Radio Impressions</td>
+                    <td>12.5M+</td>
+                    <td>Nielsen</td>
+                  </tr>
+                  <tr>
+                    <td><strong>In-Person Reach</strong></td>
+                    <td>Total Attendance (All Venues)</td>
+                    <td>350,000+</td>
+                    <td>Playfly / Venue Services</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Social Valuation</strong></td>
+                    <td>Engagement &amp; Post Value</td>
+                    <td>$1.2M</td>
+                    <td>Zoomph</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Digital Engagement</strong></td>
+                    <td>App Open Rate (Active Users)</td>
+                    <td>42%</td>
+                    <td>Playfly Digital</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Brand Lift (Trust)</strong></td>
+                    <td>Increase in B2B Trust Score</td>
+                    <td>+18%</td>
+                    <td>Wakefield Services</td>
+                  </tr>
+                  <tr>
+                    <td><strong>System Multiplier</strong></td>
+                    <td>Cross-Channel Exposure Lift</td>
+                    <td>2.4x</td>
+                    <td>Wakefield Services</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Each quarter and at year-end, Playfly can summarize the partnership in language that matters to a boardroom audience:</p>
             <ul>
               <li>What total reach was generated across broadcast, in-venue, and digital inventory.</li>
               <li>What cross-channel lift appeared when audiences encountered SAP in multiple contexts.</li>
@@ -1185,6 +1286,11 @@
     <div>
       <p class="site-footer__title">Baylor Athletics x SAP Partnership Proposal</p>
       <p class="site-footer__meta">Student Pitch - Baylor University S3E Program - Spring 2026</p>
+    </div>
+    <div class="site-footer__links">
+      <a href="index.html">Overview</a>
+      <a href="measurement.html">Measurement</a>
+      <a href="contact.html">Contact</a>
     </div>
     <p class="site-footer__legal">Baylor Sports Properties powered by Playfly</p>
   </footer>

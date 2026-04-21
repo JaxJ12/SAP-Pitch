@@ -735,7 +735,8 @@
       transform: translateX(-50%);
       display: flex;
       gap: clamp(0.6rem, 0.95vw, 0.95rem);
-      width: min(1000px, calc(100% - 24px));
+      width: max-content;
+      max-width: calc(100% - 24px);
       justify-content: center;
       overflow-x: auto;
       overflow-y: hidden;

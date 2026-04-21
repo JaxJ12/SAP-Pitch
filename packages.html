@@ -713,7 +713,8 @@
       transform: translateX(-50%);
       display: flex;
       gap: clamp(0.6rem, 0.95vw, 0.95rem);
-      width: min(1000px, calc(100% - 24px));
+      width: max-content;
+      max-width: calc(100% - 24px);
       justify-content: center;
       overflow-x: auto;
       overflow-y: hidden;
@@ -1123,7 +1124,7 @@
       <div class="measurement-panel">
         <p class="eyebrow">Playfly Proof Layer</p>
         <h3>See the full measurement framework built for SAP.</h3>
-        <p>The dedicated Measurement page expands this section into an enterprise-grade ROI story, naming the vendor stack, explaining the cross-channel lift model, and showing the survey controls that protect the proposal from weak methodology.</p>
+        <p>The dedicated Measurement page expands this section into an enterprise-grade ROI story, naming Nielsen, Zoomph, and Wakefield Services, explaining the cross-channel lift model, and showing the survey controls that protect the proposal from weak methodology.</p>
         <div class="measurement-panel__actions">
           <a class="button button--primary" href="measurement.html">Open Measurement Framework</a>
           <a class="button" href="contact.html">Review Executive Brief</a>
@@ -1143,7 +1144,7 @@
           </div>
           <div class="metric">
             <p class="metric__label">Exact Inventory</p>
-            <strong>App Takeover + 5 'Key Stat' Social Posts + 6 LED Banners/Game</strong>
+            <strong>App Takeover + Five (5) Key Stat posts on X/Twitter + Five (5) on LinkedIn + Five (5) on Instagram + Three (3) rotating 15-second sideline LED spots per half</strong>
           </div>
         </div>
       </article>
@@ -1160,6 +1161,11 @@
   <footer class="site-footer" aria-label="Proposal footer">
     <p class="site-footer__title">Baylor Athletics x SAP Partnership Proposal</p>
     <p class="site-footer__meta">Student Pitch • Baylor University S3E Program • Spring 2026</p>
+    <div class="site-footer__links">
+      <a href="index.html">Overview</a>
+      <a href="measurement.html">Measurement</a>
+      <a href="contact.html">Contact</a>
+    </div>
     <p class="site-footer__legal">Baylor Sports Properties powered by Playfly</p>
   </footer>
 
