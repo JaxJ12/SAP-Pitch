@@ -1006,6 +1006,89 @@
         </div>
       </div>
     </section>
+    <section class="contact" id="contact-form">
+      <div class="contact__inner">
+        <aside class="contact-panel">
+          <p class="eyebrow">Official contact</p>
+          <h2>Luke Holcomb</h2>
+          <p>Corporate Partnerships · Baylor Sports Properties powered by Playfly</p>
+          <div class="contact-pills">
+            <span class="contact-pill">Official channel</span>
+            <span class="contact-pill">Boardroom brief ready</span>
+            <span class="contact-pill">Enterprise negotiation path</span>
+          </div>
+          <div class="info-block">
+            <h3>Email</h3>
+            <p><a href="mailto:Luke_Holcomb@baylor.edu">Luke_Holcomb@baylor.edu</a></p>
+          </div>
+          <div class="info-block">
+            <h3>Recommended sequence</h3>
+            <ul class="list">
+              <li>Confirm whether the conversation is about enterprise integration only or includes the custom jersey patch track.</li>
+              <li>Identify which activation lane should anchor the follow-up: suites, keynotes, or SAP App intelligence.</li>
+              <li>Use the printable brief if the conversation needs a boardroom summary before a formal response.</li>
+            </ul>
+          </div>
+        </aside>
+        <div class="form-shell">
+          <p class="eyebrow">Inquiry form</p>
+          <h2>Start the email handoff</h2>
+          <p>The form still uses the current official backend flow. Submitting it opens a prefilled email draft addressed to Luke Holcomb so the inquiry can be sent directly through the correct contact channel with a clear record of the activation path, package interest, and next-step intent.</p>
+          <div class="process-grid" aria-hidden="true">
+            <div class="process-card">
+              <strong>Step 01</strong>
+              <span>Choose the activation path you want to discuss first.</span>
+            </div>
+            <div class="process-card">
+              <strong>Step 02</strong>
+              <span>Open the prefilled email draft through the official contact route.</span>
+            </div>
+            <div class="process-card">
+              <strong>Step 03</strong>
+              <span>Use the printable brief if leadership needs a one-page leave-behind.</span>
+            </div>
+          </div>
+          <form id="contactForm" class="form" onsubmit="submitForm(event)">
+            <div class="field">
+              <label for="first_name">First name *</label>
+              <input id="first_name" name="first_name" type="text" placeholder="Dan" required="">
+            </div>
+            <div class="field">
+              <label for="last_name">Last name *</label>
+              <input id="last_name" name="last_name" type="text" placeholder="Fleetwood" required="">
+            </div>
+            <div class="field">
+              <label for="company">Organization *</label>
+              <input id="company" name="company" type="text" placeholder="SAP" required="">
+            </div>
+            <div class="field">
+              <label for="email">Work email *</label>
+              <input id="email" name="email" type="email" placeholder="dan@sap.com" required="">
+            </div>
+            <div class="field field--full">
+              <label for="interest">Primary interest *</label>
+              <select id="interest" name="interest" required="">
+                <option value="">Select an activation focus</option>
+                <option>Enterprise integration package</option>
+                <option>First-mover jersey patch</option>
+                <option>Suites and executive hospitality</option>
+                <option>Monthly keynote series</option>
+                <option>SAP App intelligence</option>
+              </select>
+            </div>
+            <div class="field field--full">
+              <label for="message">Message *</label>
+              <textarea id="message" name="message" placeholder="We would like to review the enterprise integration structure and discuss how the keynote platform could support SAP's regional executive engagement goals." required=""></textarea>
+            </div>
+            <div class="form-actions">
+              <button class="button button--primary" id="submitBtn" type="submit">Open Official Inquiry</button>
+              <div class="form-note">Submitting this form opens a prefilled email draft addressed to the official Baylor Sports Properties contact.</div>
+              <div class="success" id="formSuccess">Your email draft is ready. If your email client did not open automatically, send your note directly to Luke_Holcomb@baylor.edu.</div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
     <section class="brief-summary">
       <div class="brief-summary__inner">
         <div class="brief-summary__grid">
@@ -1100,89 +1183,6 @@
               <li>Authorize the official Baylor Sports Properties follow-up and establish the KPI reporting cadence expected by SAP leadership.</li>
             </ul>
           </article>
-        </div>
-      </div>
-    </section>
-    <section class="contact" id="contact-form">
-      <div class="contact__inner">
-        <aside class="contact-panel">
-          <p class="eyebrow">Official contact</p>
-          <h2>Luke Holcomb</h2>
-          <p>Corporate Partnerships · Baylor Sports Properties powered by Playfly</p>
-          <div class="contact-pills">
-            <span class="contact-pill">Official channel</span>
-            <span class="contact-pill">Boardroom brief ready</span>
-            <span class="contact-pill">Enterprise negotiation path</span>
-          </div>
-          <div class="info-block">
-            <h3>Email</h3>
-            <p><a href="mailto:Luke_Holcomb@baylor.edu">Luke_Holcomb@baylor.edu</a></p>
-          </div>
-          <div class="info-block">
-            <h3>Recommended sequence</h3>
-            <ul class="list">
-              <li>Confirm whether the conversation is about enterprise integration only or includes the custom jersey patch track.</li>
-              <li>Identify which activation lane should anchor the follow-up: suites, keynotes, or SAP App intelligence.</li>
-              <li>Use the printable brief if the conversation needs a boardroom summary before a formal response.</li>
-            </ul>
-          </div>
-        </aside>
-        <div class="form-shell">
-          <p class="eyebrow">Inquiry form</p>
-          <h2>Start the email handoff</h2>
-          <p>The form still uses the current official backend flow. Submitting it opens a prefilled email draft addressed to Luke Holcomb so the inquiry can be sent directly through the correct contact channel with a clear record of the activation path, package interest, and next-step intent.</p>
-          <div class="process-grid" aria-hidden="true">
-            <div class="process-card">
-              <strong>Step 01</strong>
-              <span>Choose the activation path you want to discuss first.</span>
-            </div>
-            <div class="process-card">
-              <strong>Step 02</strong>
-              <span>Open the prefilled email draft through the official contact route.</span>
-            </div>
-            <div class="process-card">
-              <strong>Step 03</strong>
-              <span>Use the printable brief if leadership needs a one-page leave-behind.</span>
-            </div>
-          </div>
-          <form id="contactForm" class="form" onsubmit="submitForm(event)">
-            <div class="field">
-              <label for="first_name">First name *</label>
-              <input id="first_name" name="first_name" type="text" placeholder="Dan" required="">
-            </div>
-            <div class="field">
-              <label for="last_name">Last name *</label>
-              <input id="last_name" name="last_name" type="text" placeholder="Fleetwood" required="">
-            </div>
-            <div class="field">
-              <label for="company">Organization *</label>
-              <input id="company" name="company" type="text" placeholder="SAP" required="">
-            </div>
-            <div class="field">
-              <label for="email">Work email *</label>
-              <input id="email" name="email" type="email" placeholder="dan@sap.com" required="">
-            </div>
-            <div class="field field--full">
-              <label for="interest">Primary interest *</label>
-              <select id="interest" name="interest" required="">
-                <option value="">Select an activation focus</option>
-                <option>Enterprise integration package</option>
-                <option>First-mover jersey patch</option>
-                <option>Suites and executive hospitality</option>
-                <option>Monthly keynote series</option>
-                <option>SAP App intelligence</option>
-              </select>
-            </div>
-            <div class="field field--full">
-              <label for="message">Message *</label>
-              <textarea id="message" name="message" placeholder="We would like to review the enterprise integration structure and discuss how the keynote platform could support SAP's regional executive engagement goals." required=""></textarea>
-            </div>
-            <div class="form-actions">
-              <button class="button button--primary" id="submitBtn" type="submit">Open Official Inquiry</button>
-              <div class="form-note">Submitting this form opens a prefilled email draft addressed to the official Baylor Sports Properties contact.</div>
-              <div class="success" id="formSuccess">Your email draft is ready. If your email client did not open automatically, send your note directly to Luke_Holcomb@baylor.edu.</div>
-            </div>
-          </form>
         </div>
       </div>
     </section>
