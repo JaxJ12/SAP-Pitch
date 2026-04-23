@@ -735,6 +735,31 @@
     }
     @page { size: letter portrait; margin: 0.35in; }
 
+    
+    .price-box {
+      background: rgba(15, 124, 201, 0.12);
+      border: 1px solid rgba(15, 124, 201, 0.35);
+      border-radius: 14px;
+      padding: 1.25rem 1.5rem;
+      margin-top: 1rem;
+      color: rgba(255,255,255,0.9);
+    }
+    .price-box h3 {
+      margin: 0 0 0.25rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+    }
+    .price-box .amount {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--gold, #ffb81c);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin: 0.25rem 0 0;
+    }
     @media print {
       .page-transition,.hero,.print-bar,.brief-summary,.contact,
       .site-footer,.nav-island,.site-assistant,.op-print-btn
@@ -853,398 +878,246 @@
   </style>
 </head>
 <body style="">
-  <div class="page-transition" aria-hidden="true"><div class="page-transition__panel" style="opacity: 0; width: min(34vw, 460px); height: min(22vw, 300px); border-radius: 28px; transform: translate(-50%, -50%) scale(0.88);"></div></div>
-  <div class="print-onepager">
-    <div class="op-pg">
+  <style>
+  .premium-brief {
+    max-width: 1050px;
+    margin: 6rem auto 4rem;
+    padding: 0 1.5rem;
+    font-family: "Space Grotesk", sans-serif;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  .brief-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .brief-header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(90deg, #ffffff, #8ba8cc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .brief-header p {
+    color: #0f7cc9;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 1rem;
+  }
+  .glass-panel {
+    background: rgba(16, 28, 43, 0.6);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
+    position: relative;
+    overflow: hidden;
+  }
+  .glass-panel::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 4px;
+    background: linear-gradient(90deg, #0f7cc9, #ffb81c);
+  }
+  .grid-2-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+  .brief-section h2 {
+    font-size: 1.4rem;
+    color: #ffffff;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .brief-section h3 {
+    font-size: 1.05rem;
+    color: #ffb81c;
+    margin-bottom: 0.5rem;
+  }
+  .brief-section p, .brief-section li {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(225, 232, 240, 0.8);
+    margin-bottom: 1rem;
+  }
+  .brief-section ul {
+    padding-left: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+  .roi-callout {
+    background: rgba(255, 184, 28, 0.1);
+    border-left: 3px solid #ffb81c;
+    padding: 1rem 1.2rem;
+    border-radius: 0 8px 8px 0;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #ffd97c;
+  }
+  .pricing-hero {
+    background: radial-gradient(circle at center, rgba(15, 124, 201, 0.2), transparent 70%), rgba(10, 18, 30, 0.9);
+    border: 1px solid #0f7cc9;
+    text-align: center;
+    padding: 3.5rem 2rem;
+    border-radius: 16px;
+    margin-top: 3rem;
+  }
+  .pricing-hero h2 {
+    color: #0f7cc9;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+    border: none;
+    justify-content: center;
+  }
+  .pricing-hero .total-price {
+    font-size: 4.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 30px rgba(15, 124, 201, 0.5);
+  }
+  .pricing-hero .roi-badge {
+    display: inline-block;
+    background: #ffb81c;
+    color: #101c2b;
+    font-weight: 700;
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+  }
+  .staggered-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    text-align: left;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  .staggered-tier h4 {
+    font-size: 1.1rem;
+    color: #fff;
+    margin-bottom: 0.25rem;
+  }
+  .staggered-tier .tier-price {
+    font-size: 1.5rem;
+    color: #ffb81c;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+  .staggered-tier p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+  }
+  @media (max-width: 768px) {
+    .grid-2-col, .staggered-grid { grid-template-columns: 1fr; }
+    .pricing-hero .total-price { font-size: 3rem; }
+  }
+  </style>
 
-      <!-- ═══════════════════ PAGE 1 — FRONT ═══════════════════ -->
-      <div class="op-page op-page--1">
+  <div class="page-transition" aria-hidden="true"><div class="page-transition__panel"></div></div>
 
-        <div class="op-hd">
-          <div>
-            <span class="op-hd__brand">Baylor Athletics &times; SAP</span>
-            <span class="op-hd__sub">Multi-Year Enterprise Partnership Proposal &mdash; 2027 Launch</span>
-          </div>
-          <div class="op-hd__right">
-            baylor-sap.vercel.app<br>
-            Scott.Yacyshyn@Playfly.com
-          </div>
-        </div>
-        <div class="op-rule"></div>
+  <main class="premium-brief">
 
-        <div class="op-hl">
-          <h1 class="op-hl__h">The Only Partnership That Makes SAP<br><span>Impossible to Ignore in Central Texas</span></h1>
-          <p class="op-hl__p">A structural, multi-year enterprise sponsorship addressing all four of SAP's strategic pillars simultaneously — brand, demand generation, sustainability, and talent. Not a campaign. A platform.</p>
-        </div>
+    <div class="brief-header">
+      <h1>Baylor Athletics &times; SAP</h1>
+      <p>Confidential Executive Brief &bull; 2027 Launch</p>
+    </div>
 
-        <div class="op-kpi">
-          <div class="op-kpi__cell">
-            <span class="op-kpi__n op-kpi__n--b">$1.5M–$2.0M</span>
-            <span class="op-kpi__l">Annual Platform Entry Point</span>
-          </div>
-          <div class="op-kpi__cell">
-            <span class="op-kpi__n op-kpi__n--g">$10M–$16M</span>
-            <span class="op-kpi__l">Projected 3-Year Total Value</span>
-          </div>
-          <div class="op-kpi__cell">
-            <span class="op-kpi__n">300K+</span>
-            <span class="op-kpi__l">Annual C-Suite Touchpoints</span>
-          </div>
-          <div class="op-kpi__cell">
-            <span class="op-kpi__n">75K+</span>
-            <span class="op-kpi__l">Baylor Alumni in DFW &amp; Austin</span>
-          </div>
-          <div class="op-kpi__cell">
-            <span class="op-kpi__n op-kpi__n--b">Zero</span>
-            <span class="op-kpi__l">Enterprise Software Competitors in Category</span>
-          </div>
-          <div class="op-kpi__cell">
-            <span class="op-kpi__n">2027</span>
-            <span class="op-kpi__l">Target Activation Launch</span>
-          </div>
-        </div>
-
-        <div class="op-div">SAP Strategic Pillars — Why This Partnership Works</div>
-
-        <div class="op-pillars">
-          <div class="op-pill">
-            <p class="op-pill__num">Pillar 01</p>
-            <h3 class="op-pill__title">Brand Awareness &amp; VIK Integration</h3>
-            <ul class="op-pill__list">
-              <li><strong>Value-in-Kind (VIK):</strong> Baylor Athletics formally adopts SAP Analytics Cloud, replacing legacy backend systems. SAP earns exclusive category ownership and a live Power 4 reference story.</li>
-              <li><strong>Sapphire &amp; TechEd:</strong> Baylor becomes a featured case study at SAP's global conferences — extending the brand far beyond Central Texas to a worldwide B2B audience.</li>
-              <li><strong>No Competitor Conflict:</strong> Microsoft's Big 12 Surface tablet deal is a conference-level hardware agreement. SAP enters as Baylor's exclusive school-level enterprise software partner — a completely separate category.</li>
-              <li><strong>Reference Story Engine:</strong> Hankamer School of Business + S3E co-author ongoing Sapphire/TechEd presentations, giving SAP a credible academic proof point for enterprise sales.</li>
-            </ul>
-          </div>
-          <div class="op-pill">
-            <p class="op-pill__num">Pillar 02</p>
-            <h3 class="op-pill__title">Mid-Market Demand Generation</h3>
-            <ul class="op-pill__list">
-              <li><strong>I-35 Corridor Lock:</strong> Waco–Dallas–Austin is the highest concentration of SAP's $500M–$2B target companies in Texas. Baylor owns this corridor at the executive level — no other property does.</li>
-              <li><strong>Executive Huddle:</strong> 12 Baylor Club B2B events per year put SAP in a room with CFOs, CTOs, and COOs in a captive, premium setting. Modeled on the 49ers' proven executive engagement playbook.</li>
-              <li><strong>In-App B2B Funnel:</strong> "Learn How SAP Powers This" in-app module routes educated fans directly to SAP's mid-market sales team. Every attendee becomes a potential prospect.</li>
-              <li><strong>Market Comp:</strong> UNLV (Group of 5) secured $2.2M/yr for a jersey patch. Baylor as a Power 4 school with a premier business program commands a measurable premium above that floor.</li>
-            </ul>
-          </div>
-          <div class="op-pill">
-            <p class="op-pill__num">Pillar 03</p>
-            <h3 class="op-pill__title">Sustainable &amp; Always-On Partnership</h3>
-            <ul class="op-pill__list">
-              <li><strong>Multi-Year Compounding Value:</strong> Year 1 proves the model. Year 2 scales the jersey patch. Year 3 produces the complete Sapphire/TechEd case study. Each season stacks new executives, new data, and deeper integration.</li>
-              <li><strong>Always-On Content Engine:</strong> SAP is named in every Baylor Athletics press release, radio broadcast, TV coverage, and digital story — 365 days a year. This is not a game-day logo. It is a year-round media platform.</li>
-              <li><strong>Co-Branded Social Media:</strong> Bi-weekly "How SAP Powers Baylor Game Day" content across X, Instagram, and LinkedIn reaches Baylor's 500K+ combined following with B2B-relevant storytelling.</li>
-              <li><strong>ESG &amp; Sustainability:</strong> SAP's environmental initiatives co-branded through Baylor's green stadium operations and community programs — global brand purpose with local, measurable proof.</li>
-            </ul>
-          </div>
-          <div class="op-pill">
-            <p class="op-pill__num">Pillar 04</p>
-            <h3 class="op-pill__title">Employee Engagement &amp; Talent Pipeline</h3>
-            <ul class="op-pill__list">
-              <li><strong>S3E &amp; University Alliance:</strong> Baylor's Center for Sports Strategy and Sales becomes an official SAP University Alliance partner, connecting top Hankamer business students directly to SAP's talent acquisition pipeline.</li>
-              <li><strong>Employee Hospitality:</strong> Dedicated SAP employee perks packages — premium suite access at McLane Stadium and Foster Pavilion — drive internal engagement and culture well beyond the office.</li>
-              <li><strong>Hankamer Joint Research:</strong> Co-produced faculty case studies amplify SAP's thought leadership in the higher-education and live-event verticals for enterprise sales and recruiting purposes.</li>
-              <li><strong>Next-Gen Advocates:</strong> Baylor students actively co-author SAP's Sapphire and TechEd conference presentations, building a sustained pipeline of SAP-certified graduates entering the workforce every year.</li>
-            </ul>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- ═══════════════════ PAGE 2 — BACK ═══════════════════ -->
-      <div class="op-page op-page--2">
-
-        <div class="op-back">
-          <strong>Execution Detail &mdash; Assets, Measurement &amp; The Ask</strong>
-          <span>Baylor Athletics &times; SAP &mdash; Page 2 of 2</span>
-        </div>
-        <div class="op-rule"></div>
-
-        <div class="op-cols">
-          <div class="op-col">
-            <h3 class="op-col__h">5 Core Communication Assets</h3>
-            <ul class="op-col__list">
-              <li><strong>1. Flagship Jersey Patch:</strong> First Power 4 program in the South to carry an enterprise software patch. Highest-visibility broadcast asset in the portfolio — on-screen for every televised game. Custom valuation track initiated post Year 1 proof. UNLV (G5) sets the $2.2M/yr floor; Baylor commands a Power 4 premium above it.</li>
-              <li><strong>2. SAP Game Center App:</strong> Full in-app digital takeover for all home football and basketball games. Fans don't just see a logo — they interact with SAP-powered live analytics and receive a direct prompt: "Run your business like Baylor runs Game Day."</li>
-              <li><strong>3. LED Sideline Signage:</strong> Three 15-second rotating spots per half plus a pre-game 360-degree ring activation at McLane Stadium. Broadcast-visible on all regional and national television coverage, captured by Nielsen.</li>
-              <li><strong>4. Executive Keynote Series:</strong> Total physical room ownership and branding rights for 12 annual Baylor Club B2B networking events. SAP-moderated panel discussions, executive showcases, and pipeline-generating receptions included as standard.</li>
-              <li><strong>5. Co-Branded Digital Content:</strong> Five (5) high-value posts per season (2 on X, 2 on LinkedIn, 1 on Instagram) as the exclusive "Key Stat of the Week" sponsor — distributed to Baylor Athletics' 500K+ combined social following with verified B2B reach.</li>
-            </ul>
-          </div>
-          <div class="op-col">
-            <h3 class="op-col__h">Measurement &amp; Accountability</h3>
-            <ul class="op-col__list">
-              <li><strong>Nielsen Sports:</strong> Gold-standard broadcast TV audience tracking and logo exposure valuation across all nationally and regionally televised Baylor games. Provides the hard media equivalency number for internal SAP ROI reporting.</li>
-              <li><strong>Zoomph:</strong> Social media exposure valuation and real-time digital impression measurement across all platforms. SAP's marketing team receives dashboard access to monitor performance in-season, updated continuously.</li>
-              <li><strong>Wakefield Research:</strong> Population-matched survey sampling measuring unaided brand awareness lift, executive purchase intent, and B2B audience trust among Baylor event attendees. Qualitative proof layer stacked on top of Nielsen and Zoomph quantitative data.</li>
-              <li><strong>Quarterly Pillar Scorecard:</strong> All four SAP strategic pillars tracked against agreed KPIs and delivered to SAP leadership every 90 days. Built specifically to mirror SAP's internal executive reporting framework — designed so any SAP manager can justify the investment upward without additional work.</li>
-              <li><strong>Annual Comprehensive Recap:</strong> Full-year performance review delivered by Baylor Sports Properties powered by Playfly — including media value, pipeline attribution, survey results, case study outputs, and Year 2 expansion recommendations with supporting data.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="op-moat">
-          <p class="op-moat__h">&#9632; Why This Cannot Be Replicated — The Competitive Moat</p>
-          <div class="op-moat__grid">
-            <div class="op-moat__item">
-              <strong>Zero Competitor Access</strong>
-              <p>No other enterprise software company can enter this category at Baylor once SAP moves first. The first-mover permanently locks the entire enterprise software sector across Baylor Athletics. There is no second opportunity.</p>
-            </div>
-            <div class="op-moat__item">
-              <strong>Live Reference Architecture</strong>
-              <p>SAP Analytics Cloud operating inside a live Power 4 athletics program is a case study no other school can offer at this scale or brand equity. This becomes SAP's most compelling mid-market sales proof point for the higher-education vertical.</p>
-            </div>
-            <div class="op-moat__item">
-              <strong>I-35 Corridor Ownership</strong>
-              <p>Baylor permanently blocks any enterprise software competitor from owning the Waco–Dallas–Austin mid-market B2B corridor through sports sponsorship. The right 300,000 decision-makers beats the wrong 3 million casual fans every time.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="op-ask">
-          <div>
-            <span class="op-ask__tag">The Ask — 2027 Launch Recommendation</span>
-            <h2 class="op-ask__h">$1.5M–$2.0M Platform + Jersey Patch on Custom Power 4 Track</h2>
-            <p class="op-ask__p">Approve the integrated enterprise platform across Premium Environments, Keynote Series, and SAP App Intelligence for Year 1. Jersey patch rights are scoped on a separate custom valuation track following Year 1 performance proof — with a 3-year total projected value of <strong>$10M–$16M</strong>. Platform pricing reflects comparable P4 enterprise deals; patch pricing is anchored above the UNLV G5 floor of $2.2M/yr. Baylor Sports Properties powered by Playfly manages all activation, measurement, and reporting.</p>
-          </div>
-          <div class="op-ask__right">
-            <span class="op-ask__name">Scott Yacyshyn</span>
-            <span class="op-ask__role">Director of Partnership Sales<br>Baylor Sports Properties powered by Playfly</span>
-            <span class="op-ask__email">Scott.Yacyshyn@Playfly.com</span>
-          </div>
-        </div>
-
+    <div class="glass-panel">
+      <div class="brief-section">
+        <h2>The Strategic Opportunity</h2>
+        <p>Currently, SAP lacks a major college athletics presence in the American South. Baylor Athletics provides the ultimate entry point into the <strong>I-35 Corridor (Dallas, Waco, Austin)</strong>—the fastest-growing mid-market business sector in the United States. This partnership directly targets the $500M–$2B enterprise demographic, aggressively shedding the notion that SAP is "only for big business."</p>
       </div>
     </div>
-    <div class="op-print-btn" style="text-align:center;padding:28px 0 0;display:flex;gap:12px;justify-content:center;">
-      <button onclick="window.print()" style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 28px;border:1px solid #0f7cc9;border-radius:999px;background:#0f7cc9;color:#fff;font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;">Print / Save as PDF</button>
+
+    <div class="grid-2-col">
+      <div class="glass-panel brief-section">
+        <h2>The "Business Back" Anchor</h2>
+        <p>This is not a traditional sports sponsorship; it is a live technology reference story.</p>
+        <ul>
+          <li><strong>VIK Tech Migration:</strong> Anchored by a formal Value-in-Kind (VIK) commercial agreement, Baylor adopts <strong>SAP Analytics Cloud</strong> to run stadium operations and backend infrastructure.</li>
+          <li><strong>First-Mover Jersey Patch:</strong> Launching in 2027, the SAP logo on Baylor basketball jerseys serves as the highly visible, on-court symbol of our backend tech migration.</li>
+          <li><strong>Sapphire &amp; TechEd:</strong> Baylor becomes a living B2B tech case study that global sales teams can leverage at major tech conferences.</li>
+        </ul>
+        <div class="roi-callout">
+          &#8627; EXPECTED VALUE ADD: The Jersey Patch and broadcasts deliver an estimated $12M in annual media equivalence.
+        </div>
+      </div>
+
+      <div class="glass-panel brief-section">
+        <h2>Corporate Pillar Alignment</h2>
+        <p>We mapped this partnership directly to SAP's core corporate pillars to guarantee internal ROI:</p>
+        <ul>
+          <li><strong>The People Pillar (Employee Rewards):</strong> Exclusive access to McLane Stadium &amp; Foster Pavilion suites. Beyond game-day hosting, these act as <strong>weekday remote co-working hubs</strong> for SAP teams in Austin/Dallas.</li>
+          <li><strong>The Purpose Pillar (Academic Integration):</strong> SAP leadership embeds into Baylor's <strong>S3E program</strong>. Executives will teach analytics, advocate for zero-emissions, and build brand trust with elite Gen-Z talent.</li>
+        </ul>
+        <div class="roi-callout">
+          &#8627; EXPECTED VALUE ADD: Projected to generate $5M+ in B2B pipeline and reduce campus recruiting costs by 22%.
+        </div>
+      </div>
     </div>
-  </div>
-  <main>
-    <section class="hero">
-      <div class="hero__media">
-        <img src="mclane_stadium.png" alt="McLane Stadium and Baylor x SAP partnership environment" style="translate: none; rotate: none; scale: none; transform: scale(1.15, 1.15);">
-      </div>
-      <div class="hero__shade"></div>
-      <div class="hero__grid"></div>
-      <div class="hero__inner">
-        <div class="hero__copy">
-          <p class="eyebrow">Contact · Enterprise brief</p>
-          <h1 class="title">Move from presentation to <span>official handoff</span></h1>
-          <p class="lead">This page closes the pitch by summarizing the story, pricing logic, asset mix, and measurement model in one place. It gives judges and decision-makers a clean bridge from concept presentation to a professional sponsorship follow-up.</p>
-          <div class="hero__actions">
-            <a class="button button--primary" href="#contact-form">Open Inquiry Form</a>
-            <button class="button" type="button" onclick="window.print()">Print Action Brief</button>
-          </div>
+
+    <div class="glass-panel brief-section">
+      <h2>The "Multiplier Effect" Assets &amp; Measurement</h2>
+      <p>A CEO in Dallas sees the patch on TV, the LED takeover in the stadium, and the targeted social post in their LinkedIn feed the next morning.</p>
+      <div class="grid-2-col" style="margin-top: 1.5rem;">
+        <div>
+          <h3>1. Heavyweight Inventory Execution</h3>
+          <ul>
+            <li><strong>"SAP Stat of the Game":</strong> Thirty (30) high-value posts distributed across <strong>LinkedIn and X</strong> for every regular-season basketball game.</li>
+            <li><strong>LED Takeovers:</strong> Two (2) full minutes of exclusive, 360-degree LED ribbon board takeover per half.</li>
+            <li><strong>Naming Rights:</strong> Official naming rights to the "SAP Crunch Time" under-4-minute media timeout.</li>
+          </ul>
         </div>
-        <aside class="terminal">
-          <p class="terminal__label">Partnership architecture</p>
-          <h2 class="terminal__title">Enterprise integration first. Patch valuation separate.</h2>
-          <p class="terminal__copy">The negotiation model protects Baylor's flagship asset while giving SAP a clear annual integration path across suites, keynotes, and app intelligence.</p>
-          <div class="terminal__meta">
-            <div class="terminal__metric">
-              <p class="metric__label">Annual range</p>
-              <strong>$1.5M–$2.0M</strong>
-            </div>
-            <div class="terminal__metric">
-              <p class="metric__label">Patch path</p>
-              <strong>Custom Power 4 valuation</strong>
-            </div>
-          </div>
-          <a class="terminal__link" href="javascript:window.print()">View Printable Brief</a>
-        </aside>
-      </div>
-    </section>
-    <section class="print-bar">
-      <div class="print-bar__inner">
-        <div class="print-card">
-          <p>Use the one-pager when the room needs a fast board-level summary. It now captures story framing, rubric coverage, pricing architecture, and measures of success so the pitch can function as both a presentation and a leave-behind.</p>
-          <button class="button" type="button" onclick="window.print()">Print Action Steps</button>
+        <div>
+          <h3>2. Bulletproof Data Methodology</h3>
+          <ul>
+            <li><strong>Total Audience (Nielsen):</strong> Tracking exact linear TV viewership and in-stadium attendance.</li>
+            <li><strong>Digital Valuation (Zoomph):</strong> Calculating exact monetary value of cross-platform social posts.</li>
+            <li><strong>Qualitative Impact (Playfly Custom Analytics):</strong> Utilizing <strong>strict database population matching</strong> to measure actual mid-market B2B mindset shifts.</li>
+          </ul>
         </div>
       </div>
-    </section>
-    <section class="contact" id="contact-form">
-      <div class="contact__inner">
-        <aside class="contact-panel">
-          <p class="eyebrow">Official contact</p>
-          <h2>Scott Yacyshyn</h2>
-          <p>Director of Partnership Sales · Baylor Sports Properties powered by Playfly</p>
-          <div class="contact-pills">
-            <span class="contact-pill">Official channel</span>
-            <span class="contact-pill">Boardroom brief ready</span>
-            <span class="contact-pill">Enterprise negotiation path</span>
-          </div>
-          <div class="info-block">
-            <h3>Email</h3>
-            <p><a href="mailto:Scott.Yacyshyn@Playfly.com">Scott.Yacyshyn@Playfly.com</a></p>
-          </div>
-          <div class="info-block">
-            <h3>Recommended sequence</h3>
-            <ul class="list">
-              <li>Confirm whether the conversation is about enterprise integration only or includes the custom jersey patch track.</li>
-              <li>Identify which activation lane should anchor the follow-up: suites, keynotes, or SAP App intelligence.</li>
-              <li>Use the printable brief if the conversation needs a boardroom summary before a formal response.</li>
-            </ul>
-          </div>
-        </aside>
-        <div class="form-shell">
-          <p class="eyebrow">Inquiry form</p>
-          <h2>Start the email handoff</h2>
-          <p>The form still uses the current official backend flow. Submitting it opens a prefilled email draft addressed to Scott Yacyshyn so the inquiry can be sent directly through the correct contact channel with a clear record of the activation path, package interest, and next-step intent.</p>
-          <div class="process-grid" aria-hidden="true">
-            <div class="process-card">
-              <strong>Step 01</strong>
-              <span>Choose the activation path you want to discuss first.</span>
-            </div>
-            <div class="process-card">
-              <strong>Step 02</strong>
-              <span>Open the prefilled email draft through the official contact route.</span>
-            </div>
-            <div class="process-card">
-              <strong>Step 03</strong>
-              <span>Use the printable brief if leadership needs a one-page leave-behind.</span>
-            </div>
-          </div>
-          <form id="contactForm" class="form" onsubmit="submitForm(event)">
-            <div class="field">
-              <label for="first_name">First name *</label>
-              <input id="first_name" name="first_name" type="text" placeholder="Dan" required="">
-            </div>
-            <div class="field">
-              <label for="last_name">Last name *</label>
-              <input id="last_name" name="last_name" type="text" placeholder="Fleetwood" required="">
-            </div>
-            <div class="field">
-              <label for="company">Organization *</label>
-              <input id="company" name="company" type="text" placeholder="SAP" required="">
-            </div>
-            <div class="field">
-              <label for="email">Work email *</label>
-              <input id="email" name="email" type="email" placeholder="dan@sap.com" required="">
-            </div>
-            <div class="field field--full">
-              <label for="interest">Primary interest *</label>
-              <select id="interest" name="interest" required="">
-                <option value="">Select an activation focus</option>
-                <option>Enterprise integration package</option>
-                <option>First-mover jersey patch</option>
-                <option>Suites and executive hospitality</option>
-                <option>Monthly keynote series</option>
-                <option>SAP App intelligence</option>
-              </select>
-            </div>
-            <div class="field field--full">
-              <label for="message">Message *</label>
-              <textarea id="message" name="message" placeholder="We would like to review the enterprise integration structure and discuss how the keynote platform could support SAP's regional executive engagement goals." required=""></textarea>
-            </div>
-            <div class="form-actions">
-              <button class="button button--primary" id="submitBtn" type="submit">Open Official Inquiry</button>
-              <div class="form-note">Submitting this form opens a prefilled email draft addressed to the official Baylor Sports Properties contact.</div>
-              <div class="success" id="formSuccess">Your email draft is ready. If your email client did not open automatically, send your note directly to Scott.Yacyshyn@Playfly.com.</div>
-            </div>
-          </form>
+    </div>
+
+    <div class="pricing-hero">
+      <h2>Total 3-Year Partnership Agreement</h2>
+      <div class="total-price">$13,500,000</div>
+      <div class="roi-badge">Projected Blended ROI: 3.5x</div>
+      <div class="staggered-grid">
+        <div class="staggered-tier">
+          <h4>1. Base Enterprise Platform</h4>
+          <div class="tier-price">$1,850,000 / yr</div>
+          <p>Includes VIP Suites, Digital/Social Ownership, LED Takeovers, and Academic Keynotes. Cost is offset by the SAP Analytics Cloud VIK integration.</p>
+        </div>
+        <div class="staggered-tier">
+          <h4>2. Power 4 Jersey Patch Rights</h4>
+          <div class="tier-price">$2,650,000 / yr</div>
+          <p>Activates in 2027. Anchored securely above the established Group of 5 floor of $2.2M, ensuring total category dominance in the Big 12.</p>
         </div>
       </div>
-    </section>
-    <section class="brief-summary">
-      <div class="brief-summary__inner">
-        <div class="brief-summary__grid">
-          <article class="brief-summary__card">
-            <h3>Executive recommendation</h3>
-            <ul>
-              <li>Recommend a year-one enterprise integration package across suites, keynotes, and SAP App intelligence as the primary approval decision.</li>
-              <li>Use the jersey patch as a separate premium rights conversation once SAP confirms interest in a flagship visibility asset.</li>
-              <li>This sequencing lowers risk, protects Baylor's most valuable inventory, and still gives SAP a credible first-year business case.</li>
-            </ul>
-          </article>
+    </div>
 
-          <article class="brief-summary__card">
-            <h3>Why Baylor is the right property</h3>
-            <ul>
-              <li>Baylor combines Power 4 visibility, premium hospitality access, and a credible business environment through the Baylor Club.</li>
-              <li>The property supports both football visibility and Baylor basketball relevance, giving SAP a broader premium brand story.</li>
-              <li>The regional footprint aligns with SAP's need for executive access in Texas rather than generic national exposure.</li>
-            </ul>
-          </article>
-
-          <article class="brief-summary__card">
-            <h3>Commercial structure and asset discipline</h3>
-            <ul>
-              <li><strong>Enterprise integration platform: $1.5M–$2.0M annually</strong> — covers suites and executive hospitality, keynote event series, SAP App intelligence, LED signage, and co-branded digital content. This is the primary Year 1 ask.</li>
-              <li>Separate flagship valuation: jersey patch negotiated independently because first-mover scarcity and cross-sport visibility justify a premium track.</li>
-              <li>Minimum asset discipline: each activation should include at least five communication assets so the proposal demonstrates real execution planning, not just broad ideas.</li>
-            </ul>
-          </article>
-
-          <article class="brief-summary__card">
-            <h3>What should be measured and reported</h3>
-            <ul>
-              <li>Use one reporting structure across the whole deal: audience identification, engagement behavior, survey feedback, and business follow-up.</li>
-              <li>Track hosted guest mix, executive meetings created, keynote attendance quality, app engagement, and premium brand recall.</li>
-              <li>Run baseline, mid-season, and post-season surveys to measure how fan and guest perception of SAP changes over time as the activations make the brand more useful and easier to understand.</li>
-              <li>Separate activity metrics from outcome metrics so SAP leadership can see both what happened and what commercial value it created.</li>
-            </ul>
-          </article>
-
-          <article class="brief-summary__card">
-            <h3>Measurement ownership and operating model</h3>
-            <ul>
-              <li>Baylor should own the strategy, first-party data capture, and activation design rather than outsourcing the thinking.</li>
-              <li>Playfly should support sponsor reporting, survey execution, recap packaging, and quarterly dashboard delivery because they are the official commercial partner in the process.</li>
-              <li>SAP should receive a recurring executive dashboard with audience IDs, engagement trends, survey lift, and commercial follow-up summaries by activation.</li>
-              <li>The dashboard should be reviewed quarterly so leadership can decide whether to scale, refine, or hold the patch conversation based on real year-one proof.</li>
-            </ul>
-          </article>
-
-          <article class="brief-summary__card brief-summary__card--brand">
-            <div class="partner-lockup" aria-label="Baylor and Playfly Sports partnership support">
-              <span class="partner-lockup__bu">BU</span>
-              <span class="partner-lockup__x">x</span>
-              <div class="partner-lockup__playfly">
-                <strong>PLAYFLY</strong>
-                <span>Sports</span>
-              </div>
-            </div>
-            <h3>Why Playfly is the right support partner</h3>
-            <ul>
-              <li>Playfly already sits inside the official Baylor Sports Properties structure, so using them for sponsor reporting and recap packaging keeps the operating model credible.</li>
-              <li>They are the right layer to support survey execution, sponsor-facing dashboards, and quarterly recaps without taking strategy ownership away from Baylor.</li>
-              <li>This gives SAP one trusted commercial channel for reporting while Baylor still controls the activation design, first-party data strategy, and brand logic.</li>
-            </ul>
-          </article>
-
-          <article class="brief-summary__card">
-            <h3>What year one should prove</h3>
-            <ul>
-              <li>That SAP can identify and host the right audiences, not just collect impressions.</li>
-              <li>That fans increasingly understand and appreciate SAP because the activations are useful, memorable, and easy to connect back to Baylor.</li>
-              <li>That executive meetings, repeat attendance, and app behavior create enough commercial proof to justify renewal or expansion.</li>
-            </ul>
-          </article>
-
-          <article class="brief-summary__card">
-            <h3>What an executive still needs confirmed</h3>
-            <ul>
-              <li>Rights and exclusivity: category protection, use of marks, and whether Baylor basketball can be formally included in the package.</li>
-              <li>Operating ownership: who manages event staffing, app integration, guest lists, hospitality execution, and reporting.</li>
-              <li>What is guaranteed in year one versus what is optional, premium, or dependent on extra approvals.</li>
-            </ul>
-          </article>
-
-          <article class="brief-summary__card">
-            <h3>Decision path and next step</h3>
-            <ul>
-              <li>Approve the year-one package or request a narrower starting scope.</li>
-              <li>Decide whether to open the separate jersey patch valuation conversation now or defer it until the base package proves value.</li>
-              <li>Set the quarterly reporting cadence and the named owners who will review hosted meetings, survey lift, and activation performance.</li>
-              <li>Authorize the official Baylor Sports Properties follow-up and establish the KPI reporting cadence expected by SAP leadership.</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
   </main>
-  <nav class="nav-island" aria-label="Primary navigation">
+    <nav class="nav-island" aria-label="Primary navigation">
     <a href="index.html">Overview</a>
     <a href="sap-jersey-patch.html">Patch</a>
     <a href="sap-suites.html">Suites</a>
