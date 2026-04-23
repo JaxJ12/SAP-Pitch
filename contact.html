@@ -887,155 +887,129 @@
       }
     }
     @page {
-      size: Letter portrait;
-      margin: 0.35in;
+      size: letter portrait;
+      margin: 0.3in;
     }
     @media print {
-      .page-transition,
-      .hero,
-      .print-bar,
-      .brief-summary,
-      .contact,
-      .site-footer,
-      .nav-island {
-        display: none !important;
+      /* Hide everything except the one-pager */
+      .page-transition, .hero, .print-bar, .brief-summary,
+      .contact, .site-footer, .nav-island,
+      .site-assistant, .print-btn-row { display: none !important; }
+
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+      body { margin: 0 !important; padding: 0 !important; background: #fff !important; }
+
+      .print-onepager { display: block !important; padding: 0 !important; width: 100% !important; }
+      .onepager { max-width: none !important; border-radius: 0 !important; box-shadow: none !important; overflow: visible !important; }
+
+      /* ── PAGE WRAPPERS: each fills exactly one Letter page ── */
+      .op-page {
+        height: 10.4in !important;
+        display: flex !important;
+        flex-direction: column !important;
+        overflow: hidden !important;
       }
-      body {
-        background: #fff !important;
-        color: #172019 !important;
-        margin: 0 !important;
-        padding: 0 !important;
+      .op-page--1 { break-after: page !important; page-break-after: always !important; }
+      .op-page--2 { break-after: avoid !important; page-break-after: avoid !important; }
+
+      /* ── HEADER ── */
+      .onepager__head { padding: 10px 18px 8px !important; flex-shrink: 0 !important; }
+      .onepager__head-left strong { font-size: 14px !important; }
+      .onepager__head-left span, .onepager__head-right { font-size: 9.5px !important; }
+      .onepager__rule { height: 3px !important; flex-shrink: 0 !important; }
+
+      /* ── BODY (flex: 1 so it fills remaining height) ── */
+      .op-body {
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 8px 18px 10px !important;
+        overflow: hidden !important;
+        min-height: 0 !important;
       }
-      .print-onepager {
-        display: block !important;
-        padding: 0 !important;
-      }
-      .onepager {
-        max-width: none !important;
-        border-radius: 0 !important;
-        box-shadow: none !important;
-        overflow: visible !important;
-      }
-      .onepager__head {
-        padding: 14px 20px 10px !important;
-      }
-      .onepager__head-left strong {
-        font-size: 15px !important;
-      }
-      .onepager__head-left span,
-      .onepager__head-right {
-        font-size: 10px !important;
-        line-height: 1.15 !important;
-      }
-      .onepager__rule {
-        height: 2px !important;
-      }
-      .onepager__body {
-        padding: 6px 20px 10px !important;
-      }
-      .onepager__title {
-        margin-bottom: 3px !important;
-        font-size: 20px !important;
-      }
-      .onepager__sub {
-        max-width: 100% !important;
-        margin-bottom: 10px !important;
-        font-size: 10px !important;
-        line-height: 1.3 !important;
-      }
+
+      /* ── INTRO (title + sub) ── */
+      .op-intro { flex-shrink: 0 !important; margin-bottom: 8px !important; }
+      .onepager__title { font-size: 17px !important; margin: 0 0 3px !important; line-height: 1.15 !important; }
+      .onepager__sub { font-size: 9.5px !important; line-height: 1.35 !important; margin: 0 !important; max-width: 100% !important; color: #4a5568 !important; }
+
+      /* ── KPI STRIP ── */
       .onepager__kpi {
-        gap: 6px !important;
-        margin-bottom: 10px !important;
-        grid-template-columns: repeat(3, 1fr) !important;
+        flex-shrink: 0 !important;
+        grid-template-columns: repeat(6, 1fr) !important;
+        gap: 5px !important;
+        margin: 8px 0 !important;
       }
-      .onepager__kpi-item {
-        padding: 10px 12px !important;
-      }
-      .onepager__kpi-item strong {
-        font-size: 17px !important;
-      }
-      .onepager__kpi-item span {
-        font-size: 8.5px !important;
-      }
+      .onepager__kpi-item { padding: 8px 10px !important; }
+      .onepager__kpi-item strong { font-size: 14px !important; margin-bottom: 2px !important; }
+      .onepager__kpi-item span { font-size: 7.5px !important; }
+
+      /* ── GRIDS: stretch to fill remaining body height ── */
       .onepager__grid {
-        gap: 8px !important;
-        margin-bottom: 8px !important;
+        flex: 1 !important;
+        min-height: 0 !important;
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        grid-auto-rows: 1fr !important;
+        gap: 7px !important;
+        align-items: stretch !important;
       }
+
+      /* ── PANELS: flex column so list stretches ── */
       .onepager__panel {
-        padding: 12px !important;
-        break-inside: avoid;
-        page-break-inside: avoid;
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 11px 13px !important;
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
       }
       .onepager__panel h3 {
-        margin-bottom: 8px !important;
-        padding-bottom: 5px !important;
-        font-size: 11px !important;
+        flex-shrink: 0 !important;
+        font-size: 9.5px !important;
+        margin-bottom: 6px !important;
+        padding-bottom: 4px !important;
       }
       .onepager__list {
-        font-size: 10.2px !important;
-        line-height: 1.28 !important;
-        padding-left: 14px !important;
+        flex: 1 !important;
+        font-size: 9.5px !important;
+        line-height: 1.4 !important;
+        padding-left: 13px !important;
+        margin: 0 !important;
       }
-      .onepager__list li + li {
-        margin-top: 4px !important;
-      }
-      .onepager__panel[style] {
+      .onepager__list li + li { margin-top: 5px !important; }
+
+      /* ── FULL-WIDTH PANEL (Why Cannot Be Replicated) ── */
+      .op-fullwidth {
         grid-column: 1 / -1 !important;
+        grid-auto-rows: unset !important;
       }
-      .onepager__panel[style] .onepager__list {
-        gap: 4px 16px !important;
-        padding-left: 14px !important;
+      .op-fullwidth .onepager__list {
         display: grid !important;
         grid-template-columns: repeat(3, 1fr) !important;
+        gap: 5px 20px !important;
+        padding-left: 13px !important;
       }
-      .onepager__foot {
-        padding: 8px 20px !important;
-        font-size: 9px !important;
-      }
-      .onepager__foot strong {
-        font-size: 10px !important;
-      }
-      /* Page break between front and back */
-      .onepager__page-break {
-        display: block !important;
-        break-after: page !important;
-        page-break-after: always !important;
-        height: 0 !important;
-        margin: 0 !important;
-        padding: 0 !important;
-      }
-      /* Back-of-page mini header */
+
+      /* ── PAGE 2 BACK HEADER ── */
       .onepager__back-header {
         display: flex !important;
         justify-content: space-between !important;
         align-items: center !important;
-        padding: 6px 0 8px !important;
-        margin-bottom: 8px !important;
+        flex-shrink: 0 !important;
+        padding: 6px 18px 6px !important;
         border-bottom: 2px solid #154734 !important;
-        font-size: 10px !important;
-        color: #1a2433 !important;
+        background: #f8fafc !important;
       }
-      .onepager__back-header strong {
-        font-size: 12px !important;
-        font-weight: 700 !important;
-        color: #154734 !important;
-        text-transform: uppercase !important;
-        letter-spacing: 0.06em !important;
-      }
-      .onepager__back-header span {
-        font-size: 9px !important;
-        color: #64748b !important;
-      }
-      /* Front page: keep KPIs + title + 4 pillars on page 1 */
-      .onepager__grid--front {
-        break-after: avoid !important;
-        page-break-after: avoid !important;
-      }
-      /* Prevent orphaned panels */
-      .onepager__panel {
-        break-inside: avoid !important;
-        page-break-inside: avoid !important;
-      }
+      .onepager__back-header strong { font-size: 11px !important; color: #154734 !important; text-transform: uppercase !important; letter-spacing: 0.06em !important; }
+      .onepager__back-header span { font-size: 8.5px !important; color: #64748b !important; }
+
+      /* ── FOOTER ── */
+      .onepager__foot { flex-shrink: 0 !important; padding: 7px 18px !important; font-size: 8.5px !important; }
+      .onepager__foot strong { font-size: 9.5px !important; }
+
+      /* Hidden page-break div no longer needed */
+      .onepager__page-break { display: none !important; }
     }
     .site-footer {
       width: min(1200px, calc(100% - 36px));
@@ -1140,143 +1114,139 @@
   </div>
   <div class="print-onepager">
     <div class="onepager">
-      <div class="onepager__head">
-        <div class="onepager__head-left">
-          <strong>Baylor Athletics &times; SAP</strong>
-          <span>Executive Partnership One-Pager &mdash; 2027 Launch Roadmap</span>
+
+      <!-- ══════════════ PAGE 1 — FRONT ══════════════ -->
+      <div class="op-page op-page--1">
+        <div class="onepager__head">
+          <div class="onepager__head-left">
+            <strong>Baylor Athletics &times; SAP</strong>
+            <span>Executive Partnership One-Pager &mdash; 2027 Launch Roadmap</span>
+          </div>
+          <div class="onepager__head-right">
+            <div>baylor-sap.vercel.app</div>
+            <div>Scott.Yacyshyn@Playfly.com</div>
+          </div>
         </div>
-        <div class="onepager__head-right">
-          <div id="printHost">baylor-sap.vercel.app</div>
-          <div>Scott.Yacyshyn@Playfly.com</div>
+        <div class="onepager__rule"></div>
+        <div class="op-body">
+          <div class="op-intro">
+            <h1 class="onepager__title">The Only Partnership That Makes SAP <span>Impossible to Ignore</span> in Central Texas</h1>
+            <p class="onepager__sub">A multi-year enterprise sponsorship embedding SAP at the center of Power 4 athletics, mid-market B2B hospitality, and a live collegiate technology reference story — addressing all four SAP strategic pillars simultaneously.</p>
+          </div>
+          <div class="onepager__kpi">
+            <div class="onepager__kpi-item">
+              <strong>$1.5M–$2.0M</strong>
+              <span>Annual platform entry point</span>
+            </div>
+            <div class="onepager__kpi-item">
+              <strong>$10M–$16M</strong>
+              <span>Projected 3-year total value</span>
+            </div>
+            <div class="onepager__kpi-item">
+              <strong>300K+</strong>
+              <span>Annual C-suite touchpoints</span>
+            </div>
+            <div class="onepager__kpi-item">
+              <strong>75K+</strong>
+              <span>Baylor alumni in DFW &amp; Austin</span>
+            </div>
+            <div class="onepager__kpi-item">
+              <strong>Zero</strong>
+              <span>Enterprise software competitors in category</span>
+            </div>
+            <div class="onepager__kpi-item">
+              <strong>2027</strong>
+              <span>Target activation launch</span>
+            </div>
+          </div>
+          <div class="onepager__grid">
+            <div class="onepager__panel">
+              <h3>&#9632; Pillar 01 — Brand Awareness &amp; VIK Integration</h3>
+              <ul class="onepager__list">
+                <li><strong>Value-in-Kind (VIK):</strong> Baylor Athletics formally adopts SAP Analytics Cloud, replacing legacy backend systems — giving SAP exclusive category ownership and a live higher-ed reference story for Sapphire and TechEd.</li>
+                <li><strong>Sapphire &amp; TechEd:</strong> Baylor becomes a live case study presented at SAP's global conferences, extending the brand story far beyond Central Texas to a worldwide B2B audience.</li>
+                <li><strong>No Microsoft Conflict:</strong> Surface tablets are a Big 12 Conference-level hardware agreement. SAP enters as Baylor's exclusive school-level enterprise software partner — a completely separate, zero-overlap category that completes the ecosystem.</li>
+                <li><strong>Reference Story Engine:</strong> Co-authored case studies and Hankamer School of Business research amplify SAP's thought leadership in higher education and live-event verticals.</li>
+              </ul>
+            </div>
+            <div class="onepager__panel">
+              <h3>&#9632; Pillar 02 — Mid-Market Demand Generation</h3>
+              <ul class="onepager__list">
+                <li><strong>I-35 Corridor Lock:</strong> Waco–Dallas–Austin is the highest concentration of SAP's $500M–$2B target companies in Texas — and Baylor is the only property that owns this corridor at the executive level.</li>
+                <li><strong>Executive Huddle:</strong> 12 Baylor Club B2B networking events per year place SAP in front of CFOs, CTOs, and COOs in a premium, captive environment modeled on the 49ers' proven playbook.</li>
+                <li><strong>In-App B2B Funnel:</strong> "Learn How SAP Powers This" in-app module converts fans into educated prospects with a direct path to SAP's mid-market sales team.</li>
+                <li><strong>Market Comp:</strong> UNLV (Group of 5) secured $2.2M/yr for a patch deal. Baylor as a Power 4 program with a premier business school commands a measurable premium above that floor.</li>
+              </ul>
+            </div>
+            <div class="onepager__panel">
+              <h3>&#9632; Pillar 03 — Sustainable, Always-On Partnership</h3>
+              <ul class="onepager__list">
+                <li><strong>Multi-Year Compounding:</strong> Year 1 proves the model. Year 2 expands the jersey patch. Year 3 delivers the full Sapphire/TechEd reference story. Each season adds new executive relationships, new case study data, and deeper brand integration.</li>
+                <li><strong>Always-On Content Engine:</strong> SAP is featured in every Baylor Athletics press release, radio, TV, and digital coverage — 365 days a year, not just game days. Not a campaign. A platform.</li>
+                <li><strong>Co-Branded Social:</strong> Bi-weekly "How SAP Powers Baylor Game Day" content distributed across X, Instagram, and LinkedIn to Baylor's 500K+ combined social following.</li>
+                <li><strong>Sustainability Storytelling:</strong> SAP's ESG initiatives co-branded through Baylor's green stadium operations and community outreach — global brand purpose anchored to local proof.</li>
+              </ul>
+            </div>
+            <div class="onepager__panel">
+              <h3>&#9632; Pillar 04 — Employee Engagement &amp; Talent Pipeline</h3>
+              <ul class="onepager__list">
+                <li><strong>S3E &amp; University Alliance:</strong> Baylor's Center for Sports Strategy and Sales (S3E) becomes an SAP University Alliance partner — connecting top business students directly to SAP's talent acquisition pipeline from day one.</li>
+                <li><strong>Employee Hospitality:</strong> Premium suite access and dedicated SAP employee perks packages at McLane Stadium and Foster Pavilion create year-round engagement beyond the office.</li>
+                <li><strong>Hankamer School of Business:</strong> Joint case study production with Baylor faculty amplifies SAP's thought leadership and recruitment positioning across the university system.</li>
+                <li><strong>Next-Generation Advocates:</strong> Baylor students co-author Sapphire and TechEd presentations, building a sustained pipeline of SAP-trained graduates entering the workforce.</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="onepager__rule"></div>
-      <div class="onepager__body">
-        <h1 class="onepager__title">The Only Partnership That Makes SAP <span>Impossible to Ignore</span> in Central Texas</h1>
-        <p class="onepager__sub">Baylor Athletics is proposing a multi-year, enterprise-level sponsorship that embeds SAP at the center of Power 4 athletics, mid-market B2B hospitality, and a live collegiate technology reference story — delivering on all four of SAP's strategic pillars simultaneously.</p>
 
-        <div class="onepager__kpi">
-          <div class="onepager__kpi-item">
-            <strong>$1.5M–$2.0M</strong>
-            <span>Annual platform entry point</span>
-          </div>
-          <div class="onepager__kpi-item">
-            <strong>$10M–$16M</strong>
-            <span>Projected 3-year total value</span>
-          </div>
-          <div class="onepager__kpi-item">
-            <strong>300K+</strong>
-            <span>Annual C-suite touchpoints</span>
-          </div>
-          <div class="onepager__kpi-item">
-            <strong>75K+</strong>
-            <span>Baylor alumni in DFW &amp; Austin</span>
-          </div>
-          <div class="onepager__kpi-item">
-            <strong>Zero</strong>
-            <span>Enterprise software competitors in category</span>
-          </div>
-          <div class="onepager__kpi-item">
-            <strong>2027</strong>
-            <span>Target activation launch</span>
-          </div>
-        </div>
-
-        <!-- PAGE 1: Strategic Case — 4 Pillars -->
-        <div class="onepager__grid onepager__grid--front">
-
-          <div class="onepager__panel">
-            <h3>&#9632; Pillar 01 — Brand Awareness &amp; VIK Integration</h3>
-            <ul class="onepager__list">
-              <li><strong>Value-in-Kind (VIK):</strong> Baylor Athletics formally adopts SAP Analytics Cloud, replacing legacy backend systems — giving SAP exclusive category ownership and a live higher-ed reference story.</li>
-              <li><strong>Sapphire &amp; TechEd:</strong> Baylor becomes a case study presented at SAP's global conferences, extending reach far beyond Central Texas.</li>
-              <li><strong>No Microsoft Conflict:</strong> Surface tablets are a Big 12 Conference-level hardware deal. SAP enters as Baylor's school-level enterprise software partner — a completely separate, zero-overlap category.</li>
-            </ul>
-          </div>
-
-          <div class="onepager__panel">
-            <h3>&#9632; Pillar 02 — Mid-Market Demand Generation</h3>
-            <ul class="onepager__list">
-              <li><strong>I-35 Corridor Lock:</strong> Waco–Dallas–Austin is the highest concentration of SAP's $500M–$2B target companies in Texas.</li>
-              <li><strong>Executive Huddle:</strong> 12 Baylor Club B2B networking events per year place SAP in front of CFOs, CTOs, and COOs in a premium, captive environment.</li>
-              <li><strong>In-App B2B Funnel:</strong> "Learn How SAP Powers This" in-app module converts fans into educated prospects with a direct path to SAP's mid-market sales team.</li>
-              <li><strong>Market Comp:</strong> UNLV (G5) secured $2.2M/yr for a patch deal. Baylor (Power 4) commands a premium above that floor.</li>
-            </ul>
-          </div>
-
-          <div class="onepager__panel">
-            <h3>&#9632; Pillar 03 — Sustainable, Always-On Partnership</h3>
-            <ul class="onepager__list">
-              <li><strong>Multi-Year Compounding:</strong> Year 1 proves the model. Year 2 expands the patch. Year 3 delivers the full reference story. Each season adds new executive relationships and case study data.</li>
-              <li><strong>Always-On Content Engine:</strong> SAP is featured in every Baylor press release, radio, TV, and digital coverage — 365 days a year, not just game days.</li>
-              <li><strong>Co-Branded Social:</strong> Bi-weekly "How SAP Powers Baylor Game Day" content across X, Instagram, and LinkedIn (500K+ combined following).</li>
-              <li><strong>Sustainability Storytelling:</strong> SAP's ESG initiatives co-branded through Baylor's green stadium programs — global purpose, local proof.</li>
-            </ul>
-          </div>
-
-          <div class="onepager__panel">
-            <h3>&#9632; Pillar 04 — Employee Engagement &amp; Talent Pipeline</h3>
-            <ul class="onepager__list">
-              <li><strong>S3E &amp; University Alliance:</strong> Baylor's Center for Sports Strategy and Sales becomes an SAP University Alliance partner — connecting students directly to SAP's talent pipeline.</li>
-              <li><strong>Employee Perks:</strong> Premium suite access and dedicated SAP employee hospitality packages at McLane Stadium and Foster Pavilion.</li>
-              <li><strong>Hankamer School of Business:</strong> Joint case study production with Baylor faculty supporting SAP's thought leadership and recruitment goals.</li>
-              <li><strong>Reference Story Engine:</strong> Baylor students co-author Sapphire/TechEd presentations — building a next-generation SAP advocate base.</li>
-            </ul>
-          </div>
-
-        </div>
-
-        <!-- PAGE BREAK — back of page -->
-        <div class="onepager__page-break"></div>
-
-        <!-- PAGE 2: Execution Detail -->
+      <!-- ══════════════ PAGE 2 — BACK ══════════════ -->
+      <div class="op-page op-page--2">
         <div class="onepager__back-header">
-          <strong>Baylor Athletics &times; SAP</strong>
-          <span>Execution Detail &mdash; Page 2 of 2</span>
+          <strong>Baylor Athletics &times; SAP — Execution Detail</strong>
+          <span>Page 2 of 2 &mdash; Assets, Measurement &amp; Competitive Moat</span>
         </div>
-
-        <div class="onepager__grid">
-
-          <div class="onepager__panel">
-            <h3>&#9632; 5 Core Communication Assets</h3>
-            <ul class="onepager__list">
-              <li><strong>1. Jersey Patch:</strong> Flagship broadcast asset — first Power 4 program in the South. Custom valuation track post Year 1.</li>
-              <li><strong>2. SAP Game Center App:</strong> In-app digital takeover for all home games. Every fan actively learns what SAP does.</li>
-              <li><strong>3. LED Sideline Signage:</strong> 3 rotating spots per half + pre-game 360-ring at McLane Stadium.</li>
-              <li><strong>4. Keynote Event Series:</strong> Full room ownership for 12 annual Baylor Club executive networking events.</li>
-              <li><strong>5. Co-Branded Digital Content:</strong> 5 posts/season on X, Instagram, and LinkedIn as exclusive "Key Stat of the Week" sponsor.</li>
-            </ul>
+        <div class="op-body">
+          <div class="onepager__grid">
+            <div class="onepager__panel">
+              <h3>&#9632; 5 Core Communication Assets</h3>
+              <ul class="onepager__list">
+                <li><strong>1. Flagship Jersey Patch:</strong> First Power 4 program in the South to carry an enterprise software patch. Highest-visibility broadcast asset in the portfolio. Custom valuation track post Year 1 performance proof — UNLV (G5) sets the $2.2M/yr floor.</li>
+                <li><strong>2. SAP Game Center App:</strong> Full in-app digital takeover for all home football and basketball games. Every fan who opens the app actively learns what SAP does and what problems it solves for their business.</li>
+                <li><strong>3. LED Sideline Signage:</strong> 3 rotating 15-second spots per half plus pre-game 360-degree ring activation at McLane Stadium — broadcast-visible on all regional and national telecasts.</li>
+                <li><strong>4. Keynote Event Series:</strong> Total physical room ownership and branding for 12 annual Baylor Club executive B2B networking events. SAP-moderated panel discussions and executive showcases included.</li>
+                <li><strong>5. Co-Branded Digital Content:</strong> 5 high-value posts per season across X, Instagram, and LinkedIn as the exclusive "Key Stat of the Week" sponsor, distributed to Baylor Athletics' 500K+ combined following.</li>
+              </ul>
+            </div>
+            <div class="onepager__panel">
+              <h3>&#9632; Measurement &amp; Accountability Framework</h3>
+              <ul class="onepager__list">
+                <li><strong>Nielsen Sports:</strong> Broadcast TV audience size tracking and logo exposure valuation across all nationally and regionally televised Baylor football and basketball games. Industry gold standard for sponsor ROI reporting.</li>
+                <li><strong>Zoomph:</strong> Social media exposure valuation and digital impression measurement across all platforms. Real-time dashboard access included for SAP's marketing team to track performance throughout the season.</li>
+                <li><strong>Wakefield Research:</strong> Population-matched survey sampling measuring brand trust lift, unaided awareness, and executive purchase intent among the B2B audience attending Baylor events.</li>
+                <li><strong>Quarterly Pillar Scorecard:</strong> All four SAP strategic pillars tracked and reported against agreed KPIs. Built to mirror SAP's internal executive reporting framework — designed for seamless boardroom justification.</li>
+                <li><strong>Annual Comprehensive Recap:</strong> Full-year performance review delivered by Baylor Sports Properties powered by Playfly. Includes pipeline attribution, media value, survey results, and Year 2 expansion recommendations.</li>
+              </ul>
+            </div>
+            <div class="onepager__panel op-fullwidth" style="background: linear-gradient(135deg, #0e2a1e 0%, #154734 100%); border-color: #154734;">
+              <h3 style="color: #ffb81c; border-bottom-color: rgba(255,184,28,0.3);">&#9632; Why This Cannot Be Replicated — The Competitive Moat</h3>
+              <ul class="onepager__list" style="color: #fff;">
+                <li><strong style="color:#ffb81c;">Zero Competitor Access:</strong> No other enterprise software company can enter this category at Baylor University once SAP moves first. The first-mover secures permanent exclusive ownership of the entire enterprise software sector in Baylor Athletics.</li>
+                <li><strong style="color:#ffb81c;">Live Reference Architecture:</strong> SAP Analytics Cloud running a live Power 4 collegiate athletics operation is a case study no other school can offer at this scale, visibility, or brand equity. This becomes SAP's most compelling mid-market sales tool.</li>
+                <li><strong style="color:#ffb81c;">I-35 Corridor Lock:</strong> Baylor permanently blocks any enterprise software competitor from owning the Waco–Dallas–Austin mid-market B2B corridor through sports. The right 300,000 beats the wrong 3 million.</li>
+              </ul>
+            </div>
           </div>
-
-          <div class="onepager__panel">
-            <h3>&#9632; Measurement &amp; Accountability</h3>
-            <ul class="onepager__list">
-              <li><strong>Nielsen:</strong> Broadcast TV audience tracking and logo exposure valuation across all televised Baylor games.</li>
-              <li><strong>Zoomph:</strong> Social media exposure valuation and digital impression measurement across all platforms.</li>
-              <li><strong>Wakefield Research:</strong> Population-matched survey sampling measuring brand trust lift and executive awareness.</li>
-              <li><strong>Quarterly Scorecard:</strong> All 4 SAP pillars tracked and reported. Mirrors SAP's internal KPI framework.</li>
-              <li><strong>Annual Recap:</strong> Comprehensive recap delivered by Baylor Sports Properties powered by Playfly.</li>
-            </ul>
-          </div>
-
-          <div class="onepager__panel" style="grid-column: 1 / -1; background: linear-gradient(135deg, #f0f7ff 0%, #fafcff 100%); border-color: rgba(15,124,201,0.2);">
-            <h3 style="color: #0f7cc9;">&#9632; Why This Cannot Be Replicated</h3>
-            <ul class="onepager__list" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px 28px; padding-left: 16px;">
-              <li><strong>Zero Competitor Access:</strong> No other enterprise software company can enter this category at Baylor — first-mover locks the entire sector.</li>
-              <li><strong>Live Reference Architecture:</strong> SAP Analytics Cloud running a live Power 4 athletics operation is a case study no other school can offer at this scale.</li>
-              <li><strong>I-35 Corridor Lock:</strong> Baylor permanently blocks any competitor from owning the Waco–Dallas–Austin mid-market B2B corridor through sports.</li>
-            </ul>
-          </div>
-
+        </div>
+        <div class="onepager__rule"></div>
+        <div class="onepager__foot">
+          <div><strong>Baylor Athletics &times; SAP Partnership Proposal</strong> &mdash; Student Pitch &middot; Baylor University S3E Program &middot; 2027 Launch Roadmap</div>
+          <div style="text-align:right;">Scott Yacyshyn &middot; Baylor Sports Properties powered by Playfly &middot; Scott.Yacyshyn@Playfly.com</div>
         </div>
       </div>
-      <div class="onepager__rule"></div>
-      <div class="onepager__foot">
-        <div><strong>Baylor Athletics &times; SAP Partnership Proposal</strong><br>Student Pitch &middot; Baylor University S3E Program &middot; 2027 Launch Roadmap</div>
-        <div style="text-align:right;">Scott Yacyshyn &middot; Baylor Sports Properties powered by Playfly<br>Scott.Yacyshyn@Playfly.com</div>
-      </div>
+
     </div>
-    <div style="text-align:center; padding: 24px 0 0; display:flex; gap:12px; justify-content:center;">
+    <div class="print-btn-row" style="text-align:center; padding: 24px 0 0; display:flex; gap:12px; justify-content:center;">
       <button onclick="window.print()" style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 28px;border:1px solid #0f7cc9;border-radius:999px;background:#0f7cc9;color:#fff;font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;">Print / Save as PDF</button>
     </div>
   </div>
