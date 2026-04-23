@@ -12,29 +12,28 @@
   <link rel="stylesheet" href="assistant.css" />
   <style>
     :root {
-      --bg: #16392f;
-      --bg-soft: #1d483c;
-      --bg-deep: #0c221c;
-      --surface: rgba(25, 61, 50, 0.8);
-      --surface-strong: rgba(19, 48, 39, 0.9);
-      --text: rgba(247, 242, 232, 0.94);
-      --muted: rgba(228, 219, 202, 0.74);
-      --line: rgba(231, 216, 182, 0.16);
-      --line-strong: rgba(182, 139, 47, 0.48);
-      --gold: #b68b2f;
-      --gold-soft: #dcc89a;
-      --blue: #245647;
-      --shadow-panel: 0 24px 72px rgba(6, 20, 16, 0.28);
+      --bg: #170f13;
+      --bg-soft: #22161b;
+      --bg-deep: #120b0f;
+      --surface: rgba(38, 24, 29, 0.84);
+      --surface-strong: rgba(47, 29, 36, 0.95);
+      --text: rgba(255, 255, 255, 0.94);
+      --muted: rgba(244, 228, 231, 0.76);
+      --line: rgba(231, 168, 176, 0.18);
+      --line-strong: rgba(231, 168, 176, 0.48);
+      --gold: #f4c3ca;
+      --gold-soft: #f8d4d9;
+      --blue: #e7a8b0;
+      --shadow-panel: 0 24px 72px rgba(18, 7, 11, 0.38);
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      background-color: var(--bg-deep);
-      background-image:
-        radial-gradient(circle at top left, rgba(182, 139, 47, 0.18), transparent 30%),
-        radial-gradient(circle at 85% 15%, rgba(34, 84, 70, 0.32), transparent 34%),
-        radial-gradient(circle at bottom center, rgba(20, 56, 46, 0.5), transparent 42%);
+      background:
+        radial-gradient(circle at top left, rgba(231, 168, 176, 0.18), transparent 30%),
+        radial-gradient(circle at 86% 14%, rgba(244, 195, 202, 0.12), transparent 30%),
+        linear-gradient(180deg, #160f14 0%, #20141a 46%, #140d11 100%);
       color: var(--text);
       font-family: "Space Grotesk", sans-serif;
       overflow-x: hidden;
@@ -65,7 +64,7 @@
       left: 50%;
       width: min(34vw, 460px);
       height: min(22vw, 300px);
-      background: #16392f;
+      background: #170f13;
       border: 1px solid rgba(255, 255, 255, 0.24);
       border-radius: 28px;
       transform: translate(-50%, -50%) scale(0.88);
@@ -75,7 +74,7 @@
       -webkit-backdrop-filter: blur(16px) saturate(130%);
       will-change: transform, opacity, border-radius, width, height;
       backface-visibility: hidden;
-      box-shadow: 0 32px 96px rgba(5, 18, 14, 0.28);
+      box-shadow: 0 32px 96px rgba(3, 8, 18, 0.34);
     }
     .page-transition.is-leaving { pointer-events: all; }
     body.is-transitioning { overflow: hidden; }
@@ -100,8 +99,8 @@
     }
     .hero__shade {
       background:
-        radial-gradient(circle at 20% 20%, rgba(182, 139, 47, 0.18), transparent 32%),
-        rgba(12, 34, 28, 0.62);
+        radial-gradient(circle at 18% 18%, rgba(231, 168, 176, 0.3), transparent 34%),
+        linear-gradient(180deg, rgba(22, 12, 16, 0.18), rgba(18, 10, 14, 0.84));
     }
     .hero__grid {
       background-image:
@@ -128,7 +127,7 @@
     .hero__copy {
       max-width: 740px;
       padding-left: 18px;
-      border-left: 1px solid rgba(220, 200, 154, 0.42);
+      border-left: 1px solid rgba(231, 168, 176, 0.42);
       transform: translateY(-24px);
     }
     .eyebrow {
@@ -137,7 +136,7 @@
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: rgba(220, 200, 154, 0.84);
+      color: rgba(244, 195, 202, 0.88);
     }
     .title {
       margin: 0;
@@ -176,7 +175,7 @@
       padding: 0 16px;
       border: 1px solid var(--line);
       border-radius: 999px;
-      background: rgba(247, 242, 232, 0.05);
+      background: rgba(255, 255, 255, 0.06);
       color: var(--text);
       font-size: 12px;
       font-weight: 600;
@@ -185,19 +184,19 @@
       transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
     }
     .button:hover {
-      border-color: var(--gold-soft);
-      background: rgba(247, 242, 232, 0.1);
+      border-color: rgba(231, 168, 176, 0.72);
+      background: rgba(255, 255, 255, 0.12);
       color: #fff;
       transform: translateY(-1px);
     }
     .button--primary {
-      border-color: rgba(220, 200, 154, 0.9);
-      background: rgba(182, 139, 47, 0.95);
-      color: #132b24;
+      border-color: rgba(244, 195, 202, 0.94);
+      background: rgba(231, 168, 176, 0.95);
+      color: #2a171b;
     }
     .button--primary:hover {
-      background: #c49a3d;
-      color: #0c1d18;
+      background: #f0b9c0;
+      color: #231217;
     }
     .terminal,
     .panel,
@@ -224,7 +223,7 @@
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: rgba(220, 200, 154, 0.74);
+      color: rgba(244, 195, 202, 0.74);
     }
     .terminal__title {
       margin: 14px 0 0;
@@ -260,7 +259,7 @@
       margin-top: 6px;
       font-size: 13px;
       line-height: 1.65;
-      color: rgba(247, 242, 232, 0.96);
+      color: rgba(255, 255, 255, 0.96);
     }
     .terminal__link {
       display: inline-flex;
@@ -279,7 +278,7 @@
       content: "";
       flex: 1;
       height: 1px;
-      background: linear-gradient(90deg, rgba(182, 139, 47, 0.7), rgba(220, 200, 154, 0.2));
+      background: linear-gradient(90deg, rgba(231, 168, 176, 0.7), rgba(244, 195, 202, 0.2));
     }
     .terminal__link:hover { color: var(--gold); }
     .section {
@@ -324,7 +323,7 @@
       font-size: clamp(2.2rem, 4vw, 3rem);
       line-height: 0.95;
       font-weight: 700;
-      color: rgba(247, 242, 232, 0.96);
+      color: rgba(255, 255, 255, 0.96);
     }
     .number-card__label {
       display: block;
@@ -333,7 +332,7 @@
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: rgba(220, 200, 154, 0.74);
+      color: rgba(244, 195, 202, 0.74);
     }
     .number-card p {
       margin: 12px 0 0;
@@ -358,8 +357,8 @@
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: rgba(220, 200, 154, 0.74);
-      background: rgba(247, 242, 232, 0.04);
+      color: rgba(244, 195, 202, 0.74);
+      background: rgba(255, 255, 255, 0.04);
     }
     .benchmarks-table tr:last-child td { border-bottom: none; }
     .visual {
@@ -380,7 +379,7 @@
       z-index: 2;
       padding: 16px 18px 18px;
       background: rgba(17, 44, 36, 0.96);
-      border-top: 1px solid rgba(220, 200, 154, 0.2);
+      border-top: 1px solid rgba(244, 195, 202, 0.2);
     }
     .visual__meta strong {
       display: block;
@@ -437,7 +436,7 @@
     .amplification-stat {
       padding: 34px 30px;
       border-radius: 28px;
-      border: 1px solid rgba(220, 200, 154, 0.14);
+      border: 1px solid rgba(244, 195, 202, 0.14);
       background: rgba(17, 44, 36, 0.92);
       box-shadow: var(--shadow-panel);
     }
@@ -509,7 +508,7 @@
     .patch-framework__header {
       margin-bottom: 28px;
       padding-left: 18px;
-      border-left: 1px solid rgba(220, 200, 154, 0.26);
+      border-left: 1px solid rgba(244, 195, 202, 0.26);
     }
     .patch-framework__header h2 {
       margin: 8px 0 0;
@@ -560,7 +559,7 @@
     }
     .patch-points li {
       padding-top: 12px;
-      border-top: 1px solid rgba(220, 200, 154, 0.12);
+      border-top: 1px solid rgba(244, 195, 202, 0.12);
       font-size: 14px;
       line-height: 1.65;
       color: var(--muted);
@@ -577,9 +576,9 @@
     }
     .patch-kpi {
       padding: 16px 16px 14px;
-      border: 1px solid rgba(220, 200, 154, 0.14);
+      border: 1px solid rgba(244, 195, 202, 0.14);
       border-radius: 18px;
-      background: rgba(247, 242, 232, 0.04);
+      background: rgba(255, 255, 255, 0.04);
     }
     .patch-kpi strong {
       display: block;
@@ -608,7 +607,7 @@
       margin: 0 auto;
       padding: 24px 28px 26px;
       border-radius: 24px;
-      border: 1px solid rgba(182, 139, 47, 0.2);
+      border: 1px solid rgba(231, 168, 176, 0.2);
       background:
         linear-gradient(135deg, rgba(36, 86, 71, 0.24), rgba(19, 48, 39, 0.94)),
         rgba(19, 48, 39, 0.96);
@@ -621,7 +620,7 @@
 
     .next-activation:hover {
       transform: translateY(-2px);
-      border-color: rgba(220, 200, 154, 0.34);
+      border-color: rgba(244, 195, 202, 0.34);
       box-shadow: 0 28px 68px rgba(6, 20, 16, 0.3);
     }
 
@@ -629,7 +628,7 @@
       font-size: 0.72rem;
       text-transform: uppercase;
       letter-spacing: 0.14em;
-      color: rgba(220, 200, 154, 0.78);
+      color: rgba(244, 195, 202, 0.78);
       display: block;
       margin: 0;
     }
@@ -674,7 +673,7 @@
       font-weight: 600;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      color: rgba(247, 242, 232, 0.9);
+      color: rgba(255, 255, 255, 0.9);
       opacity: 0.72;
       transition: opacity 0.25s ease, color 0.25s ease;
       white-space: nowrap;
@@ -705,7 +704,7 @@
       font-weight: 700;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      color: rgba(247, 242, 232, 0.92);
+      color: rgba(255, 255, 255, 0.92);
     }
 
     .site-footer__meta {
@@ -729,7 +728,7 @@
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: rgba(247, 242, 232, 0.84);
+      color: rgba(255, 255, 255, 0.84);
       opacity: 0.82;
       transition: opacity 0.2s ease, color 0.2s ease;
     }
@@ -743,7 +742,7 @@
       margin: 14px 0 0;
       font-size: 12px;
       line-height: 1.6;
-      color: rgba(247, 242, 232, 0.66);
+      color: rgba(255, 255, 255, 0.66);
     }
     @media (max-width: 1100px) {
       .hero__inner,
@@ -1182,7 +1181,7 @@
 
   <footer class="site-footer" aria-label="Proposal footer">
     <p class="site-footer__title">Baylor Athletics x SAP Partnership Proposal</p>
-    <p class="site-footer__meta">Student Pitch • Baylor University S3E Program • Spring 2026</p>
+    <p class="site-footer__meta">Student Pitch • Baylor University S3E Program • 2027 Launch Roadmap</p>
     <p class="site-footer__legal">Baylor Sports Properties powered by Playfly</p>
   </footer>
 
@@ -1341,9 +1340,9 @@
       const tabColorByFile = {
         "": "#050505",
         "index.html": "#050505",
-        "sap-jersey-patch.html": "#16392f",
-        "sap-suites.html": "#2b3138",
-        "sap-keynote.html": "#5a5330",
+        "sap-jersey-patch.html": "#170f13",
+        "sap-suites.html": "#170f13",
+        "sap-keynote.html": "#170f13",
         "packages.html": "#3e362b",
         "measurement.html": "#0c1522",
         "contact.html": "#0c1522"
