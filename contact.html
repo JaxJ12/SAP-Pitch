@@ -656,26 +656,35 @@
     }
     .nav-island {
       position: fixed;
-      bottom: 40px;
+      bottom: 34px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 2rem;
-      background: rgba(16, 27, 42, 0.78);
+      gap: clamp(0.6rem, 0.95vw, 0.95rem);
+      width: max-content;
+      max-width: calc(100% - 24px);
+      justify-content: center;
+      overflow-x: auto;
+      overflow-y: hidden;
+      background: rgba(10, 20, 34, 0.84);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      padding: 1rem 2.5rem;
+      padding: 0.88rem 1.1rem;
       border-radius: 100px;
-      border: 1px solid rgba(181, 199, 221, 0.14);
+      border: 1px solid var(--line);
+      box-shadow: 0 18px 44px rgba(3, 8, 18, 0.28);
       z-index: 100;
+      scrollbar-width: none;
     }
+    .nav-island::-webkit-scrollbar { display: none; }
     .nav-island a {
-      font-size: 13px;
+      flex: 0 0 auto;
+      font-size: 11px;
       font-weight: 600;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
-      color: #fff;
-      opacity: 0.6;
+      color: rgba(255, 255, 255, 0.9);
+      opacity: 0.72;
       transition: opacity 0.25s ease, color 0.25s ease;
       white-space: nowrap;
     }
@@ -1502,11 +1511,5 @@
     </div>
     <p class="site-footer__legal">Baylor Sports Properties powered by Playfly</p>
   </footer>
-  <footer class="site-footer" aria-label="Proposal footer">
-    <div>
-      <p class="site-footer__title">Baylor Athletics x SAP Partnership Proposal</p>
-      <p class="site-footer__meta">Student Pitch &bull; Baylor University S3E Program &bull; 2027 Launch Roadmap</p>
-    </div>
-    <p class="site-footer__legal">Baylor Sports Properties powered by Playfly</p>
-  </footer>
+
 </body></html>
