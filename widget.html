@@ -158,10 +158,13 @@
       <p class="prompt-bar__label">Suggested Executive Inquiries</p>
       <div class="prompt-bar__chips">
         <button class="chip" onclick="sendChip(this)">How does this provide "Business Back" to SAP?</button>
-        <button class="chip" onclick="sendChip(this)">What are the 5 core communication assets?</button>
+        <button class="chip" onclick="sendChip(this)">What are the five communication assets?</button>
         <button class="chip" onclick="sendChip(this)">Why is the $1.5M-$2.0M platform justified?</button>
         <button class="chip" onclick="sendChip(this)">Why pitch for 2027 instead of 2026?</button>
         <button class="chip" onclick="sendChip(this)">How will Playfly measure success?</button>
+        <button class="chip" onclick="sendChip(this)">Why can't a competitor like Oracle replicate this?</button>
+        <button class="chip" onclick="sendChip(this)">Why Baylor over a pro team like the Cowboys?</button>
+        <button class="chip" onclick="sendChip(this)">Doesn't Baylor already use Microsoft?</button>
       </div>
     </div>
 
@@ -185,7 +188,7 @@
       },
       {
         // 2. THE 5 COMMUNICATION ASSETS
-        keywords: ["5", "five", "communication", "assets", "mix", "deliverables"],
+        keywords: ["five communication", "five assets", "five core", "communication assets", "asset mix", "deliverables", "five distinct"],
         response: "The proposal includes exactly 5 distinct communication assets, supported by our underlying B2B ecosystem:\n\n1. **In-App Digital Takeover:** SAP Game Center screens driving fans to active B2B portals.\n2. **Premium Suite Branding:** Physical framing for the Executive Huddle tech showcase.\n3. **Keynote Event Signage:** Physical room ownership at the Baylor Club.\n4. **Flagship Jersey Patch:** High-visibility broadcast asset signaling innovation.\n5. **Co-Branded Digital Content:** 'Always-on' social media storytelling highlighting SAP's data capabilities."
       },
       {
@@ -282,19 +285,36 @@
         // 20. PROOF OF CONCEPT (The 49ers comparison)
         keywords: ["proof", "case study", "showcase", "example", "49ers", "niners"],
         response: "Dan mentioned the massive success of the 49ers Executive Huddle. Baylor will serve as your collegiate equivalent. \n\nWe will co-author a public case study detailing how Baylor Athletics uses SAP Analytics Cloud to optimize stadium operations, giving your sales team a powerful new reference story for the higher-education and live-event markets."
+      },
+      {
+        // SUSTAINABLE ACTIVITY
+        keywords: ["sustainable", "long term", "ongoing", "multi-year", "renewal", "evergreen", "one time", "repeat"],
+        response: "This is not a one-time campaign buy — it is a **multi-year, evergreen platform**.\n\nEvery football and basketball season renews the B2B hospitality cycle automatically. Each year adds new executive relationships, deeper brand integration, and expanded case study data. The VIK agreement means SAP\'s software is operationally embedded in Baylor Athletics — making this partnership structural, not seasonal.\n\nYear 1 proves the model. Year 2 expands the patch integration. Year 3 produces the full reference story for Sapphire and TechEd."
+      },
+      {
+        // WAYS TO DO BUSINESS WITH SAP / FAN ENGAGEMENT
+        keywords: ["do business", "how fans", "fan.*sap", "contact sap", "reach sap", "connect", "learn how", "qr", "portal", "engage"],
+        response: "The app includes a persistent **\"Learn How SAP Powers This\"** module — a scannable in-app experience that walks business owners through SAP Analytics Cloud capabilities using live Baylor stadium data as the proof point.\n\nFans don\'t just see the SAP logo. They:\n1. Interact with SAP-powered analytics in real time.\n2. Receive a direct in-app prompt: \"Run your business like Baylor runs Game Day.\"\n3. Are linked to SAP\'s mid-market sales team for a consultation.\n\nThis is the only sponsorship in Central Texas that turns 300,000+ annual attendees into an educated, actionable SAP audience."
+      },
+      {
+        // MICROSOFT CONFLICT QUESTION
+        keywords: ["microsoft", "surface", "conflict", "already use", "big 12", "tablet", "existing"],
+        response: "There is no conflict. Microsoft\'s relationship with Baylor is through a **Big 12 Conference-level hardware deal** — Surface tablets used for in-game sideline video review. That is a conference-wide agreement, not a Baylor school-level technology partnership.\n\nSAP would enter as **Baylor\'s exclusive school-level enterprise software partner** — a completely separate category.\n\nIn fact, we frame this as a strength: Baylor already uses Microsoft at the conference level for in-game video. SAP Analytics Cloud completes the **backend intelligence layer** — making SAP the enterprise brain powering the entire stadium operation. No overlap. No conflict. Pure ecosystem."
       }
     ];
 
-    const fallbackResponse = "That is an excellent question. The full granular breakdown for that topic is maintained by the Baylor Sports Properties team. I recommend reviewing the 'Strategic Rationale' section of the Executive Brief or submitting the Contact Form on the website to have Luke Holcomb provide the detailed data room.";
+const fallbackResponse = "That is an excellent question. The full granular breakdown for that topic is maintained by the Baylor Sports Properties team. I recommend reviewing the 'Strategic Rationale' section of the Executive Brief or submitting the Contact Form on the website to have Scott Yacyshyn provide the detailed data room.";
 
     function renderMarkdown(text) {
       // Bold text
       let html = text.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
-      // Bullet points
-      html = html.replace(/\n\d\. (.+)/g, "<li>$1</li>");
-      html = html.replace(/(<li>.*<\/li>)/s, "<ul>$1</ul>");
-      // Line breaks
-      return html.replace(/\n/g, "<br>");
+      // Numbered list items -> li tags
+      html = html.replace(/\n\d+\.\s(.+)/g, "<li>$1</li>");
+      // Wrap consecutive li tags in a ul
+      html = html.replace(/(<li>[\s\S]*?<\/li>)+/g, m => "<ul>" + m + "</ul>");
+      // Line breaks (skip inside ul)
+      html = html.replace(/\n(?!<)/g, "<br>");
+      return html;
     }
 
     function appendMsg(text, type, isHtml) {
