@@ -288,35 +288,47 @@
       min-height: 48px;
       padding: 0 16px;
       border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.02);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
       color: var(--text);
       font-size: 12px;
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      transition: border-color 0.2s ease, color 0.2s ease;
+      transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
       cursor: pointer;
     }
     .button:hover {
-      border-color: var(--gold);
-      color: #fff;
+      border-color: rgba(181, 199, 221, 0.74);
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateY(-1px);
     }
-    .button--primary { border-color: var(--blue); }
+    .button--primary {
+      border-color: rgba(181, 199, 221, 0.95);
+      background: rgba(15, 124, 201, 0.96);
+      color: #f5fbff;
+    }
+    .button--primary:hover {
+      background: #1691eb;
+      color: #ffffff;
+    }
     .terminal,
     .print-card,
     .contact-panel,
     .form-shell {
       border: 1px solid var(--line);
-      background:
-        linear-gradient(180deg, rgba(19, 31, 49, 0.96) 0%, rgba(12, 22, 34, 0.96) 100%);
+      border-radius: 28px;
+      background: var(--surface-strong);
       box-shadow: var(--shadow-panel);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
     }
     .terminal {
       width: 100%;
-      padding: 28px;
+      padding: 24px;
+      min-height: 320px;
       align-self: end;
+      transform: translateY(-78px);
     }
     .terminal__label,
     .metric__label,
