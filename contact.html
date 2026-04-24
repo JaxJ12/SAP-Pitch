@@ -1679,119 +1679,202 @@
   <script src="assistant.js"></script>
 
 <div id="print-brief">
-  
-  <div class="print-page">
-    <div class="print-header">
-      <div>
-        <h1 style="font-size: 24pt; color: #0c1522; margin: 0; text-transform: uppercase; letter-spacing: -0.5px;">Baylor Athletics <span style="color: #0f7cc9;">x SAP</span></h1>
-        <p style="font-size: 10pt; color: #6b7a8d; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; font-weight: 600;">Confidential Partnership Proposal • 2027 Launch</p>
-      </div>
-      <div style="text-align: right;">
-        <span style="background: #0f7cc9; color: #fff; padding: 4px 10px; border-radius: 4px; font-size: 10pt; font-weight: bold;">Executive Brief</span>
-      </div>
-    </div>
+<style>
+  /* ── SCREEN: hidden ── */
+  #print-brief { display: none; }
 
-    <div class="print-section">
-      <h2 class="print-h2">The Strategic Opportunity</h2>
-      <p class="print-p">Currently, SAP lacks a major college athletics presence in the American South. Baylor Athletics provides the ultimate entry point into the <strong>I-35 Corridor (Dallas, Waco, Austin)</strong>—the fastest-growing mid-market business sector in the United States. This partnership directly targets the $500M–$2B enterprise demographic, aggressively shedding the notion that SAP is "only for big business."</p>
-    </div>
+  /* ── PRINT: full letter-size 2-pager ── */
+  @media print {
+    body > * { display: none !important; }
+    body > #print-brief { display: block !important; }
+    @page { margin: 0.4in; size: letter portrait; }
+    body { background: white !important; margin: 0 !important; padding: 0 !important;
+           -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 
-    <div class="print-section">
-      <h2 class="print-h2">The "Business Back" Anchor (VIK Integration)</h2>
-      <p class="print-p">This is not a traditional sports sponsorship; it is a live technology reference story.</p>
-      <ul class="print-ul">
-        <li class="print-li"><strong>The Tech Migration:</strong> The partnership is anchored by a formal Value-in-Kind (VIK) agreement. Baylor adopts SAP Analytics Cloud to run stadium operations and backend infrastructure.</li>
-        <li class="print-li"><strong>First-Mover Jersey Patch:</strong> Launching in 2027, the SAP logo on Baylor basketball jerseys will be the highly visible, on-court symbol of our backend tech migration.</li>
-        <li class="print-li"><strong>Sapphire/TechEd ROI:</strong> Baylor becomes a living B2B case study that global sales teams can leverage at major tech conferences.</li>
-      </ul>
-      <div class="print-roi">↳ EXPECTED VALUE ADD: The Jersey Patch and national broadcasts deliver an estimated $12M in annual unweighted media exposure.</div>
-    </div>
+    /* Layout */
+    #print-brief .pages { display: block !important; }
+    #print-brief .page {
+      width: 100% !important; height: auto !important;
+      overflow: visible !important; border-radius: 0 !important;
+      box-shadow: none !important; margin: 0 !important;
+      display: flex !important; flex-direction: column !important;
+      page-break-after: always !important; break-after: page !important;
+    }
+    #print-brief .page:last-child {
+      page-break-after: auto !important; break-after: auto !important;
+    }
+    #print-brief .body { overflow: visible !important; }
 
-    <div class="print-section">
-      <h2 class="print-h2">Corporate Pillar Alignment</h2>
-      <p class="print-p">We have mapped this partnership directly to SAP's core corporate pillars to guarantee internal ROI:</p>
-      <ul class="print-ul">
-        <li class="print-li"><strong>The People Pillar (Employee Rewards):</strong> SAP receives exclusive access to Premium Environments (McLane &amp; Foster suites). Beyond game-day hosting, these serve as weekday remote co-working hubs for SAP teams in Austin and Dallas.</li>
-      </ul>
-      <div class="print-roi">↳ EXPECTED VALUE ADD: Projected to generate $5M+ in closed-won enterprise pipeline annually through targeted I-35 executive hosting.</div>
-      
-      <ul class="print-ul" style="margin-top: 10px;">
-        <li class="print-li"><strong>The Purpose Pillar (Academic Integration):</strong> SAP leadership embeds into Baylor's S3E (Sports Strategy and Sales) program. Executives will teach analytics, advocate for sustainability, and build brand trust with elite Gen-Z talent.</li>
-      </ul>
-      <div class="print-roi">↳ EXPECTED VALUE ADD: Reduces SAP campus recruiting and onboarding costs by an estimated 22%.</div>
+    /* Scale fonts up from mini-card to letter */
+    #print-brief .ptitle h1  { font-size: 22pt !important; }
+    #print-brief .ptitle .sub{ font-size: 9pt !important; }
+    #print-brief .kn         { font-size: 16pt !important; }
+    #print-brief .kl         { font-size: 8pt !important; }
+    #print-brief .sl         { font-size: 7.5pt !important; }
+    #print-brief .sec h2     { font-size: 12pt !important; }
+    #print-brief .sec p,
+    #print-brief .sec li     { font-size: 9.5pt !important; }
+    #print-brief .roi        { font-size: 8.5pt !important; }
+    #print-brief .phe        { font-size: 8pt !important; }
+    #print-brief .pht        { font-size: 32pt !important; }
+    #print-brief .phb        { font-size: 8.5pt !important; }
+    #print-brief .tier h4    { font-size: 9pt !important; }
+    #print-brief .tier-p     { font-size: 16pt !important; }
+    #print-brief .tier p     { font-size: 8pt !important; }
+    #print-brief .sn         { font-size: 8pt !important; }
+    #print-brief .sb         { font-size: 8.5pt !important; }
+    #print-brief .pf .fl,
+    #print-brief .pf .fr     { font-size: 7.5pt !important; }
+    #print-brief .lp         { height: 28px !important; padding: 0 12px !important; font-size: 10px !important; }
+    #print-brief .ls         { font-size: 14px !important; }
+    #print-brief .lx         { font-size: 18px !important; }
+
+    /* Scale spacing up */
+    #print-brief .ph      { padding: 14px 20px 10px !important; }
+    #print-brief .body    { padding: 12px 20px 10px !important; gap: 10px !important; }
+    #print-brief .kpis    { gap: 8px !important; }
+    #print-brief .kc      { padding: 8px 10px !important; }
+    #print-brief .g2      { gap: 10px !important; }
+    #print-brief .sec     { padding: 10px 14px !important; }
+    #print-brief .ph-hero { padding: 14px 16px !important; }
+    #print-brief .tiers   { gap: 10px !important; }
+    #print-brief .tier    { padding: 8px 12px !important; }
+    #print-brief .steps   { gap: 10px !important; margin-top: 6px !important; }
+    #print-brief .pf      { padding: 8px 20px !important; }
+    #print-brief .sec ul  { gap: 5px !important; }
+    #print-brief .sec li  { padding-left: 14px !important; }
+    #print-brief .roi     { padding: 5px 10px !important; margin-top: 8px !important; }
+  }
+</style>
+
+<div class="pages">
+<div class="page">
+  <div class="ph">
+    <div class="logos">
+      <div class="lp lb">Baylor Athletics</div>
+      <span class="lx">×</span>
+      <div class="lp ls">SAP</div>
+    </div>
+    <div class="phm">
+      <p class="e">Confidential Executive Brief</p>
+      <p class="t">Partnership Proposal · 2027 Launch</p>
     </div>
   </div>
-
-  <div class="page-break"></div>
-
-  <div class="print-page">
-    <div class="print-section">
-      <h2 class="print-h2">The "Multiplier Effect" Asset Package</h2>
-      <p class="print-p">This strict execution creates a multiplier effect: a CEO in Dallas sees the patch on TV, the LED takeover in the stadium, and the social media post in their LinkedIn feed the next morning.</p>
-      <ul class="print-ul">
-        <li class="print-li"><strong>Digital &amp; Social Ownership:</strong> Thirty (30) "SAP Stat of the Game" posts specifically across LinkedIn and X, plus five (5) premium Instagram Reels highlighting the Executive Suite.</li>
-        <li class="print-li"><strong>In-Stadium Premium Signage:</strong> Two (2) full minutes of exclusive, 360-degree LED ribbon board takeover per half, plus naming rights to the "SAP Crunch Time" under-4-minute media timeout.</li>
-      </ul>
+  <div class="body">
+    <div class="ptitle">
+      <h1>Enterprise <span>Partnership</span> Proposal</h1>
+      <p class="sub">Baylor Sports Properties powered by Playfly · Prepared for SAP Leadership</p>
     </div>
-
-    <div class="print-section">
-      <h2 class="print-h2">Data &amp; Measurement Methodology</h2>
-      <p class="print-p">This investment is backed by bulletproof data. Through our agency partner, Playfly, Baylor delivers an airtight Annual Recap using gold-standard third-party vendors.</p>
-      <ul class="print-ul">
-        <li class="print-li"><strong>Total Audience (Nielsen):</strong> Tracking exact linear TV viewership numbers and in-stadium attendance.</li>
-        <li class="print-li"><strong>Digital Valuation (Zoomph):</strong> Calculating the exact monetary value and engagement ROI of the 30+ cross-platform posts.</li>
-        <li class="print-li"><strong>Qualitative Impact (Playfly Analytics):</strong> Playfly utilizes strict database population matching—not cheap convenience samples—to ensure survey data accurately reflects actual mid-market B2B mindset shifts.</li>
-      </ul>
+    <div class="kpis">
+      <div class="kc kg"><div class="kn g">$13.5M</div><div class="kl">3-Year Total Value</div></div>
+      <div class="kc kb"><div class="kn b">$1.85M</div><div class="kl">Base Platform / yr</div></div>
+      <div class="kc"><div class="kn">3.5×</div><div class="kl">Projected ROI</div></div>
+      <div class="kc kg"><div class="kn g">2027</div><div class="kl">Launch Year</div></div>
     </div>
-
-    <div style="background: #0c1522; color: white; padding: 25px; border-radius: 8px; margin-top: 30px; text-align: center;">
-      <p style="margin: 0; font-size: 10pt; color: #b5c7dd; letter-spacing: 1px; text-transform: uppercase;">Total 3-Year Partnership Agreement</p>
-      <h3 style="margin: 5px 0 10px; font-size: 32pt; color: #fff;">$13,500,000</h3>
-      <span style="background: #ffb81c; color: #0c1522; padding: 4px 12px; border-radius: 100px; font-size: 9pt; font-weight: bold;">Projected Blended ROI: 3.5x</span>
-      
-      <div style="display: flex; gap: 20px; text-align: left; margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px;">
-        <div style="flex: 1;">
-          <h4 style="margin: 0 0 5px; font-size: 12pt; color: #ffb81c;">1. Base Enterprise Platform</h4>
-          <p style="margin: 0 0 5px; font-size: 16pt; font-weight: bold;">$1.85M / yr</p>
-          <p style="margin: 0; font-size: 9pt; color: #b5c7dd; line-height: 1.4;">Suites, Digital/Social Ownership, LED Takeovers, and Academic Keynotes. Offset by the SAP Analytics Cloud VIK integration.</p>
-        </div>
-        <div style="flex: 1;">
-          <h4 style="margin: 0 0 5px; font-size: 12pt; color: #ffb81c;">2. P4 Jersey Patch Rights</h4>
-          <p style="margin: 0 0 5px; font-size: 16pt; font-weight: bold;">$2.65M / yr</p>
-          <p style="margin: 0; font-size: 9pt; color: #b5c7dd; line-height: 1.4;">Activates in 2027. Anchored securely above the established Group of 5 floor of $2.2M, establishing total category dominance.</p>
-        </div>
+    <div class="sec gr">
+      <p class="sl">The Opportunity</p>
+      <h2>Strategic Opportunity — The I-35 Corridor</h2>
+      <p>SAP currently lacks a major college athletics presence in the South. Baylor delivers the definitive entry point into the <strong>Dallas–Waco–Austin corridor</strong> — the fastest-growing mid-market B2B sector in the US. Targets the $500M–$2B enterprise demographic, repositioning SAP from "Fortune 500 only" to the accessible intelligence layer for Texas business.</p>
+    </div>
+    <div class="g2">
+      <div class="sec">
+        <p class="sl">Business Back Anchor</p>
+        <h2>Live Tech Reference Story</h2>
+        <ul>
+          <li><strong>VIK Migration:</strong> Baylor formally adopts SAP Analytics Cloud to run stadium operations and backend infrastructure.</li>
+          <li><strong>First-Mover Patch:</strong> SAP logo on Baylor basketball jerseys — visible, on-court symbol of the backend migration. Launches 2027.</li>
+          <li><strong>Sapphire &amp; TechEd:</strong> Baylor becomes a live collegiate B2B case study at SAP's global conferences.</li>
+        </ul>
+        <div class="roi">&#8627; $12M est. annual media equivalence — linear TV, highlights &amp; EA Sports.</div>
+      </div>
+      <div class="sec gd">
+        <p class="sl g">Corporate Pillar Alignment</p>
+        <h2>Mapped to SAP's 4 Pillars</h2>
+        <ul>
+          <li><strong>Brand &amp; VIK:</strong> Category exclusivity + live reference architecture for global B2B sales teams.</li>
+          <li><strong>Demand Gen:</strong> Direct I-35 CEO/CFO/CTO pipeline via premium suite hosting.</li>
+          <li><strong>People:</strong> Suites double as SAP co-working hubs for Austin/Dallas teams.</li>
+          <li><strong>Academic:</strong> S3E integration — capturing elite tech sales talent pre-graduation.</li>
+        </ul>
+        <div class="roi">&#8627; $5M+ B2B pipeline projected · 22% est. recruiting cost reduction.</div>
       </div>
     </div>
+  </div>
+  <div class="pf">
+    <span class="fl">Baylor Sports Properties powered by Playfly · S3E Program</span>
+    <div class="fr"><span class="fc">Scott Yacyshyn · Scott.Yacyshyn@Playfly.com</span><br>Director of Partnership Sales</div>
   </div>
 </div>
 
-<style>
-  /* HIDE PRINT BRIEF ON THE SCREEN */
-  #print-brief { display: none; }
-
-  /* THE MAGIC PRINT COMMANDS */
-  @media print {
-    /* 1. Hide the entire dark website */
-    body > * { display: none !important; }
-    /* 2. Reveal the printable brief */
-    body > #print-brief { display: block !important; }
-    
-    /* 3. Setup the physical paper rules */
-    @page { margin: 0.5in; size: letter portrait; }
-    body { background: white !important; margin: 0 !important; padding: 0 !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-    
-    /* 4. Print Typography & Spacing */
-    #print-brief { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #1a1a1a; }
-    .print-page { width: 100%; }
-    .print-header { border-bottom: 2px solid #0f7cc9; padding-bottom: 15px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: flex-end; }
-    .print-section { margin-bottom: 20px; }
-    .print-h2 { font-size: 14pt; color: #0c1522; margin: 0 0 8px; border-left: 4px solid #ffb81c; padding-left: 10px; text-transform: uppercase; }
-    .print-p { font-size: 10.5pt; line-height: 1.5; margin: 0 0 10px; }
-    .print-ul { margin: 0 0 10px; padding-left: 20px; }
-    .print-li { font-size: 10.5pt; line-height: 1.5; margin-bottom: 6px; }
-    .print-roi { background: #f0f4f8; border-left: 3px solid #0f7cc9; padding: 8px 12px; font-size: 9.5pt; font-weight: 600; color: #0f7cc9; margin-bottom: 15px; }
-    .page-break { page-break-before: always; }
-  }
-</style>
+<div class="page">
+  <div class="ph">
+    <div class="logos">
+      <div class="lp lb">Baylor Athletics</div>
+      <span class="lx">×</span>
+      <div class="lp ls">SAP</div>
+    </div>
+    <div class="phm">
+      <p class="e">The Math &amp; The Ask</p>
+      <p class="t">Assets · Measurement · Pricing</p>
+    </div>
+  </div>
+  <div class="body">
+    <div class="g2">
+      <div class="sec">
+        <p class="sl">Multiplier Effect</p>
+        <h2>Heavyweight Inventory</h2>
+        <ul>
+          <li><strong>SAP Stat of the Game:</strong> 30 LinkedIn/X posts — one per regular-season basketball game, 500K+ combined reach.</li>
+          <li><strong>5 IG Reels:</strong> Premium Collaborative Reels spotlighting the SAP Executive Suite for C-suite audiences.</li>
+          <li><strong>LED Takeover:</strong> 2 full minutes of 360° LED ribbon board per half — broadcast-visible nationally.</li>
+          <li><strong>SAP Crunch Time:</strong> Official naming rights to the under-4-minute timeout — spoken by announcers every home game.</li>
+          <li><strong>12 Keynote Events:</strong> Full room ownership + SAP-moderated B2B executive panels at Baylor Club.</li>
+        </ul>
+      </div>
+      <div class="sec gd">
+        <p class="sl g">Bulletproof Data</p>
+        <h2>Measurement Framework</h2>
+        <ul>
+          <li><strong>Nielsen Sports:</strong> Broadcast TV audience tracking and logo exposure valuation — hard media equivalency for SAP internal ROI reporting.</li>
+          <li><strong>Zoomph:</strong> Real-time social media exposure valuation. SAP marketing receives live dashboard access updated continuously in-season.</li>
+          <li><strong>Playfly Analytics:</strong> Strict database population matching — measures actual B2B brand recall, not proxy impressions.</li>
+          <li><strong>Annual Recap:</strong> Quarterly KPI scorecard against SAP's 4 internal pillars with YOY benchmarking.</li>
+        </ul>
+        <div class="roi">&#8627; ROO-first model: Return on Objective + B2B pipeline value, not just media impressions.</div>
+      </div>
+    </div>
+    <div class="ph-hero">
+      <p class="phe">Total 3-Year Partnership Agreement</p>
+      <div class="pht">$13,500,000</div>
+      <div class="phb">Projected Blended ROI: 3.5×</div>
+      <div class="tiers">
+        <div class="tier">
+          <h4>1. Base Enterprise Platform</h4>
+          <div class="tier-p">$1,850,000 / yr</div>
+          <p>VIP Suites, 35 social activations, LED Takeovers, SAP Crunch Time naming rights, Academic Keynotes. Offset by SAP Analytics Cloud VIK integration.</p>
+        </div>
+        <div class="tier">
+          <h4>2. Power 4 Jersey Patch Rights</h4>
+          <div class="tier-p">$2,650,000 / yr</div>
+          <p>Activates 2027. Anchored above G5 floor of $2.2M/yr. First-mover Power 4 scarcity — total category dominance in the Big 12.</p>
+        </div>
+      </div>
+    </div>
+    <div class="sec">
+      <p class="sl">Path to Approval</p>
+      <h2>Recommended Next Steps</h2>
+      <div class="steps">
+        <div><p class="sn" style="color:#c8920e">Step 1 — Align</p><p class="sb">Route to Dan's Strategy &amp; Ops team for B2B ROI validation. Present Nielsen + Zoomph as the internal business case for board approval.</p></div>
+        <div><p class="sn" style="color:#0f7cc9">Step 2 — Approve</p><p class="sb">CMO sign-off on the $1.85M base platform. Jersey patch initiated as separate valuation post Year 1 proof — protecting Baylor's flagship inventory.</p></div>
+        <div><p class="sn" style="color:#0c1a2e">Step 3 — Activate</p><p class="sb">Lock 2027 calendar, suite inventory, keynote schedule, and SAP Analytics Cloud VIK implementation timeline with Playfly.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="pf">
+    <span class="fl">Baylor Sports Properties powered by Playfly · S3E Program · 2027 Launch Roadmap</span>
+    <div class="fr"><span class="fc">Scott Yacyshyn · Scott.Yacyshyn@Playfly.com</span><br>Director of Partnership Sales</div>
+  </div>
+</div>
+</div>
+</div>
 </body></html>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
