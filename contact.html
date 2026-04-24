@@ -740,24 +740,30 @@
       body > * { display: none !important; }
       body > .print-onepager { display: block !important; }
       * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; box-sizing: border-box !important; }
-      body { margin:0 !important; padding:0 !important; background:#fff !important; font-family:'Space Grotesk',Arial,sans-serif !important; }
+      body { margin:0 !important; padding:0 !important; background:#fff !important; }
 
-      /* Each .page = one physical page, hard-clipped */
+      /* Let content flow naturally, and put a hard break after Page 1 */
       .print-onepager .page {
-        width: 8.5in !important;
-        height: 10.95in !important;
-        max-height: 10.95in !important;
-        overflow: hidden !important;
+        width: 100% !important;
+        height: auto !important;
+        max-height: none !important;
         margin: 0 !important;
+        padding: 0 !important;
         box-shadow: none !important;
         page-break-after: always !important;
         break-after: page !important;
         page-break-inside: avoid !important;
         break-inside: avoid !important;
       }
+
+      /* PREVENT THE BLANK 3RD PAGE: Tell the last page NOT to break */
       .print-onepager .page:last-child {
-        page-break-after: avoid !important;
-        break-after: avoid !important;
+        page-break-after: auto !important;
+        break-after: auto !important;
+      }
+
+      .print-onepager .pg-body {
+        overflow: visible !important;
       }
     }
 
