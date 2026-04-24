@@ -1,0 +1,190 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#d8dde3;padding:12px;font-family:'Space Grotesk',sans-serif}
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap');
+.pages{display:flex;gap:12px;justify-content:center}
+.page{width:308px;height:398px;background:#fff;border-radius:4px;overflow:hidden;display:flex;flex-direction:column;flex-shrink:0;position:relative;box-shadow:0 2px 16px rgba(0,0,0,.18)}
+.page::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#0f7cc9 55%,#f0c84a 55%);z-index:10}
+.ph{padding:8px 12px 6px;display:flex;align-items:center;justify-content:space-between;border-bottom:1.5px solid #dce3ec;flex-shrink:0;background:#fff}
+.logos{display:flex;align-items:center;gap:6px}
+.lp{height:20px;padding:0 8px;border-radius:3px;font-weight:800;font-size:7px;letter-spacing:.04em;text-transform:uppercase;display:flex;align-items:center}
+.lb{background:#0c1a2e;color:#f0c84a}
+.ls{background:#0f7cc9;color:#fff;font-size:10px;letter-spacing:.06em}
+.lx{font-size:12px;color:#9aa5b4}
+.phm{text-align:right}
+.phm .e{font-size:5.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#0f7cc9;margin-bottom:1px}
+.phm .t{font-size:6px;font-weight:600;color:#6b7a8d;text-transform:uppercase;letter-spacing:.04em}
+.body{flex:1;padding:7px 12px 6px;display:flex;flex-direction:column;gap:6px;background:#f4f6f9;min-height:0;overflow:hidden}
+.ptitle{text-align:center;padding:3px 0}
+.ptitle h1{font-size:12pt;font-weight:800;text-transform:uppercase;letter-spacing:-.5px;color:#0c1a2e;line-height:1.05}
+.ptitle h1 span{color:#0f7cc9}
+.ptitle .sub{margin-top:2px;font-size:5.5pt;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#6b7a8d}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.kc{background:#fff;border:1.5px solid #dce3ec;border-radius:5px;padding:5px 6px;text-align:center}
+.kc.kg{border-top:2.5px solid #f0c84a}
+.kc.kb{border-top:2.5px solid #0f7cc9}
+.kn{font-size:9.5pt;font-weight:800;color:#0c1a2e;line-height:1;letter-spacing:-.02em}
+.kn.g{color:#c8920e}.kn.b{color:#0f7cc9}
+.kl{font-size:5pt;color:#6b7a8d;margin-top:2px;line-height:1.2;font-weight:500}
+.sec{background:#fff;border:1.5px solid #dce3ec;border-radius:6px;padding:7px 9px;position:relative}
+.sec::before{content:'';position:absolute;top:0;left:0;width:2.5px;height:100%;background:#0f7cc9;border-radius:6px 0 0 6px}
+.sec.gd::before{background:#f0c84a}
+.sec.gr::before{background:linear-gradient(180deg,#0f7cc9,#f0c84a)}
+.sl{font-size:5.5pt;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#0f7cc9;margin-bottom:2px}
+.sl.g{color:#c8920e}
+.sec h2{font-size:7.5pt;font-weight:700;color:#0c1a2e;margin-bottom:4px;padding-bottom:3px;border-bottom:1px solid #dce3ec}
+.sec p{font-size:6.5pt;line-height:1.5;color:#2c3e55}
+.sec p strong{color:#0c1a2e;font-weight:600}
+.sec ul{list-style:none;display:flex;flex-direction:column;gap:2px}
+.sec li{font-size:6.5pt;line-height:1.45;color:#2c3e55;padding-left:9px;position:relative}
+.sec li::before{content:'›';position:absolute;left:0;color:#0f7cc9;font-weight:700;font-size:8pt;line-height:1.2}
+.sec li strong{color:#0c1a2e;font-weight:600}
+.roi{background:#fff8e6;border-left:2.5px solid #f0c84a;border-radius:0 4px 4px 0;padding:3px 6px;margin-top:4px;font-size:6pt;font-weight:600;color:#c8920e;line-height:1.35}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.pf{padding:5px 12px;border-top:1.5px solid #dce3ec;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;background:#fff}
+.pf .fl{font-size:5.5pt;color:#6b7a8d;font-weight:500}
+.pf .fr{font-size:5.5pt;color:#6b7a8d;text-align:right}
+.pf .fc{font-weight:600;color:#0f7cc9}
+.ph-hero{background:#0c1a2e;border-radius:7px;padding:9px 10px;text-align:center;color:#fff;position:relative;overflow:hidden}
+.ph-hero::before{content:'';position:absolute;top:0;left:0;right:0;height:2.5px;background:linear-gradient(90deg,#0f7cc9,#f0c84a)}
+.phe{font-size:5.5pt;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:2px}
+.pht{font-size:20pt;font-weight:800;color:#fff;letter-spacing:-1px;line-height:1;margin:2px 0 4px}
+.phb{display:inline-block;background:#f0c84a;color:#0c1a2e;font-weight:700;font-size:5.5pt;padding:2px 10px;border-radius:999px;margin-bottom:7px}
+.tiers{display:grid;grid-template-columns:1fr 1fr;gap:5px;text-align:left}
+.tier{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:5px;padding:5px 7px}
+.tier h4{font-size:6.5pt;font-weight:700;color:rgba(255,255,255,.9);margin-bottom:2px}
+.tier-p{font-size:10.5pt;font-weight:800;color:#f0c84a;letter-spacing:-.5px;line-height:1.1;margin-bottom:3px}
+.tier p{font-size:5.5pt;color:rgba(255,255,255,.5);line-height:1.4}
+.steps{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;margin-top:4px}
+.sn{font-size:5.5pt;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+.sb{font-size:6pt;color:#2c3e55;line-height:1.45}
+</style>
+<div class="pages">
+<div class="page">
+  <div class="ph">
+    <div class="logos">
+      <div class="lp lb">Baylor Athletics</div>
+      <span class="lx">×</span>
+      <div class="lp ls">SAP</div>
+    </div>
+    <div class="phm">
+      <p class="e">Confidential Executive Brief</p>
+      <p class="t">Partnership Proposal · 2027 Launch</p>
+    </div>
+  </div>
+  <div class="body">
+    <div class="ptitle">
+      <h1>Enterprise <span>Partnership</span> Proposal</h1>
+      <p class="sub">Baylor Sports Properties powered by Playfly · Prepared for SAP Leadership</p>
+    </div>
+    <div class="kpis">
+      <div class="kc kg"><div class="kn g">$13.5M</div><div class="kl">3-Year Total Value</div></div>
+      <div class="kc kb"><div class="kn b">$1.85M</div><div class="kl">Base Platform / yr</div></div>
+      <div class="kc"><div class="kn">3.5×</div><div class="kl">Projected ROI</div></div>
+      <div class="kc kg"><div class="kn g">2027</div><div class="kl">Launch Year</div></div>
+    </div>
+    <div class="sec gr">
+      <p class="sl">The Opportunity</p>
+      <h2>Strategic Opportunity — The I-35 Corridor</h2>
+      <p>SAP currently lacks a major college athletics presence in the South. Baylor delivers the definitive entry point into the <strong>Dallas–Waco–Austin corridor</strong> — the fastest-growing mid-market B2B sector in the US. Targets the $500M–$2B enterprise demographic, repositioning SAP from "Fortune 500 only" to the accessible intelligence layer for Texas business.</p>
+    </div>
+    <div class="g2">
+      <div class="sec">
+        <p class="sl">Business Back Anchor</p>
+        <h2>Live Tech Reference Story</h2>
+        <ul>
+          <li><strong>VIK Migration:</strong> Baylor formally adopts SAP Analytics Cloud to run stadium operations and backend infrastructure.</li>
+          <li><strong>First-Mover Patch:</strong> SAP logo on Baylor basketball jerseys — visible, on-court symbol of the backend migration. Launches 2027.</li>
+          <li><strong>Sapphire &amp; TechEd:</strong> Baylor becomes a live collegiate B2B case study at SAP's global conferences.</li>
+        </ul>
+        <div class="roi">&#8627; $12M est. annual media equivalence — linear TV, highlights &amp; EA Sports.</div>
+      </div>
+      <div class="sec gd">
+        <p class="sl g">Corporate Pillar Alignment</p>
+        <h2>Mapped to SAP's 4 Pillars</h2>
+        <ul>
+          <li><strong>Brand &amp; VIK:</strong> Category exclusivity + live reference architecture for global B2B sales teams.</li>
+          <li><strong>Demand Gen:</strong> Direct I-35 CEO/CFO/CTO pipeline via premium suite hosting.</li>
+          <li><strong>People:</strong> Suites double as SAP co-working hubs for Austin/Dallas teams.</li>
+          <li><strong>Academic:</strong> S3E integration — capturing elite tech sales talent pre-graduation.</li>
+        </ul>
+        <div class="roi">&#8627; $5M+ B2B pipeline projected · 22% est. recruiting cost reduction.</div>
+      </div>
+    </div>
+  </div>
+  <div class="pf">
+    <span class="fl">Baylor Sports Properties powered by Playfly · S3E Program</span>
+    <div class="fr"><span class="fc">Scott Yacyshyn · Scott.Yacyshyn@Playfly.com</span><br>Director of Partnership Sales</div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="ph">
+    <div class="logos">
+      <div class="lp lb">Baylor Athletics</div>
+      <span class="lx">×</span>
+      <div class="lp ls">SAP</div>
+    </div>
+    <div class="phm">
+      <p class="e">The Math &amp; The Ask</p>
+      <p class="t">Assets · Measurement · Pricing</p>
+    </div>
+  </div>
+  <div class="body">
+    <div class="g2">
+      <div class="sec">
+        <p class="sl">Multiplier Effect</p>
+        <h2>Heavyweight Inventory</h2>
+        <ul>
+          <li><strong>SAP Stat of the Game:</strong> 30 LinkedIn/X posts — one per regular-season basketball game, 500K+ combined reach.</li>
+          <li><strong>5 IG Reels:</strong> Premium Collaborative Reels spotlighting the SAP Executive Suite for C-suite audiences.</li>
+          <li><strong>LED Takeover:</strong> 2 full minutes of 360° LED ribbon board per half — broadcast-visible nationally.</li>
+          <li><strong>SAP Crunch Time:</strong> Official naming rights to the under-4-minute timeout — spoken by announcers every home game.</li>
+          <li><strong>12 Keynote Events:</strong> Full room ownership + SAP-moderated B2B executive panels at Baylor Club.</li>
+        </ul>
+      </div>
+      <div class="sec gd">
+        <p class="sl g">Bulletproof Data</p>
+        <h2>Measurement Framework</h2>
+        <ul>
+          <li><strong>Nielsen Sports:</strong> Broadcast TV audience tracking and logo exposure valuation — hard media equivalency for SAP internal ROI reporting.</li>
+          <li><strong>Zoomph:</strong> Real-time social media exposure valuation. SAP marketing receives live dashboard access updated continuously in-season.</li>
+          <li><strong>Playfly Analytics:</strong> Strict database population matching — measures actual B2B brand recall, not proxy impressions.</li>
+          <li><strong>Annual Recap:</strong> Quarterly KPI scorecard against SAP's 4 internal pillars with YOY benchmarking.</li>
+        </ul>
+        <div class="roi">&#8627; ROO-first model: Return on Objective + B2B pipeline value, not just media impressions.</div>
+      </div>
+    </div>
+    <div class="ph-hero">
+      <p class="phe">Total 3-Year Partnership Agreement</p>
+      <div class="pht">$13,500,000</div>
+      <div class="phb">Projected Blended ROI: 3.5×</div>
+      <div class="tiers">
+        <div class="tier">
+          <h4>1. Base Enterprise Platform</h4>
+          <div class="tier-p">$1,850,000 / yr</div>
+          <p>VIP Suites, 35 social activations, LED Takeovers, SAP Crunch Time naming rights, Academic Keynotes. Offset by SAP Analytics Cloud VIK integration.</p>
+        </div>
+        <div class="tier">
+          <h4>2. Power 4 Jersey Patch Rights</h4>
+          <div class="tier-p">$2,650,000 / yr</div>
+          <p>Activates 2027. Anchored above G5 floor of $2.2M/yr. First-mover Power 4 scarcity — total category dominance in the Big 12.</p>
+        </div>
+      </div>
+    </div>
+    <div class="sec">
+      <p class="sl">Path to Approval</p>
+      <h2>Recommended Next Steps</h2>
+      <div class="steps">
+        <div><p class="sn" style="color:#c8920e">Step 1 — Align</p><p class="sb">Route to Dan's Strategy &amp; Ops team for B2B ROI validation. Present Nielsen + Zoomph as the internal business case for board approval.</p></div>
+        <div><p class="sn" style="color:#0f7cc9">Step 2 — Approve</p><p class="sb">CMO sign-off on the $1.85M base platform. Jersey patch initiated as separate valuation post Year 1 proof — protecting Baylor's flagship inventory.</p></div>
+        <div><p class="sn" style="color:#0c1a2e">Step 3 — Activate</p><p class="sb">Lock 2027 calendar, suite inventory, keynote schedule, and SAP Analytics Cloud VIK implementation timeline with Playfly.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="pf">
+    <span class="fl">Baylor Sports Properties powered by Playfly · S3E Program · 2027 Launch Roadmap</span>
+    <div class="fr"><span class="fc">Scott Yacyshyn · Scott.Yacyshyn@Playfly.com</span><br>Director of Partnership Sales</div>
+  </div>
+</div>
+</div>
