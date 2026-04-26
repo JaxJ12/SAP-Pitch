@@ -12,19 +12,19 @@
   <link rel="stylesheet" href="assistant.css" />
   <style>
     :root {
-      --bg: #3e362b;
-      --bg-soft: #4c4336;
-      --bg-deep: #221d16;
-      --surface: rgba(63, 54, 43, 0.82);
-      --surface-strong: rgba(52, 45, 36, 0.9);
-      --text: rgba(247, 242, 232, 0.94);
-      --muted: rgba(225, 217, 203, 0.74);
-      --line: rgba(231, 216, 182, 0.2);
-      --line-strong: rgba(216, 183, 129, 0.48);
-      --gold: #d8b77f;
-      --gold-soft: #ead7b2;
-      --blue: #0f7cc9;
-      --shadow-panel: 0 24px 72px rgba(24, 19, 12, 0.3);
+      --bg: #170f13;
+      --bg-soft: #22161b;
+      --bg-deep: #120b0f;
+      --surface: rgba(38, 24, 29, 0.84);
+      --surface-strong: rgba(47, 29, 36, 0.95);
+      --text: rgba(255, 255, 255, 0.94);
+      --muted: rgba(244, 228, 231, 0.76);
+      --line: rgba(231, 168, 176, 0.18);
+      --line-strong: rgba(231, 168, 176, 0.52);
+      --gold: #f4c3ca;
+      --gold-soft: #f8d7dc;
+      --blue: #e7a8b0;
+      --shadow-panel: 0 24px 72px rgba(18, 7, 11, 0.38);
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -32,9 +32,9 @@
       margin: 0;
       background-color: var(--bg-deep);
       background-image:
-        radial-gradient(circle at top left, rgba(216, 183, 127, 0.22), transparent 30%),
-        radial-gradient(circle at 85% 15%, rgba(193, 165, 118, 0.26), transparent 34%),
-        radial-gradient(circle at bottom center, rgba(99, 84, 62, 0.5), transparent 42%);
+        radial-gradient(circle at top left, rgba(231, 168, 176, 0.18), transparent 30%),
+        radial-gradient(circle at 85% 15%, rgba(244, 195, 202, 0.14), transparent 34%),
+        radial-gradient(circle at bottom center, rgba(81, 50, 60, 0.52), transparent 42%);
       color: var(--text);
       font-family: "Space Grotesk", sans-serif;
       overflow-x: hidden;
@@ -65,7 +65,7 @@
       left: 50%;
       width: min(34vw, 460px);
       height: min(22vw, 300px);
-      background: #3e362b;
+      background: #170f13;
       border: 1px solid rgba(255, 255, 255, 0.24);
       border-radius: 28px;
       transform: translate(-50%, -50%) scale(0.88);
@@ -196,7 +196,7 @@
       color: #2a2218;
     }
     .button--primary:hover {
-      background: #e3c793;
+      background: #f0b9c0;
       color: #231d14;
     }
     .terminal,
@@ -751,7 +751,7 @@
   <main>
     <section class="hero">
       <div class="hero__media">
-        <img src="sap-suite-analytics.jpg" alt="SAP stadium operations dashboard" />
+        <img src="sap-suite-analytics.png" alt="SAP stadium operations dashboard" />
       </div>
       <div class="hero__shade"></div>
       <div class="hero__grid"></div>
@@ -798,7 +798,7 @@
     <section class="suite-gallery">
       <div class="gallery-row">
         <div class="gallery-image">
-          <img src="player-cam-stadium.jpg" alt="In-stadium fan profiling">
+          <img src="player-cam-stadium.png" alt="In-stadium fan profiling">
         </div>
         <div class="gallery-copy">
           <span class="feature-number">Module 01</span>
@@ -810,7 +810,7 @@
 
       <div class="gallery-row reverse-row">
         <div class="gallery-image">
-          <img src="sap-live-stats-app.jpg" alt="Live stats and concessions management">
+          <img src="sap-live-stats-app.png" alt="Live stats and concessions management">
         </div>
         <div class="gallery-copy">
           <span class="feature-number">Module 02</span>
@@ -822,7 +822,7 @@
 
       <div class="gallery-row">
         <div class="gallery-image">
-          <img src="sap-suite-row.jpg" alt="Stadium suite operations">
+          <img src="sap-suite-row.png" alt="Stadium suite operations">
         </div>
         <div class="gallery-copy">
           <span class="feature-number">Module 03</span>
@@ -1047,14 +1047,14 @@
       };
 
       const tabColorByFile = {
-        "": "#050505",
-        "index.html": "#050505",
-        "sap-jersey-patch.html": "#16392f",
-        "sap-suites.html": "#2b3138",
-        "sap-keynote.html": "#5a5330",
-        "packages.html": "#3e362b",
-        "measurement.html": "#0c1522",
-        "contact.html": "#0c1522"
+        "": "#170f13",
+        "index.html": "#170f13",
+        "sap-jersey-patch.html": "#170f13",
+        "sap-suites.html": "#170f13",
+        "sap-keynote.html": "#170f13",
+        "packages.html": "#170f13",
+        "measurement.html": "#170f13",
+        "contact.html": "#170f13"
       };
 
       const resolveTabColor = (targetURL) => {

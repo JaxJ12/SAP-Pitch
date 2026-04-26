@@ -12,19 +12,19 @@
   <link rel="stylesheet" href="assistant.css" />
   <style>
     :root {
-      --bg: #5a5330;
-      --bg-soft: #68613a;
-      --bg-deep: #2d2a18;
-      --surface: rgba(90, 83, 48, 0.82);
-      --surface-strong: rgba(74, 68, 40, 0.9);
-      --text: rgba(247, 242, 232, 0.94);
-      --muted: rgba(236, 230, 206, 0.76);
-      --line: rgba(238, 224, 175, 0.2);
-      --line-strong: rgba(209, 190, 132, 0.48);
-      --gold: #e4d08f;
-      --gold-soft: #f0e3b9;
-      --blue: #b8a35f;
-      --shadow-panel: 0 24px 72px rgba(26, 22, 12, 0.32);
+      --bg: #170f13;
+      --bg-soft: #22161b;
+      --bg-deep: #120b0f;
+      --surface: rgba(38, 24, 29, 0.84);
+      --surface-strong: rgba(47, 29, 36, 0.95);
+      --text: rgba(255, 255, 255, 0.94);
+      --muted: rgba(244, 228, 231, 0.76);
+      --line: rgba(231, 168, 176, 0.18);
+      --line-strong: rgba(231, 168, 176, 0.52);
+      --gold: #f4c3ca;
+      --gold-soft: #f8d7dc;
+      --blue: #e7a8b0;
+      --shadow-panel: 0 24px 72px rgba(18, 7, 11, 0.38);
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -32,9 +32,9 @@
       margin: 0;
       background-color: var(--bg-deep);
       background-image:
-        radial-gradient(circle at top left, rgba(228, 208, 143, 0.2), transparent 30%),
-        radial-gradient(circle at 85% 15%, rgba(209, 190, 132, 0.24), transparent 34%),
-        radial-gradient(circle at bottom center, rgba(121, 112, 70, 0.46), transparent 42%);
+        radial-gradient(circle at top left, rgba(231, 168, 176, 0.18), transparent 30%),
+        radial-gradient(circle at 85% 15%, rgba(244, 195, 202, 0.14), transparent 34%),
+        radial-gradient(circle at bottom center, rgba(81, 50, 60, 0.52), transparent 42%);
       color: var(--text);
       font-family: "Space Grotesk", sans-serif;
       overflow-x: hidden;
@@ -65,7 +65,7 @@
       left: 50%;
       width: min(34vw, 460px);
       height: min(22vw, 300px);
-      background: #5a5330;
+      background: #170f13;
       border: 1px solid rgba(255, 255, 255, 0.24);
       border-radius: 28px;
       transform: translate(-50%, -50%) scale(0.88);
@@ -196,7 +196,7 @@
       color: #2f2a18;
     }
     .button--primary:hover {
-      background: #efddb0;
+      background: #f0b9c0;
       color: #262212;
     }
     .terminal,
@@ -582,7 +582,7 @@
 
     .suite-gallery {
       padding: 10vh 10vw;
-      background: linear-gradient(180deg, #5a5330, #2d2a18);
+      background: linear-gradient(180deg, #22161b, #120b0f);
     }
 
     .gallery-row {
@@ -1368,14 +1368,14 @@
       };
 
       const tabColorByFile = {
-        "": "#050505",
-        "index.html": "#050505",
-        "sap-jersey-patch.html": "#16392f",
-        "sap-suites.html": "#2b3138",
-        "sap-keynote.html": "#4a3a10",
-        "packages.html": "#3e362b",
-        "measurement.html": "#0c1522",
-        "contact.html": "#0c1522"
+        "": "#170f13",
+        "index.html": "#170f13",
+        "sap-jersey-patch.html": "#170f13",
+        "sap-suites.html": "#170f13",
+        "sap-keynote.html": "#170f13",
+        "packages.html": "#170f13",
+        "measurement.html": "#170f13",
+        "contact.html": "#170f13"
       };
 
       const resolveTabColor = (targetURL) => {
