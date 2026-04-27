@@ -638,11 +638,11 @@
   </style>
 </head>
 <body>
-  <div class="page-transition" aria-hidden="true"><div class="page-transition__panel" style="opacity: 0; width: min(34vw, 460px); height: min(22vw, 300px); border-radius: 28px; transform: translate(-50%, -50%) scale(0.88);"></div></div>
+  <div class="page-transition" aria-hidden="true"><div class="page-transition__panel"></div></div>
     <main>
     <section class="hero">
       <div class="hero__media">
-        <img src="mclane_stadium.png" alt="McLane Stadium and Baylor x SAP partnership environment" style="translate: none; rotate: none; scale: none; transform: scale(1.15, 1.15);">
+        <img src="mclane_stadium.png" alt="McLane Stadium and Baylor x SAP partnership environment">
       </div>
       <div class="hero__shade"></div>
       <div class="hero__grid"></div>
@@ -848,8 +848,10 @@
       const panel = transitionWrap?.querySelector(".page-transition__panel");
       const hasGSAP = typeof gsap !== "undefined";
       const hasScrollTrigger = typeof ScrollTrigger !== "undefined";
+      const supportsNativeViewTransition = typeof CSS !== "undefined" && CSS.supports("view-transition-name: none") && "startViewTransition" in document;
       let parallaxInitialized = false;
       let isLeaving = false;
+      const prefetchedHrefs = new Set();
       if (!transitionWrap || !panel) return;
       const pageNodes = [
         document.querySelector("main"),
@@ -857,6 +859,8 @@
       ].filter(Boolean);
       const setCompactPanel = () => {
         panel.style.opacity = "0";
+        panel.style.left = "50%";
+        panel.style.top = "50%";
         panel.style.width = "min(34vw, 460px)";
         panel.style.height = "min(22vw, 300px)";
         panel.style.borderRadius = "28px";
@@ -940,6 +944,12 @@
         isLeaving = true;
         transitionWrap.classList.add("is-leaving");
         document.body.classList.add("is-transitioning");
+
+        const nextTabColor = resolveTabColor(targetURL);
+        if (nextTabColor) {
+          panel.style.background = nextTabColor;
+        }
+
         if (hasGSAP) {
           const rect = triggerElement?.getBoundingClientRect?.();
           if (rect && rect.width && rect.height) {
@@ -993,6 +1003,44 @@
           window.location.href = targetURL;
         }
       };
+
+      const tabColorByFile = {
+        "": "#050505",
+        "index.html": "#050505",
+        "sap-jersey-patch.html": "#16392f",
+        "sap-suites.html": "#2b3138",
+        "sap-keynote.html": "#5a5330",
+        "packages.html": "#3e362b",
+        "measurement.html": "#170f13",
+        "contact.html": "#0c1522"
+      };
+
+      const resolveTabColor = (targetURL) => {
+        try {
+          const url = new URL(targetURL, window.location.origin);
+          const fileName = url.pathname.split("/").pop().toLowerCase();
+          return tabColorByFile[fileName] || null;
+        } catch {
+          return null;
+        }
+      };
+
+      const prefetchInternalLink = (href) => {
+        if (!href || prefetchedHrefs.has(href)) return;
+        try {
+          const url = new URL(href, window.location.origin);
+          if (url.origin !== window.location.origin) return;
+          const link = document.createElement("link");
+          link.rel = "prefetch";
+          link.as = "document";
+          link.href = url.href;
+          document.head.appendChild(link);
+          prefetchedHrefs.add(url.href);
+        } catch {
+          return;
+        }
+      };
+
       const isInternalLink = (anchor) => {
         if (!anchor || !anchor.href) return false;
         if (anchor.target === "_blank") return false;
@@ -1016,11 +1064,19 @@
         } catch {
           return;
         }
+        prefetchInternalLink(anchor.href);
+        if (supportsNativeViewTransition) return;
         event.preventDefault();
         sessionStorage.setItem("__pt_pending", "1");
         playExit(anchor.href, anchor);
       });
-      const shouldEnter = sessionStorage.getItem("__pt_pending") === "1";
+      document.addEventListener("pointerenter", (event) => {
+        const anchor = event.target.closest("a");
+        if (!anchor || !isInternalLink(anchor)) return;
+        prefetchInternalLink(anchor.href);
+      }, true);
+
+      const shouldEnter = !supportsNativeViewTransition && sessionStorage.getItem("__pt_pending") === "1";
       if (shouldEnter) {
         sessionStorage.removeItem("__pt_pending");
         playEntrance();
