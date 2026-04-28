@@ -314,6 +314,116 @@
     }
     .list li + li { margin-top: 10px; }
 
+    /* --- NEW MEASUREMENT DASHBOARD STYLES --- */
+    .bav-funnel {
+      display: flex;
+      gap: 12px;
+      margin-top: 34px;
+      overflow-x: auto;
+      padding-bottom: 16px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(231, 168, 176, 0.28) transparent;
+    }
+    .bav-step {
+      flex: 1;
+      min-width: 160px;
+      padding: 24px 20px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(231, 168, 176, 0.12);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .bav-step:hover {
+      transform: translateY(-4px);
+    }
+    .bav-step.is-target {
+      background: linear-gradient(180deg, rgba(54, 34, 41, 0.96), rgba(30, 18, 23, 0.94));
+      border-color: rgba(244, 195, 202, 0.6);
+      box-shadow: 0 12px 32px rgba(244, 195, 202, 0.12);
+      position: relative;
+    }
+    .bav-step.is-target::before {
+      content: "Core SAP Goal";
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: #170f13;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 99px;
+      white-space: nowrap;
+    }
+    .bav-step h4 {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .bav-step.is-target h4 { color: var(--gold); }
+    .bav-step p {
+      margin: 10px 0 0;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .benchmark-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 480px);
+      gap: 32px;
+      margin-top: 32px;
+      align-items: center;
+    }
+    .chart-container {
+      background: rgba(0, 0, 0, 0.24);
+      border-radius: 24px;
+      padding: 28px;
+      border: 1px solid rgba(231, 168, 176, 0.12);
+    }
+    .chart-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+      gap: 16px;
+    }
+    .chart-row:last-child { margin-bottom: 0; }
+    .chart-label {
+      width: 100px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: rgba(244, 214, 219, 0.8);
+      text-align: right;
+    }
+    .chart-track {
+      flex: 1;
+      height: 24px;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 99px;
+      overflow: hidden;
+      position: relative;
+    }
+    .chart-bar {
+      height: 100%;
+      border-radius: 99px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 12px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #170f13;
+    }
+    .chart-bar.sap { background: linear-gradient(90deg, #e7a8b0, #f4c3ca); }
+    .chart-bar.competitor { background: rgba(255, 255, 255, 0.2); color: var(--text); }
+
     .suite-hero-content {
       padding-bottom: 10vh;
     }
@@ -873,6 +983,78 @@
         <p class="eyebrow">Academic Pipeline</p>
         <h3>The Hankamer School of Business Integration</h3>
         <p>SAP executives can be integrated as guest lecturers for the Baylor S3E program, letting students analyze anonymized fan data. This creates a direct talent recruitment pipeline, solving SAP's hiring and employee onboarding costs.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section__inner">
+        <div class="section-heading">
+          <p class="kicker">The Unobservable Data</p>
+          <h2>The BAV ROI Funnel</h2>
+          <p>Audience size is only part of the story. Sponsorship commands a premium over standard advertising because it changes minds at a significantly faster rate. Based on the industry-standard Brand Asset Valuator (BAV) model, we utilize Playfly Insights to track exactly how the Baylor ecosystem pushes decision-makers down the funnel.</p>
+        </div>
+
+        <div class="bav-funnel">
+          <div class="bav-step">
+            <h4>Awareness</h4>
+            <p>Moving from unknown to recognized via the jersey patch.</p>
+          </div>
+          <div class="bav-step">
+            <h4>Relevance</h4>
+            <p>Seeing SAP contextualized in live game-day analytics.</p>
+          </div>
+          <div class="bav-step">
+            <h4>Difference</h4>
+            <p>Standing out from legacy competitors like Oracle.</p>
+          </div>
+          <div class="bav-step is-target">
+            <h4>Trust</h4>
+            <p>Deepening credibility through C-suite suite hosting.</p>
+          </div>
+          <div class="bav-step is-target">
+            <h4>Usage</h4>
+            <p>Ultimate B2B pipeline conversion and software adoption.</p>
+          </div>
+        </div>
+
+        <div class="method-shell" style="margin-top: 48px;">
+          <div class="benchmark-panel">
+            <div>
+              <p class="kicker">Market Share Strategy</p>
+              <h3 style="margin: 0; font-size: 1.8rem; font-weight: 700; letter-spacing: -0.02em;">Competitor Push-Out</h3>
+              <p style="margin: 14px 0 0; font-size: 15px; line-height: 1.8; color: var(--muted);">We actively track SAP against its top two legacy competitors. By establishing a control group (fans who do not know the sponsor), we measure the precise gap in brand trust. As decision-makers encounter SAP across multiple touchpoints (Patch + Suites + App), SAP's lead over competitors in the region measurably widens, justifying the consolidation of fragmented legacy systems.</p>
+            </div>
+            <div class="chart-container">
+              <div class="chart-row">
+                <div class="chart-label">Control Group</div>
+                <div class="chart-track">
+                  <div class="chart-bar sap" style="width: 45%;">SAP</div>
+                </div>
+              </div>
+              <div class="chart-row">
+                <div class="chart-label"></div>
+                <div class="chart-track">
+                  <div class="chart-bar competitor" style="width: 42%;">Competitor</div>
+                </div>
+              </div>
+
+              <div style="height: 1px; background: rgba(231,168,176,0.12); margin: 20px 0;"></div>
+
+              <div class="chart-row">
+                <div class="chart-label">3+ Assets<br><span style="font-size: 8px; color: var(--gold);">(Patch+Suite+App)</span></div>
+                <div class="chart-track">
+                  <div class="chart-bar sap" style="width: 88%;">SAP Lift</div>
+                </div>
+              </div>
+              <div class="chart-row">
+                <div class="chart-label"></div>
+                <div class="chart-track">
+                  <div class="chart-bar competitor" style="width: 50%;">Competitor</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
