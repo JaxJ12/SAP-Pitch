@@ -695,7 +695,7 @@
       color: var(--gold);
     }
 
-    .site-footer {
+    .pf {
       position: relative;
       z-index: 2;
       width: min(1320px, calc(100% - 72px));
@@ -707,53 +707,25 @@
       box-shadow: var(--shadow-panel);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-    }
-
-    .site-footer__title {
-      margin: 0;
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: rgba(247, 242, 232, 0.92);
-    }
-
-    .site-footer__meta {
-      margin: 8px 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      color: var(--muted);
       font-size: 12px;
       line-height: 1.6;
-      color: var(--muted);
     }
-
-    .site-footer__links {
+    .pf .fl {
+      font-weight: 600;
+      color: rgba(247, 242, 232, 0.92);
+      letter-spacing: 0.02em;
+    }
+    .pf .fr {
       display: flex;
       flex-wrap: wrap;
-      gap: 16px;
-      margin-top: 14px;
-      padding-top: 12px;
-      border-top: 1px solid var(--line);
-    }
-
-    .site-footer__links a {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(247, 242, 232, 0.84);
-      opacity: 0.82;
-      transition: opacity 0.2s ease, color 0.2s ease;
-    }
-
-    .site-footer__links a:hover {
-      opacity: 1;
-      color: var(--gold);
-    }
-
-    .site-footer__legal {
-      margin: 14px 0 0;
-      font-size: 12px;
-      line-height: 1.6;
-      color: rgba(247, 242, 232, 0.66);
+      gap: 8px;
+      justify-content: flex-end;
+      color: rgba(247, 242, 232, 0.78);
     }
     @media (max-width: 1100px) {
       .hero__inner,
@@ -770,7 +742,7 @@
     @media (max-width: 820px) {
       .hero__inner,
       .section__inner,
-      .site-footer {
+      .pf {
         width: calc(100% - 32px);
       }
       .grid--2 {
@@ -803,10 +775,10 @@
       .nav-island a { font-size: 10px; }
       .hero__inner,
       .section__inner,
-      .site-footer {
+      .pf {
         width: calc(100% - 24px);
       }
-      .site-footer {
+      .pf {
         margin-bottom: 96px;
       }
     }
@@ -1066,11 +1038,16 @@
     </section>
   </main>
 
-  <footer class="site-footer" aria-label="Proposal footer">
-    <p class="site-footer__title">Baylor Athletics x SAP Partnership Proposal</p>
-    <p class="site-footer__meta">Student Pitch • Baylor University S3E Program • 2027 Launch Roadmap</p>
-    <p class="site-footer__legal">Baylor Sports Properties powered by Playfly</p>
-  </footer>
+  <div class="pf">
+    <span class="fl">Baylor Sports Properties powered by Playfly</span>
+    <div class="fr">
+      <span>Student Pitch</span>
+      <span>•</span>
+      <span>Baylor University S3E Program</span>
+      <span>•</span>
+      <span>2027 Launch Roadmap</span>
+    </div>
+  </div>
 
   <nav class="nav-island" aria-label="Primary navigation">
     <a href="index.html">Overview</a>
