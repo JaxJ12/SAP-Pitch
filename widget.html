@@ -378,12 +378,29 @@ const fallbackResponse = "That is an excellent question. The full granular break
 
       // Simulate network delay for realistic AI feel (1.2 seconds)
       setTimeout(() => {
-        thinking.remove();
-        const responseText = findBestResponse(text);
-        appendMsg(renderMarkdown(responseText), "agent", true);
-        setLoading(false);
-        input.focus();
+        try {
+          thinking.remove();
+          const responseText = findBestResponse(text);
+          appendMsg(renderMarkdown(responseText), "agent", true);
+        } catch (error) {
+          console.error("Widget response error:", error);
+          appendMsg("Sorry, something went wrong loading that response.", "agent", false);
+        } finally {
+          setLoading(false);
+          input.focus();
+        }
       }, 1200);
+    }
+
+    const sendBtn = document.getElementById("sendBtn");
+    const userInput = document.getElementById("userInput");
+    if (sendBtn) {
+      sendBtn.addEventListener("click", sendMessage);
+    }
+    if (userInput) {
+      userInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") sendMessage();
+      });
     }
   </script>
 </body>
