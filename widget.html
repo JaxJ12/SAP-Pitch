@@ -157,21 +157,15 @@
     <div class="prompt-bar">
       <p class="prompt-bar__label">Suggested Executive Inquiries</p>
       <div class="prompt-bar__chips">
+        <button class="chip" onclick="sendChip(this)">Break down the valuation</button>
         <button class="chip" onclick="sendChip(this)">How does this provide "Business Back" to SAP?</button>
-        <button class="chip" onclick="sendChip(this)">What are the five communication assets?</button>
-        <button class="chip" onclick="sendChip(this)">Why is the $1.85M platform justified?</button>
-        <button class="chip" onclick="sendChip(this)">Why pitch for 2027 instead of 2026?</button>
-        <button class="chip" onclick="sendChip(this)">How will Playfly measure success?</button>
-        <button class="chip" onclick="sendChip(this)">Why can't a competitor like Oracle replicate this?</button>
-        <button class="chip" onclick="sendChip(this)">Why Baylor over a pro team like the Cowboys?</button>
-        <button class="chip" onclick="sendChip(this)">Doesn't Baylor already use Microsoft?</button>
-        <button class="chip" onclick="sendChip(this)">How does the Always-On Content Engine work?</button>
-        <button class="chip" onclick="sendChip(this)">Why local anchor strategy over a bigger school?</button>
+        <button class="chip" onclick="sendChip(this)">What is the I-35 strategy?</button>
+        <button class="chip" onclick="sendChip(this)">Why can't Oracle replicate this?</button>
       </div>
     </div>
 
     <div class="messages" id="messages">
-      <div class="msg agent">Hello. I am the SAP x Baylor Briefing Assistant. Ask me about the proposal's valuation, asset mix, timeline, or strategic alignment.</div>
+      <div class="msg agent">Hello. I am the SAP x Baylor Briefing Assistant. Ask me about the proposal's valuation, VIK integration, timeline, or strategic alignment.</div>
     </div>
 
     <div class="input">
@@ -181,155 +175,58 @@
   </div>
 
   <script>
-    // THE AI BRAIN: 21 Hardcoded responses tailored perfectly to the rubric, Dan's transcript, and Capstone traps.
     const knowledgeBase = [
       {
-        // 1. BUSINESS BACK / VIK
-        keywords: ["business back", "vik", "purchase", "customer", "buy", "software"],
-        response: "To satisfy SAP's requirement for authentic storytelling, Baylor Athletics will become an active customer. \n\nWe propose a formal **Value-in-Kind (VIK) or Direct Purchase** agreement where Baylor adopts **SAP Analytics Cloud** to manage stadium operations and ticketing data. \n\nThis provides direct **Business Back** to SAP, while allowing us to use the Executive Suite as a live technology showcase demonstrating your software in action."
+        keywords: ["media valuation", "valuation breakdown", "nielsen numbers", "worth", "equivalence", "break down the valuation"],
+        response: "Our **$4.5M annual valuation** is anchored by $2.1M in **Nielsen-verified** media equivalence from Power 4 broadcast windows. The remaining $2.4M is driven by **Zoomph-tracked** social engagement and the high-value B2B decision-maker density within the I-35 corridor, which traditional CPM models often undervalue."
       },
       {
-        // AGENCY VS TECHNOLOGY ROLES
-        keywords: ["alongside", "playfly", "work with", "partnership structure", "roles", "who does what"],
-        response: "The partnership operates on a **Technology + Agency** model. **SAP** serves as the 'Engine,' providing S/4HANA and Analytics Cloud to modernize Baylor’s infrastructure. **Playfly** acts as the 'Agency,' managing the asset inventory, executing the media buys, and providing the annual ROI recaps. This ensures SAP can focus on tech integration while Playfly guarantees the marketing value is delivered."
+        keywords: ["alongside", "playfly", "work with", "partnership structure", "roles", "who does what", "scott"],
+        response: "The partnership operates on a **Technology + Agency** model. **SAP** serves as the 'Engine,' providing S/4HANA and Analytics Cloud to modernize Baylor’s infrastructure. **Playfly** (led locally by Scott Yacyshyn) acts as the 'Agency,' managing the asset inventory, executing the media buys, and providing the annual ROI recaps."
       },
       {
-        // 2. THE 5 COMMUNICATION ASSETS
-        keywords: ["five communication", "five assets", "five core", "communication assets", "asset mix", "deliverables", "five distinct"],
-        response: "The platform includes 5 core communication asset categories delivering 35+ guaranteed activations:\n\n1. **In-App Digital Takeover:** SAP Game Center screens driving fans to active B2B portals.\n2. **Premium Suite Branding:** Physical framing for the Executive Huddle tech showcase.\n3. **Keynote Event Signage:** Physical room ownership at the Baylor Club.\n4. **Flagship Jersey Patch:** High-visibility broadcast asset signaling innovation (separate valuation track).\n5. **Co-Branded Social Content:** The 'SAP Stat of the Game' distributed across LinkedIn and X for all **thirty (30) regular-season basketball games**, plus **five (5) premium Instagram Reels** spotlighting the SAP Executive Suite — 35 total guaranteed social activations. Also included: **two (2) full minutes of exclusive 360-degree LED ribbon board takeover per half** and naming rights to the **SAP Crunch Time** under-4-minute media timeout."
+        keywords: ["why", "strategy", "advantage", "benefit", "b2b", "decision maker", "i-35", "corridor", "growth", "mid-market"],
+        response: "Baylor sits at the heart of the **I-35 Corridor**, the fastest-growing B2B hub in the US. This partnership provides SAP direct access to the **$500M–$2B mid-market sector**. We aren't just selling 'butts in seats'; we are selling access to the C-suite executives moving their operations into Central Texas."
       },
       {
-        // 3. THE BUDGET TRAP (Jersey Patch Pricing)
-        keywords: ["1.5m", "1.85m", "1.8m", "2.0m", "2.5m", "750k", "low", "patch", "budget", "valuation", "price", "cheap", "cost", "expensive"],
-        response: "The platform is priced at **$1,850,000 annually**. SAP is not buying ordinary local advertising — they are buying a premium **enterprise acquisition platform** that includes: the 'SAP Stat of the Game' distributed across LinkedIn and X for all **thirty (30) regular-season basketball games**, plus **five (5) premium Instagram Reels** spotlighting the SAP Executive Suite (35 total social activations), **two (2) full minutes of exclusive 360-degree LED ribbon board takeover per half**, official naming rights to the **SAP Crunch Time** under-4-minute timeout, B2B suite hospitality, keynote authority, and SAP App intelligence. ROI validated by Nielsen, Zoomph, and Playfly Insights. Jersey patch remains on a **separate flagship valuation track** — anchored above the UNLV G5 floor of $2.2M/yr, 3-year total projected at $10M–$16M."
+        keywords: ["how", "tech", "software", "analytics", "integration", "vik", "kind", "s/4hana", "stadium", "smart", "business back"],
+        response: "This is a **Value-In-Kind (VIK)** deal. Baylor is adopting **SAP S/4HANA** and **Analytics Cloud** to run McLane Stadium operations. This turns Baylor into a 'Living Reference Story' where SAP can bring prospects to see their software managing real-time logistics and fan heatmaps."
       },
       {
-        // 4. THE TIMELINE (Dan's specific requirement)
-        keywords: ["timeline", "2026", "2027", "year", "when", "launch", "fiscal"],
-        response: "The strategic roadmap is purposefully designed for **2027 and beyond**.\n\nDuring discovery, SAP explicitly stated that the 2026 budget is already locked. Proposing a 2026 activation would be dead on arrival. By targeting 2027, we align perfectly with SAP's fiscal planning cycle and ensure adequate lead time for a custom software integration."
+        keywords: ["price", "cost", "investment", "amount", "million", "expensive", "valuation"],
+        response: "The investment is **$4.5 Million annually**, split into a **$1.85M Base Platform** (offset by backend VIK adoption) and **$2.65M Jersey Patch rights**. This pricing reflects Power 4 scarcity and is anchored against current Group of 5 floors ($2.2M), giving SAP total category dominance."
       },
       {
-        // 5. TARGET AUDIENCE / DEMOGRAPHIC
-        keywords: ["audience", "target", "demographic", "who", "mid-market", "enterprise", "market"],
-        response: "SAP's primary obstacle is the stigma that its software is 'only for the Fortune 1000.'\n\nTherefore, our target audience is not the general fan—it is the **Corporate Mid-Market** ($500M-$2B revenue). We utilize the I-35 Dallas-Waco-Austin corridor to put SAP directly in front of regional CXOs and IT decision-makers who are primed for scalable enterprise solutions."
+        keywords: ["pillar", "talent", "student", "s3e", "hiring", "recruit", "employee", "retention", "staff"],
+        response: "The partnership addresses **SAP Pillar 4: Talent**. Through the **S3E Academic Pipeline**, SAP gains early access to elite talent. Furthermore, the stadium suites serve as **Internal Employee Rewards**, helping SAP retain top-performers by offering exclusive world-class hosting experiences."
       },
       {
-        // 6. HERO AND GUIDE (Rubric requirement)
-        keywords: ["story", "hero", "guide", "narrative", "obstacle"],
-        response: "In this proposal, **SAP is the Hero**. Your obstacle is the public perception that SAP is too rigid or expensive for mid-market businesses.\n\n**Baylor Athletics is the Guide.** We provide the map (access to the I-35 tech corridor) and the vehicle (premium hospitality and tech showcases) to help SAP overcome that stigma and capture regional market share."
-      },
-      {
-        // 7. ARTIFICIAL INTELLIGENCE / APP CTA
-        keywords: ["ai", "artificial intelligence", "app", "mobile", "cta", "call to action"],
-        response: "We are integrating the **SAP Business AI Game Center** into the Baylor app to provide real-time predictive play probabilities to the fans.\n\nHowever, it includes a crucial B2B Call-to-Action. When business owners in the stands interact with this data, the app prompts them to **'Run your business like Baylor runs Game Day,'** linking them directly into SAP's mid-market sales funnel for active conversion."
-      },
-      {
-        // 8. TALENT ACQUISITION (SAP's 4th Pillar)
-        keywords: ["talent", "student", "recruiting", "pipeline", "hire", "employee", "university"],
-        response: "Dan Fleetwood explicitly stated that SAP utilizes collegiate partnerships for **young talent recruitment programs**. \n\nThis proposal establishes SAP as the premier innovation partner on campus, granting your HR team priority pipeline access to elite business and tech graduates for summer internships and early-career hiring."
-      },
-      {
-        // 21. MEASUREMENT & VENDORS (Playfly, Zoomph, Nielsen)
-        keywords: ["measure", "measurement", "zoomph", "playfly", "survey", "report", "recap", "roi", "roo"],
-        response: "Baylor Sports Properties, powered by **Playfly**, executes a rigorous, multi-tiered measurement strategy.\n\nInstead of vague impressions, we deliver a comprehensive **Annual Recap**. We utilize **Zoomph** and **Nielsen** for quantitative broadcast and social exposure valuation, while **Playfly Insights** handles the qualitative survey work that tracks actual brand lift and trust. Our focus is on Return on Objective (ROO) and true B2B pipeline value."
-      },
-      {
-        // 9. ROI AND MEASUREMENT
-        keywords: ["roi", "metrics", "measure", "success", "kpi", "return"],
-        response: "We separate brand reach from pipeline value.\n\nOur primary KPIs focus on business development: **Post-game executive meetings booked** (the 'Monday Morning Call'), keynote lead-gen lists, and B2B portal click-through rates from the SAP Game Center app. We provide SAP with quarterly executive dashboards to prove the partnership is a revenue engine, not just a marketing expense."
-      },
-      {
-        // 10. COMPETITIVE ADVANTAGE (Why Baylor?)
-        keywords: ["why baylor", "unique", "pro team", "cowboys"],
-        response: "A professional sports team can offer SAP hospitality and a logo. Baylor offers a **demand generation ecosystem.**\n\nOnly a university partnership can combine Power 4 television visibility, a B2B technology showcase in the suites, curated thought-leadership keynotes for regional executives, AND a direct pipeline to elite young tech talent. It is a fully integrated enterprise solution."
-      },
-      {
-        // 11. COMPETITOR PUSH-OUT (Dan explicitly asked about this)
-        keywords: ["competitor", "push out", "replace", "oracle", "salesforce", "exclusive"],
-        response: "Dan specifically asked during discovery if there was a play to push out a competitor. \n\nYes. Currently, Baylor Athletics' backend analytics operations are fragmented. This partnership allows SAP to consolidate and replace existing legacy systems, giving SAP **exclusive category ownership** over all enterprise software applications in the athletic department."
-      },
-      {
-        // 12. EMPLOYEE ENGAGEMENT (SAP's 4th Pillar expanded)
-        keywords: ["staff", "reward", "tickets", "retention", "internal"],
-        response: "Beyond talent recruitment, Dan highlighted the need for employee engagement and team rewards. \n\nThe proposal includes a dedicated allocation of premium tickets, sideline passes, and Baylor Club access specifically earmarked for SAP’s internal team outings and top-performer incentive programs."
-      },
-      {
-        // 13. GEOGRAPHY / THE I-35 TRIANGLE
-        keywords: ["waco", "location", "geography", "austin", "dallas", "triangle"],
-        response: "Waco is the strategic linchpin of the Texas Triangle. \n\nBy activating at McLane Stadium, SAP intercepts the massive migration of mid-market tech and business headquarters expanding between Dallas and Austin, capturing decision-makers from both major metros in a single premium venue."
-      },
-      {
-        // 14. DATA PRIVACY & SECURITY
-        keywords: ["privacy", "security", "data", "gdpr", "safe"],
-        response: "As a B2B enterprise company, data security is paramount. \n\nThe SAP Business AI Game Center operates within a closed-loop, opt-in ecosystem within the Baylor app, ensuring all known-user engagement and lead generation strictly adheres to enterprise-grade privacy and compliance standards."
-      },
-      {
-        // 15. PARTNERSHIP FLEXIBILITY (The "Can-Do" Attitude)
-        keywords: ["flexible", "contract", "attitude", "can-do", "adapt"],
-        response: "Dan emphasized that a great partner has a 'can-do attitude' rather than just pointing to a contract. \n\nBaylor Sports Properties operates as an extension of SAP's marketing team. This roadmap is modular—we will dynamically adjust keynote topics, suite invites, and digital content throughout the year to match your evolving quarterly sales targets."
-      },
-      {
-        // 16. BRAND PURPOSE / SUSTAINABILITY
-        keywords: ["sustainability", "charity", "purpose", "values", "community"],
-        response: "SAP's first pillar is 'Brand Awareness and Purpose.' \n\nBaylor shares SAP's core values. Our keynote series and community initiatives can be co-branded to highlight SAP's sustainability efforts and local charitable impact, ensuring the partnership resonates with the global SAP brand."
-      },
-      {
-        // 17. THE APPROVAL CHAIN
-        keywords: ["approve", "decision", "board", "cmo", "ops", "sign"],
-        response: "We understand this proposal must pass through Dan's Strategy and Operations team, then the CMO, and ultimately require Board Area approval. \n\nWe have structured this Executive Brief to specifically arm Dan's team with the B2B ROI and pipeline metrics required to secure that final board sign-off."
-      },
-      {
-        // 18. KEYNOTE SPEAKER CURRICULUM
-        keywords: ["speaker", "keynote", "topic", "talk", "present"],
-        response: "The Keynote Series isn't just SAP executives talking about software. \n\nWe will integrate Baylor Athletics leadership, coaches, and sports science directors alongside SAP experts to discuss high-performance team building, data-driven decision making, and leadership—creating a truly unique curriculum for mid-market CXOs."
-      },
-      {
-        // 19. ACADEMIC SPECIFICS (S3E & MIS)
-        keywords: ["s3e", "sales program", "major", "business school", "academic"],
-        response: "Baylor's Center for Sports Strategy and Sales (S3E) is one of the premier programs in the country. \n\nBy partnering with Baylor, SAP gets first-look access to students explicitly trained in Sales Strategy in Sports and Entertainment Marketing, drastically reducing your onboarding time and cost for new enterprise sales hires."
-      },
-      {
-        // 20. PROOF OF CONCEPT (The 49ers comparison)
-        keywords: ["proof", "case study", "showcase", "example", "49ers", "niners"],
-        response: "Dan mentioned the massive success of the 49ers Executive Huddle. Baylor will serve as your collegiate equivalent. \n\nWe will co-author a public case study detailing how Baylor Athletics uses SAP Analytics Cloud to optimize stadium operations, giving your sales team a powerful new reference story for the higher-education and live-event markets."
-      },
-      {
-        // SUSTAINABLE ACTIVITY
-        keywords: ["sustainable", "long term", "ongoing", "multi-year", "renewal", "evergreen", "one time", "repeat"],
-        response: "This is not a one-time campaign buy — it is a **multi-year, evergreen platform**.\n\nEvery football and basketball season renews the B2B hospitality cycle automatically. Each year adds new executive relationships, deeper brand integration, and expanded case study data. The VIK agreement means SAP\'s software is operationally embedded in Baylor Athletics — making this partnership structural, not seasonal.\n\nYear 1 proves the model. Year 2 expands the patch integration. Year 3 produces the full reference story for Sapphire and TechEd."
-      },
-      {
-        // WAYS TO DO BUSINESS WITH SAP / FAN ENGAGEMENT
-        keywords: ["do business", "how fans", "fan.*sap", "contact sap", "reach sap", "connect", "learn how", "qr", "portal", "engage"],
-        response: "The app includes a persistent **\"Learn How SAP Powers This\"** module — a scannable in-app experience that walks business owners through SAP Analytics Cloud capabilities using live Baylor stadium data as the proof point.\n\nFans don\'t just see the SAP logo. They:\n1. Interact with SAP-powered analytics in real time.\n2. Receive a direct in-app prompt: \"Run your business like Baylor runs Game Day.\"\n3. Are linked to SAP\'s mid-market sales team for a consultation.\n\nThis is the only sponsorship in Central Texas that turns 300,000+ annual attendees into an educated, actionable SAP audience."
-      },
-      {
-        // ALWAYS-ON CONTENT ENGINE
-        keywords: ["always on", "always-on", "content engine", "year round", "off season", "between games", "ongoing content", "media", "storytelling", "pr outreach"],
-        response: "Dan specifically said sponsorships need to be \'always on\' — not just game-day activations.\n\nBaylor delivers a three-pillar Always-On Content Engine:\n\n1. **Media & PR Outreach:** Every Baylor football and basketball press release includes SAP as the official analytics partner. Radio, TV, and digital coverage extends SAP\'s brand 365 days a year.\n2. **Video & Digital Content Pipeline:** Bi-weekly co-branded content — \'How SAP Powers Baylor Game Day\' — distributed across X, Instagram, and LinkedIn to the Baylor Athletics 500K+ social following.\n3. **Sapphire & TechEd Integration:** Baylor becomes a live case study presented at SAP\'s global conferences. Stadium performance data becomes a reference architecture for SAP\'s higher-education and live-event verticals.\n\nThis is not a logo on a scoreboard. It is a year-round B2B content platform."
-      },
-      {
-        // LOCAL VS GLOBAL / LOCAL ANCHOR STRATEGY
-        keywords: ["local", "global", "anchor", "central texas", "waco", "i-35", "corridor", "regional", "community", "local market", "villanova", "stanford", "quality over quantity"],
-        response: "SAP\'s framework distinguishes between local and global activations. Baylor fits the **Local Anchor** model — and intentionally so.\n\nThis is not about broadcast reach to 50 markets. It is about owning the **I-35 Corridor** — Waco to Dallas to Austin — which houses the highest concentration of SAP\'s mid-market target customers in Texas.\n\nDan referenced Villanova and Stanford as examples of high-value, lower-profile partners that outperform larger schools in B2B conversion. Baylor mirrors this model:\n\n- Tight alumni network in finance, energy, and healthcare\n- 75,000+ Baylor alumni concentrated in DFW and Austin\n- Executive audience at every home game via the Baylor Club\n- Zero competitor access (no other enterprise software company in this space)\n\nQuality over quantity. One converted CFO is worth more than a million casual impressions."
-      },
-      {
-        // MICROSOFT CONFLICT QUESTION
-        keywords: ["microsoft", "surface", "conflict", "already use", "big 12", "tablet", "existing"],
-        response: "There is no conflict. Microsoft\'s relationship with Baylor is through a **Big 12 Conference-level hardware deal** — Surface tablets used for in-game sideline video review. That is a conference-wide agreement, not a Baylor school-level technology partnership.\n\nSAP would enter as **Baylor\'s exclusive school-level enterprise software partner** — a completely separate category.\n\nIn fact, we frame this as a strength: Baylor already uses Microsoft at the conference level for in-game video. SAP Analytics Cloud completes the **backend intelligence layer** — making SAP the enterprise brain powering the entire stadium operation. No overlap. No conflict. Pure ecosystem."
+        keywords: ["competitor", "oracle", "salesforce", "market share", "exclusive", "replace", "push out", "replicate"],
+        response: "Our strategy is **Competitor Push-Out**. By integrating SAP into Baylor’s central nervous system (operations and academics), we ensure 100% category exclusivity, effectively removing the footprint of legacy systems like Oracle from our ecosystem."
       }
     ];
 
-const fallbackResponse = "That is an excellent question. The full granular breakdown for that topic is maintained by the Baylor Sports Properties team. I recommend reviewing the 'Strategic Rationale' section of the Executive Brief or submitting the Contact Form on the website to have Scott Yacyshyn provide the detailed data room.";
+    const fallbackResponse = "That is a vital question regarding our 2027 roadmap. While I analyze that specific data point, I can confirm that our $4.5M valuation and VIK integration are designed to maximize SAP's mid-market growth in the I-35 corridor. Would you like to see the media valuation breakdown or the Smart Stadium modules?";
+
+    function findBestResponse(input) {
+      const lowerInput = input.toLowerCase();
+      
+      if (lowerInput.includes("media valuation") || lowerInput.includes("break down the valuation") || lowerInput.includes("valuation breakdown")) {
+          return knowledgeBase[0].response;
+      }
+
+      for (const item of knowledgeBase) {
+        if (item.keywords.some(kw => lowerInput.includes(kw))) {
+          return item.response;
+        }
+      }
+      return fallbackResponse;
+    }
 
     function renderMarkdown(text) {
-      // Bold text
       let html = text.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
-      // Numbered list items -> li tags
       html = html.replace(/\n\d+\.\s(.+)/g, "<li>$1</li>");
-      // Wrap consecutive li tags in a ul
       html = html.replace(/(<li>[\s\S]*?<\/li>)+/g, m => "<ul>" + m + "</ul>");
-      // Line breaks (skip inside ul)
       html = html.replace(/\n(?!<)/g, "<br>");
       return html;
     }
@@ -355,16 +252,6 @@ const fallbackResponse = "That is an excellent question. The full granular break
       document.getElementById("userInput").disabled = isLoading;
     }
 
-    function findBestResponse(input) {
-      const lowerInput = input.toLowerCase();
-      for (const item of knowledgeBase) {
-        if (item.keywords.some(kw => lowerInput.includes(kw))) {
-          return item.response;
-        }
-      }
-      return fallbackResponse;
-    }
-
     function sendMessage() {
       const input = document.getElementById("userInput");
       const text = input.value.trim();
@@ -374,33 +261,15 @@ const fallbackResponse = "That is an excellent question. The full granular break
       appendMsg(text, "user", false);
       setLoading(true);
       
-      const thinking = appendMsg("Analyzing proposal data...", "thinking", false);
+      const thinking = appendMsg("Consulting Baylor Sports Properties data...", "thinking", false);
 
-      // Simulate network delay for realistic AI feel (1.2 seconds)
       setTimeout(() => {
-        try {
-          thinking.remove();
-          const responseText = findBestResponse(text);
-          appendMsg(renderMarkdown(responseText), "agent", true);
-        } catch (error) {
-          console.error("Widget response error:", error);
-          appendMsg("Sorry, something went wrong loading that response.", "agent", false);
-        } finally {
-          setLoading(false);
-          input.focus();
-        }
-      }, 1200);
-    }
-
-    const sendBtn = document.getElementById("sendBtn");
-    const userInput = document.getElementById("userInput");
-    if (sendBtn) {
-      sendBtn.addEventListener("click", sendMessage);
-    }
-    if (userInput) {
-      userInput.addEventListener("keydown", (event) => {
-        if (event.key === "Enter") sendMessage();
-      });
+        thinking.remove();
+        const responseText = findBestResponse(text);
+        appendMsg(renderMarkdown(responseText), "agent", true);
+        setLoading(false);
+        input.focus();
+      }, 1000);
     }
   </script>
 </body>
